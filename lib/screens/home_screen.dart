@@ -1,6 +1,9 @@
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
+import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
 import 'package:flutter/material.dart';
-int _selectedIndex = 0;
+import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -11,36 +14,51 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-
-  void _onItemTapped(int index)
+  int _selectedIndex = 0; //index of the bottom tabs
+  final List<Widget> _children = [
+    //the color containers are only for debug use only
+    HomescreenExplore(),
+    Container(color: Colors.yellow,),
+    Container(color: Colors.green,),
+    Container(color: Colors.red,),
+  ];  //the list of children widgets that will be rendered based on the choice
+  void _onItemTapped(int index) //set the index to the current index
   {
     setState(() {
       _selectedIndex = index;
+      print(index);
     });
   }
-
-
   Widget build(BuildContext context) {
+    SizeConfig().init(context); //initialize the size config object so all sizes can be adjusted
     return Scaffold(
+      resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       //TODO: iOS and Android have different widgets
+//      appBar: AppBar(
+//        backgroundColor: Colors.white,
+//        title: Text("Tolo Dylamic", style: kappbartextstyle),
+//      ),
+      body: SafeArea(
+          child: _children[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: kloginbuttoncolor,),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: klogin_button_color,),
             title: Text('Explore'),),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle, color: kloginbuttoncolor),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle, color: klogin_button_color),
             title: Text('Add'),
           ),
-          BottomNavigationBarItem(
-          icon: Icon(Icons.chat, color: kloginbuttoncolor),
+          new BottomNavigationBarItem(
+          icon: Icon(Icons.chat, color: klogin_button_color),
           title: Text('Chat'),),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people, color: kloginbuttoncolor),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.person, color: klogin_button_color),
             title: Text('Me'),),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: kloginbuttoncolor,
+        selectedItemColor: klogin_button_color,
         onTap: _onItemTapped,
       ),
     );

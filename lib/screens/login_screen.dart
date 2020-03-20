@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   @override
   static String id = 'LoginScreen';
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig().init(context); //initialize the size config object so all sizes can be adjusted
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       body: SafeArea(
@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*20,
               ),
               Container(
-                color: kloginbuttoncolor,
+                color: klogin_button_color,
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
                 child: GestureDetector(
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                     );
                   },
                   child: Center(
-                      child: Text('Log In', style: kloginbuttontext,)),
+                      child: Text('Log In', style: klogin_button_text,)),
                 ),
               ),
             ],
