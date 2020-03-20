@@ -7,10 +7,14 @@ String username;
 String password;
 
 class LoginScreen extends StatelessWidget {
+
   @override
-  static String id = 'LoginScreen';
+  static String id = '/LoginScreen';
+
   Widget build(BuildContext context) {
-    SizeConfig().init(context); //initialize the size config object so all sizes can be adjusted
+
+    SizeConfig().init(context);
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       body: SafeArea(
@@ -22,8 +26,8 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*10,
               ),
               Container(
-                height: SizeConfig.safeBlockHorizontal*50,
-                width: SizeConfig.safeBlockHorizontal*50,
+                height: SizeConfig.safeBlockVertical*50,
+                width: SizeConfig.safeBlockVertical*50,
                 color: Colors.amber,
               ),
               SizedBox(
@@ -70,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*20,
               ),
               Container(
-                color: klogin_button_color,
+                color: kloginbuttoncolor,
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
                 child: GestureDetector(
@@ -81,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                     );
                   },
                   child: Center(
-                      child: Text('Log In', style: klogin_button_text,)),
+                      child: Text('Log In', style: kloginbuttontext,)),
                 ),
               ),
             ],
