@@ -2,6 +2,7 @@ import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 
 String username;
 String password;
@@ -11,9 +12,12 @@ class LoginScreen extends StatelessWidget {
   @override
   static String id = '/LoginScreen';
 
+
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
+    UserProfile up = UserProfile();
+    up.username = "hi";
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -74,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*20,
               ),
               Container(
-                color: kloginbuttoncolor,
+                color: klogin_button_color,
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
                 child: GestureDetector(
@@ -85,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                     );
                   },
                   child: Center(
-                      child: Text('Log In', style: kloginbuttontext,)),
+                      child: Text('Log In', style: klogin_button_text,)),
                 ),
               ),
             ],
