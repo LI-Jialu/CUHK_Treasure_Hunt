@@ -16,7 +16,7 @@ class _HomescreenExploreState extends State<HomescreenExplore> {
     return Column(
       children: <Widget>[
         Container(child:
-        Center(child: Text("CUHK T-Hunt", style: khomescreen_title_textstyle,),),
+        Center(child: Text("TOLO Dynamic", style: khomescreen_title_textstyle,),),
           height: SizeConfig.safeBlockVertical*10,),
         Container(
           height: SizeConfig.safeBlockVertical*10,
@@ -121,28 +121,6 @@ class _ExploreBodyState extends State<ExploreBody> {
   }
 }
 
-Widget _myListView(BuildContext context) {
-  //  for test use only
-  // TODO: to implement the itemgridview
-  final europeanCountries = ['Albania', 'Andorra', 'Armenia', 'Austria',
-    'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
-    'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
-    'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland',
-    'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
-    'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro',
-    'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia',
-    'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
-    'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
-
-  return ListView.builder(
-    itemCount: europeanCountries.length,
-    itemBuilder: (context, index) {
-      return ListTile(
-        title: Text(europeanCountries[index]),
-      );
-    },
-  );
-}
 
 class ItemGridView extends StatefulWidget {
   @override
@@ -151,26 +129,51 @@ class ItemGridView extends StatefulWidget {
 
 class _ItemGridViewState extends State<ItemGridView> {
   @override
+
+  //determine if the item is favored or not
+  bool isFavorite = false;
+
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.safeBlockVertical*25,
+      height: SizeConfig.safeBlockVertical*30,
       width: SizeConfig.safeBlockHorizontal*40,
-      child: Column(
+      child: Stack(
         children: <Widget>[
-          Container(
-            color: Colors.amber,
-            height: SizeConfig.safeBlockVertical*20,
-            width: SizeConfig.safeBlockHorizontal*40,
-          ),
-          Container(
-            child: Text("Title"),
-            height: SizeConfig.safeBlockVertical*2,
-          ),
-          Container(
-            child: Text("Price"),
-            height: SizeConfig.safeBlockVertical*2,
-          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                color: Colors.amber,
+                height: SizeConfig.safeBlockVertical*20,
+                width: SizeConfig.safeBlockHorizontal*40,
+              ),
+              Container(
+                child: Text("Title"),
+                height: SizeConfig.safeBlockVertical*2,
+              ),
+              Container(
+                child: Text("Price"),
+                height: SizeConfig.safeBlockVertical*2,
+              ),
+              Container(
+                child: Text("New Asia"),
+                height: SizeConfig.safeBlockVertical*2,
+              ),
 
+            ],
+          ),
+          Positioned(
+            right: SizeConfig.safeBlockHorizontal*3,
+              top: SizeConfig.safeBlockVertical*22,
+              child: GestureDetector(
+                onTap: (){
+                  isFavorite = !isFavorite;
+                  setState(() {
+                  });
+                },
+                  child: isFavorite?Icon(Icons.favorite, color: Colors.pink,)
+                      :Icon(Icons.favorite_border, color: Colors.pink,)),
+          ),
         ],
       ),
     );

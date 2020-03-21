@@ -1,5 +1,7 @@
 // Define User class
 
+import 'package:cuhk_treasure_hunt/classes/UserBuyRequest.dart';
+import 'package:cuhk_treasure_hunt/classes/UserFavourites.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 
 class User{
@@ -10,7 +12,10 @@ class User{
   List<String> _transactionInProgress; //store transactionIDs
 
   // composites
-  UserProfile _profile;
+  UserProfile _userProfile;
+  UserFavourites _userFavourites;
+  UserBuyRequest _userBuyRequest;
+  // Todo: messageBox, History, Reputation
 
   // constructor
   // A User instance should be constructed after all its composites have been constructed.
@@ -18,14 +23,19 @@ class User{
     bool loginStatus,
     List<String> itemPosted,
     List<String> transactionInProgress,
-    UserProfile profile
+    UserProfile userProfile,
+    UserFavourites userFavourites,
+    UserBuyRequest userBuyRequest
   }): _loginStatus = loginStatus, _itemPosted = itemPosted, _transactionInProgress = transactionInProgress,
-    _profile = profile;
+    _userProfile = userProfile, _userFavourites = userFavourites, _userBuyRequest = userBuyRequest;
 
   // getters
   get loginStatus => _loginStatus;
   get itemPosted => _itemPosted;
   get transactionInProgress => _transactionInProgress;
+  get userProfile => _userProfile;
+  get userFavourites => _userFavourites;
+  get userBuyRequest => _userBuyRequest;
 
   // methods
   void login(String email, String password){

@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
 
     SizeConfig().init(context);
 
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       body: SafeArea(
@@ -28,8 +29,8 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*10,
               ),
               Container(
-                height: SizeConfig.safeBlockVertical*50,
-                width: SizeConfig.safeBlockVertical*50,
+                height: SizeConfig.safeBlockVertical*30,
+                width: SizeConfig.safeBlockVertical*30,
                 color: Colors.amber,
               ),
               SizedBox(

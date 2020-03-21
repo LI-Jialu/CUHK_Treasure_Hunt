@@ -18,6 +18,7 @@ class UserProfile{
     String dorm
   }): _userID = userID, _username = username, _college = college, _year = year, _dorm = dorm;
 
+
   // getters
   String get userID => _userID;
   String get username => _username;
