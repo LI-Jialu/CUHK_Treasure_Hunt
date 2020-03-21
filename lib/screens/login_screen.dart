@@ -16,8 +16,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    UserProfile up = UserProfile();
-    up.username = "hi";
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
