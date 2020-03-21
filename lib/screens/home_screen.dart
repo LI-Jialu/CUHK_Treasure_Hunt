@@ -15,6 +15,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   int _selectedIndex = 0; //index of the bottom tabs
+  //bool variables to determine the icon
+  bool tapExplore = false;
+  bool tapAdd = false;
+  bool tapChat = false;
+  bool tapUser = false;
   final List<Widget> _children = [
     //the color containers are only for debug use only
     HomescreenExplore(),
@@ -26,11 +31,41 @@ class _HomeScreenState extends State<HomeScreen> {
   {
     setState(() {
       _selectedIndex = index;
-      print(index);
+      // if statement to indicate which button is pressed and change the icon
+      if (index==0)
+        {
+          tapExplore = true;
+          tapUser = false;
+          tapChat = false;
+          tapAdd = false;
+        }
+      else if (index==1)
+        {
+          tapAdd = true;
+          tapExplore = false;
+          tapUser = false;
+          tapChat = false;
+        }
+      else if (index==2)
+        {
+          tapChat = true;
+          tapExplore = false;
+          tapUser = false;
+          tapAdd = false;
+        }
+      else if (index==3)
+        {
+          tapUser = true;
+          tapChat = false;
+          tapExplore = false;
+          tapAdd = false;
+        }
     });
   }
   Widget build(BuildContext context) {
+
     SizeConfig().init(context); //initialize the size config object so all sizes can be adjusted
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       //TODO: iOS and Android have different widgets
@@ -44,17 +79,21 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           new BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: klogin_button_color,),
+            icon: tapExplore?Icon(Icons.home, color: klogin_button_color,)
+                :Icon(Icons.home, color: knonactive_button_color,),
             title: Text('Explore'),),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle, color: klogin_button_color),
+            icon: tapAdd?Icon(Icons.add_circle, color: klogin_button_color)
+            :Icon(Icons.add_circle, color: knonactive_button_color),
             title: Text('Add'),
           ),
           new BottomNavigationBarItem(
-          icon: Icon(Icons.chat, color: klogin_button_color),
+          icon: tapChat?Icon(Icons.chat, color: klogin_button_color)
+            :Icon(Icons.chat, color: knonactive_button_color),
           title: Text('Chat'),),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: klogin_button_color),
+            icon: tapUser?Icon(Icons.person, color: klogin_button_color)
+            :Icon(Icons.person, color: knonactive_button_color),
             title: Text('Me'),),
         ],
         currentIndex: _selectedIndex,

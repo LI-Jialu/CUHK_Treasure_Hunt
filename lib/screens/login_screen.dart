@@ -16,8 +16,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    UserProfile up = UserProfile();
-    up.username = "hi";
+    UserProfile up = UserProfile(username: 'hi');
+    //if there is no setter, the up.username = "hi" can't be done
+    //up.username = "hi";
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -30,8 +31,8 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*10,
               ),
               Container(
-                height: SizeConfig.safeBlockVertical*50,
-                width: SizeConfig.safeBlockVertical*50,
+                height: SizeConfig.safeBlockVertical*30,
+                width: SizeConfig.safeBlockVertical*30,
                 color: Colors.amber,
               ),
               SizedBox(
