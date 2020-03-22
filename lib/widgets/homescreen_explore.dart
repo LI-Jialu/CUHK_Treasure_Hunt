@@ -62,20 +62,18 @@ class _ExploreBodyState extends State<ExploreBody> {
     return Expanded(
         child: PageView(
           controller: _controller,
-          scrollDirection: Axis.vertical,
+          scrollDirection: Axis.horizontal,
           children: <Widget>[
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ItemGridView(),
-                    SizedBox(
-                      width: SizeConfig.safeBlockHorizontal*10,
-                    ),
-                    ItemGridView(),
-                  ],
+                Container(
+                  height: SizeConfig.safeBlockVertical*25,
+                  width: SizeConfig.safeBlockHorizontal*90,
+                  color: Colors.amber,
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical*5,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -87,35 +85,9 @@ class _ExploreBodyState extends State<ExploreBody> {
                     ItemGridView(),
                   ],
                 ),
-
               ],
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ItemGridView(),
-                    SizedBox(
-                      width: SizeConfig.safeBlockHorizontal*10,
-                    ),
-                    ItemGridView(),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ItemGridView(),
-                    SizedBox(
-                      width: SizeConfig.safeBlockHorizontal*10,
-                    ),
-                    ItemGridView(),
-                  ],
-                ),
-
-              ],
-            ),
+            itemListView(),
           ],
         ));
   }
@@ -177,5 +149,34 @@ class _ItemGridViewState extends State<ItemGridView> {
         ],
       ),
     );
+  }
+
+
+}
+
+// To return a widget that scrolls down the page to view the items
+class itemListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return _itemListView(context);
+  }
+
+
+  Widget _itemListView(BuildContext context)
+  {
+    return ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemBuilder: (context, index){
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ItemGridView(),
+              SizedBox(
+                width: SizeConfig.safeBlockHorizontal*10,
+              ),
+              ItemGridView(),
+            ],
+          );
+        });
   }
 }
