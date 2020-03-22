@@ -27,6 +27,7 @@ class LoginScreen extends StatelessWidget {
               //place the avatar of the user
               SizedBox(
                 height: SizeConfig.safeBlockVertical*10,
+
               ),
               Container(
                 height: SizeConfig.safeBlockVertical*30,
