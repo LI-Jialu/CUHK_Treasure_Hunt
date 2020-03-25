@@ -3,6 +3,7 @@ import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
+import 'package:cuhk_treasure_hunt/widgets/homescreen_chat_list.dart';
 
 
 
@@ -20,10 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     //the color containers are only for debug use only
     HomescreenExplore(),
-    Container(color: Colors.yellow,),
+    HomeScreenChat(),
+//    Container(color: Colors.green,),
     Container(color: Colors.green,),
     Container(color: Colors.red,),
   ];  //the list of children widgets that will be rendered based on the choice
+
+  final List<Widget> _childrenAppbar = [
+
+  ];
 
   void _onItemTapped(int index) //set the index to the current index
   {

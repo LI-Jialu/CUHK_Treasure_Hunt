@@ -9,6 +9,8 @@ String sellingPriceInput;
 String descriptionInput;
 String locationInput;
 
+
+// TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
 class PostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
