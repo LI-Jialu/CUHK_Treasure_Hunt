@@ -21,9 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     //the color containers are only for debug use only
     HomescreenExplore(),
-    HomeScreenChat(),
-//    Container(color: Colors.green,),
     Container(color: Colors.green,),
+    HomeScreenChat(),
+    //Container(color: Colors.green,),
     Container(color: Colors.red,),
   ];  //the list of children widgets that will be rendered based on the choice
 
