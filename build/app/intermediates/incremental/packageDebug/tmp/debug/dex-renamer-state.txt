@@ -1,4 +1,4 @@
-#Wed Mar 25 16:33:22 CST 2020
-base.0=C\:\\Users\\jialu\\Desktop\\CUHK_Treasure_Hunt\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Thu Mar 26 18:38:01 CST 2020
+base.0=D\:\\project\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
