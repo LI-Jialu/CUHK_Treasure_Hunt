@@ -19,13 +19,12 @@ class Item{
   // constructor
   Item({
     @required String name,
-    @required String itemID,
     @required String posterID,
     @required double price,
     @required int quantity,
     @required List<String> tags,
     @required DateTime postDate
-  }) : _name = name, _itemID = itemID, _posterID = posterID, _price = price, _quantity = quantity,
+  }) : _name = name, _posterID = posterID, _price = price, _quantity = quantity,
     _tags = tags, _postDate = postDate;
 
   // getters

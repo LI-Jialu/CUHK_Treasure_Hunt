@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
+import '../utilities/constants.dart';
+
 class TransactionHistoryScreen extends StatefulWidget {
   @override
   _TransactionHistoryScreenState createState() => _TransactionHistoryScreenState();
