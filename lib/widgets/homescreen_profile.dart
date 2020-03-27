@@ -17,7 +17,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
         children: <Widget>[
           //user icon, user's email and reputation
           Container(
-            height: SizeConfig.safeBlockVertical*25,
+            height: SizeConfig.safeBlockHorizontal*25,
             width: SizeConfig.safeBlockHorizontal*25,
             color: Colors.amber, //user icon
           ),
@@ -50,9 +50,9 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     // location
                     children: <Widget>[
                       Container(
-                          height: SizeConfig.safeBlockVertical*15,
+                          height: SizeConfig.safeBlockVertical*10,
                           width: SizeConfig.safeBlockVertical*15,
-                          child: Icon(Icons.location_on , color: Colors.white,)
+                          child: Icon(Icons.location_on , color: Colors.black,)
                       ),
                       GestureDetector(
                         onTap: (){}, //go to location
@@ -66,9 +66,9 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   // Posted items
                   children: <Widget>[
                     Container(
-                        height: SizeConfig.safeBlockVertical*15,
+                        height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockVertical*15,
-                        child: Icon(Icons.shopping_basket , color: Colors.white,)
+                        child: Icon(Icons.shopping_basket , color: Colors.black,)
                     ),
                     GestureDetector(
                       onTap: (){}, //go to posted items
@@ -82,7 +82,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   // Favourites
                   children: <Widget>[
                     Container(
-                        height: SizeConfig.safeBlockVertical*15,
+                        height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockVertical*15,
                         child: Icon(Icons.favorite_border)
                     ),
@@ -98,9 +98,9 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   // Transaction history
                   children: <Widget>[
                     Container(
-                        height: SizeConfig.safeBlockVertical*15,
+                        height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockVertical*15,
-                        child: Icon(Icons.shopping_cart  , color: Colors.white,)
+                        child: Icon(Icons.shopping_cart  , color: Colors.black,)
                     ),
                     GestureDetector(
                       onTap: (){}, //go to Transaction history
@@ -114,9 +114,9 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   // Browsing History
                   children: <Widget>[
                     Container(
-                        height: SizeConfig.safeBlockVertical*15,
+                        height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockVertical*15,
-                        child: Icon(Icons.history  , color: Colors.white,)
+                        child: Icon(Icons.history  , color: Colors.black,)
                     ),
                     GestureDetector(
                       onTap: (){}, //go to Browsing History
@@ -125,6 +125,9 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical*1,
                 ),
                 Container(
                   // Log out
