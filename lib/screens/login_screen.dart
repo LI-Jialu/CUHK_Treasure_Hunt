@@ -85,10 +85,15 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*6,
                 child: FlatButton(
                   onPressed: () async {
+                    // login
                     User user = await Database.login(username, password);
-                    print(user.loginStatus);
-                    print(user.userReputation.userReputation);
-                    print(user.userProfile.year);
+                    // debug
+                    if (user != null && user.loginStatus == true) {
+                      print(user.loginStatus);
+                      print(user.userReputation.userReputation);
+                      print(user.userProfile.year);
+                    }
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomeScreen()),

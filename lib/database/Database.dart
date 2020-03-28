@@ -13,6 +13,10 @@ class Database {
   // methods
   static Future<User> login(String email, String password) async {
 
+    if (email == null || password == null){
+      return null;
+    }
+
     String path = "/data/login.php";
     String query = "?email=" + email + "&password=" + password;
 
