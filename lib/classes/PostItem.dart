@@ -20,8 +20,6 @@ class PostItem {
       // add to database
       // get itemID from database and save to newItem.itemID
 
-      user.itemPosted.add(newItem.itemID);
-
     }
     else {
 

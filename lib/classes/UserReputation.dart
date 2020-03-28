@@ -10,10 +10,18 @@ class UserReputation{
   // constructor
   UserReputation({double userReputation}): _userReputation = userReputation;
 
+  // getter
+  get userReputation => _userReputation;
+
+  // factory constructor
+  factory UserReputation.fromJson(Map<String, dynamic> json){
+
+    return UserReputation(userReputation: double.parse(json['reputation']));
+
+  }
+
   // methods
   double calculateReputation(User user){
-
-    int historyLength = user.userHistory.length;
 
     // get sum of ratings from database
 

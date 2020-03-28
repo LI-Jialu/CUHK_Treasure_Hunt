@@ -9,15 +9,15 @@ if ($_GET['email'] === NULL || $_GET['password'] === NULL){
 $email = $_GET['email'];
 $pw = $_GET['password'];
 
-$sql = "SELECT user_id FROM users WHERE email='{$email}' AND password = '{$pw}'$
+$sql = "SELECT u.user_id, u.username, c.college, u.year, u.dorm, u.reputation FROM users u JOIN colleges c USING (college_id) WHERE email='{$email}' AND password='{$pw}'";
 
 $result = $con->query($sql);
 
 if ($result->num_rows>0){
-        echo 'success '.$result->fetch_assoc()['user_id'];
+        echo json_encode($result->fetch_assoc());
 }
 else {
-        echo "fail";
+        echo json_encode(array("user_id"=>-1));
 }
 ?>
 

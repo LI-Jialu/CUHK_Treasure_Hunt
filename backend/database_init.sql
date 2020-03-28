@@ -23,9 +23,9 @@ CREATE TABLE users (
     username varchar(20) NOT NULL,
     email varchar(40) NOT NULL,
     password varchar(20) NOT NULL,
-    college_id tinyint unsigned,
-    year tinyint unsigned,
-    dorm varchar(20), -- foreign key, collect names of all dorms
+    college_id tinyint unsigned DEFAULT 10,
+    year tinyint unsigned DEFAULT 0,
+    dorm varchar(20) DEFAULT "--", -- foreign key, collect names of all dorms
     reputation double(3,2) DEFAULT -1,
     PRIMARY KEY (user_id),
     FOREIGN KEY (college_id) REFERENCES colleges(college_id)

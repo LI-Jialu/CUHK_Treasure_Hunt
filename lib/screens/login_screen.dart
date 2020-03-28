@@ -1,4 +1,5 @@
-import 'package:cuhk_treasure_hunt/database/db.dart';
+import 'package:cuhk_treasure_hunt/classes/User.dart';
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -82,9 +83,12 @@ class LoginScreen extends StatelessWidget {
                 color: klogin_button_color,
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
-                child: GestureDetector(
-                  onTap: (){
-                    Database.login(username, password);
+                child: FlatButton(
+                  onPressed: () async {
+                    User user = await Database.login(username, password);
+                    print(user.loginStatus);
+                    print(user.userReputation.userReputation);
+                    print(user.userProfile.year);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomeScreen()),

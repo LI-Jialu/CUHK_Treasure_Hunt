@@ -26,6 +26,20 @@ class UserProfile{
   int get year => _year;
   String get dorm => _dorm;
 
+  // factory constructor
+  factory UserProfile.fromJson(Map<String, dynamic> json){
+
+    return UserProfile(
+      userID: json["user_id"],
+      username: json["username"],
+      college: json["college"],
+      year: int.parse(json["year"]),
+      dorm: json["dorm"]
+    );
+
+  }
+
+
   // methods
 
   void changeUserProfile(){
