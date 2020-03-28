@@ -7,9 +7,9 @@ if ($_GET['email'] === NULL || $_GET['password'] === NULL){
 }
 
 $email = $_GET['email'];
-$pw = $_GET['password'];
+$password = $_GET['password'];
 
-$sql = "SELECT u.user_id, u.username, c.college, u.year, u.dorm, u.reputation FROM users u JOIN colleges c USING (college_id) WHERE email='{$email}' AND password='{$pw}'";
+$sql = "SELECT u.user_id, u.username, c.college, u.year, u.dorm, u.reputation FROM users u JOIN colleges c USING (college_id) WHERE email='{$email}' AND password='{$password}'";
 
 $result = $con->query($sql);
 

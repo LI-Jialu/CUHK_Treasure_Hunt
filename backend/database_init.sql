@@ -38,10 +38,12 @@ CREATE TABLE items (
     name varchar(20) NOT NULL,
     price double(6,1) NOT NULL,
     quantity smallint unsigned NOT NULL,
-    create_time datetime NOT NULL,
+    create_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (item_id),
     FOREIGN KEY (poster_id) REFERENCES users(user_id)
 );
+INSERT INTO items VALUES (DEFAULT, 1, 'homework coupon', 10000, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 1, 'coronavirus vaccine', 99999, 1, DEFAULT);
 
 CREATE TABLE transactions (
 	transaction_id int unsigned NOT NULL AUTO_INCREMENT,

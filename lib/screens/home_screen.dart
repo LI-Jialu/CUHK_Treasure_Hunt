@@ -2,6 +2,7 @@ import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_chat_list.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
+import 'package:cuhk_treasure_hunt/widgets/homescreen_profile.dart';
 import 'package:cuhk_treasure_hunt/widgets/profile_browsing_history.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     null,
     HomeScreenChat(),
     //Container(color: Colors.green,),
-    ProfileBrowsingHistory(),
+    HomescreenProfile(),
   ]; //the list of children widgets that will be rendered based on the choice
 
   final List<Widget> _childrenAppbar = [
