@@ -11,6 +11,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

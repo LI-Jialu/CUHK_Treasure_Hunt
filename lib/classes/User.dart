@@ -10,7 +10,6 @@ class User{
 
   // fields
   bool _loginStatus;
-  List<String> _transactionInProgress; //store transactionIDs
 
   // composites
   UserProfile _userProfile;
@@ -25,20 +24,16 @@ class User{
     UserProfile userProfile,
     MessageBox messageBox,
     UserReputation userReputation
-  }): _loginStatus = loginStatus, _transactionInProgress = transactionInProgress,
-    _userProfile = userProfile, _messageBox = messageBox,  _userReputation = userReputation;
+  }): _loginStatus = loginStatus, _userProfile = userProfile,
+        _messageBox = messageBox,  _userReputation = userReputation;
 
   // getters
   get loginStatus => _loginStatus;
-  get transactionInProgress => _transactionInProgress;
   get userProfile => _userProfile;
   get messageBox => _messageBox;
   get userReputation => _userReputation;
 
   // methods
-  void login(String email, String password){
-    // Authentication
-  }
 
   void logout(){
     _loginStatus = false;
