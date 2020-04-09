@@ -21,7 +21,7 @@ INSERT INTO colleges VALUES (DEFAULT, "--");
 CREATE TABLE users (
 	user_id mediumint unsigned NOT NULL AUTO_INCREMENT,
     username varchar(20) NOT NULL,
-    email varchar(40) NOT NULL,
+    student_id char(10) NOT NULL,
     password varchar(20) NOT NULL,
     college_id tinyint unsigned DEFAULT 10,
     year tinyint unsigned DEFAULT 0,
@@ -30,8 +30,8 @@ CREATE TABLE users (
     PRIMARY KEY (user_id),
     FOREIGN KEY (college_id) REFERENCES colleges(college_id)
 );
-INSERT INTO users VALUES (DEFAULT,'system admin','admin@cuhk.edu.hk','notagoodpassword',10,0,'--',5);
-INSERT INTO users VALUES (DEFAULT, "Steve", 'steve@cuhk.edu.hk','steviewonder',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT,'system admin','00000000','notagoodpassword',10,0,'--',5);
+INSERT INTO users VALUES (DEFAULT, "Steve", '00000001','steviewonder',6,2,'--',DEFAULT);
 
 CREATE TABLE items (
 	item_id int unsigned NOT NULL AUTO_INCREMENT,
