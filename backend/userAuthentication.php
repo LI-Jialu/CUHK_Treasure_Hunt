@@ -1,7 +1,7 @@
 <?php
 
-$user_id = $_GET['user_id'];
-$password = $_GET['password'];
+    $user_id = $_SERVER['PHP_AUTH_USER'];
+    $password = $_SERVER['PHP_AUTH_PW'];
 
 if ($user_id === null || $password == null){
     echo "fail";

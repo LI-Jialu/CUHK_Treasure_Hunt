@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
@@ -5,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
+
+import 'package:http/http.dart' as http;
 
 String username;
 String password;
@@ -85,14 +89,15 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*6,
                 child: FlatButton(
                   onPressed: () async {
-                    // login
-                    User user = await Database.login(username, password);
-                    // debug
-                    if (user != null && user.loginStatus == true) {
-                      print(user.loginStatus);
-                      print(user.userReputation.userReputation);
-                      print(user.userProfile.year);
-                    }
+                    //Database.test();
+                    Database.login('0000000002', 'god');
+
+                    Timer(Duration(seconds: 3), () async{
+                      http.Response res = await Database.get('/data/buyRequests.php', '');
+                      print(res.body);
+                    });
+
+
 
                     Navigator.push(
                       context,

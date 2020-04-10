@@ -9,52 +9,43 @@ import 'package:http/http.dart' as http;
 class Database {
 
   static String hostname = "http://ec2-3-80-187-207.compute-1.amazonaws.com";
+  static String userIDPW;
+  static String basicAuth;
 
   // methods
-  static Future<User> login(String email, String password) async {
+  static Future<bool> login(String studentID, String password) async {
 
-    if (email == null || password == null){
+    if (studentID == null || password == null){
       return null;
     }
 
     String path = "/data/login.php";
-    String query = "?email=" + email + "&password=" + password;
+    String auth = 'Basic ' + base64Encode((utf8.encode(studentID+":"+password)));
 
-    print("send request");
+    String url = hostname + path;
+    http.Response response = await http.get(url,headers: {'authorization':auth});
 
-    http.Response response = await get(path,query);
+    print(response.body);
 
-    if (response == null){
-      print("Connection failed");
-      return null;
-    }
+    if (response.body != "-1"){
+      User.loginStatus = true;
+      //print(User.loginStatus);
+      userIDPW = response.body+":"+password;
+      basicAuth = 'Basic '+base64Encode(utf8.encode(userIDPW));
+      //print(basicAuth);
 
-    print("response received");
-
-    Map<String, dynamic> result = json.decode(response.body);
-
-    if (result['user_id'] == -1){
-      return User(loginStatus: false);
+      return true;
     }
     else {
-
-      UserProfile userProfile = UserProfile.fromJson(result);
-      UserReputation userReputation = UserReputation.fromJson(result);
-
-      User user = User(
-        loginStatus: true,
-        userProfile: userProfile,
-        userReputation: userReputation
-      );
-
-      return user;
+      return false;
     }
+
   }
 
   static Future<http.Response> get(String path, String query) async {
 
     String url = hostname + path + query;
-    http.Response response =  await http.get(url);
+    http.Response response =  await http.get(url, headers: {'authorization':basicAuth});
 
     if (response.statusCode == 200){
       return response;
@@ -62,6 +53,16 @@ class Database {
     else {
       return null;
     }
+
+  }
+
+  static void test()async{
+    String url = "http://ec2-3-80-187-207.compute-1.amazonaws.com/data/test.php";
+    String uspw = 'god:god';
+    String basicAuth = 'Basic '+base64Encode(utf8.encode(uspw));
+    http.Response response = await http.get(url,headers: {'authorization':basicAuth});
+
+    print(response.body);
 
   }
 
