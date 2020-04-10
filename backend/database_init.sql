@@ -30,8 +30,8 @@ CREATE TABLE users (
     PRIMARY KEY (user_id),
     FOREIGN KEY (college_id) REFERENCES colleges(college_id)
 );
-INSERT INTO users VALUES (DEFAULT,'system admin','00000000','notagoodpassword',10,0,'--',5);
-INSERT INTO users VALUES (DEFAULT, "Steve", '00000001','steviewonder',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT,'system admin','0000000000','notagoodpassword',10,0,'--',5);
+INSERT INTO users VALUES (DEFAULT, "Steve", '0000000001','steviewonder',6,2,'--',DEFAULT);
 
 CREATE TABLE items (
 	item_id int unsigned NOT NULL AUTO_INCREMENT,
@@ -49,7 +49,8 @@ INSERT INTO items VALUES (DEFAULT, 2, 'plane ticket to chengdu', 4699, 2, DEFAUL
 
 CREATE TABLE transactions (
 	transaction_id int unsigned NOT NULL AUTO_INCREMENT,
-    status BOOL NOT NULL DEFAULT 0,
+    status_s tinyint NOT NULL DEFAULT 0,
+    status_b tinyint NOT NULL DEFAULT 0,
     seller_id mediumint unsigned NOT NULL,
     buyer_id mediumint unsigned NOT NULL,
     item_id int unsigned NOT NULL,
@@ -61,7 +62,7 @@ CREATE TABLE transactions (
     FOREIGN KEY (buyer_id) REFERENCES users (user_id),
     FOREIGN KEY (item_id) REFERENCES items (item_id)
 );
-INSERT INTO transactions VALUES(DEFAULT, 1, 1, 2, 1, 2.2, 1, DEFAULT);
+INSERT INTO transactions VALUES(DEFAULT, 1, 1, 1, 2, 1, 2.2, 1, DEFAULT);
 
 CREATE TABLE favourites ( -- create surrogate key to allow set null
 	favourite_id int unsigned NOT NULL AUTO_INCREMENT,

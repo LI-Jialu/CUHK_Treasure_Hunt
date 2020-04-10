@@ -90,16 +90,16 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () async {
                     //Database.test();
-                    Database.login('0000000002', 'god');
+                    Database.login('0000000001', 'steviewonder');
 
-                    /*Timer(Duration(seconds: 3), () async{
-                      http.Response res = await Database.get('/data/buyRequests.php', '');
+                    /*Timer(Duration(seconds: 2), () async{
+                      http.Response res = await Database.get('/data/profile.php', '');
                       print(res.body);
                     });*/
                     Timer(Duration(seconds: 2), () async{
                       Database.post(
-                          "/data/manageItems.php",
-                          {'action':'delete','item_id':'10','name':'UGFN Book','price':'30','quantity':'2'}
+                          "/data/manageFavourites.php",
+                          {'action':'delete','item_id':'2','favourite_id':''}
                           );
                     });
 
