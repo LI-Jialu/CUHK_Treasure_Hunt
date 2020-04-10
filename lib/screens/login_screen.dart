@@ -92,11 +92,16 @@ class LoginScreen extends StatelessWidget {
                     //Database.test();
                     Database.login('0000000002', 'god');
 
-                    Timer(Duration(seconds: 3), () async{
+                    /*Timer(Duration(seconds: 3), () async{
                       http.Response res = await Database.get('/data/buyRequests.php', '');
                       print(res.body);
+                    });*/
+                    Timer(Duration(seconds: 2), () async{
+                      Database.post(
+                          "/data/manageItems.php",
+                          {'action':'delete','item_id':'10','name':'UGFN Book','price':'30','quantity':'2'}
+                          );
                     });
-
 
 
                     Navigator.push(

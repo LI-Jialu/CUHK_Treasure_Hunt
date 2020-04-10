@@ -9,7 +9,7 @@ if ($user_id === null || $password == null){
 }
 
 // authenticate user
-$sql = "SELECT password FROM users where user_id = '{$user_id}'";
+$sql = "SELECT password FROM users WHERE user_id = {$user_id}";
 
 $result = $con->query($sql);
 

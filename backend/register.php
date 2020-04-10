@@ -1,3 +1,6 @@
+// need to change to more secure way of passing password.
+// Don't use it now
+
 <?php
 
     require_once("connectDB.php");

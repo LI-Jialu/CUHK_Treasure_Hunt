@@ -3,9 +3,9 @@
     require_once("connectDB.php");
     require_once("userAuthentication.php");
 
-    $action = $_GET['action'];
-    $item_id = $_GET['item_id'];
-    $quantity = $_GET['quantity'];
+    $action = $_POST['action'];
+    $item_id = $_POST['item_id'];
+    $quantity = $_POST['quantity'];
     
     $sql;
     

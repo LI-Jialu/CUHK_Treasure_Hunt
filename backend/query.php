@@ -4,8 +4,8 @@
 <?php
 
     $result = $con->query($sql);
-    
-    if ($result->affected_rows>=0){ // might have to change it to strictly > 0
+
+    if ($result){
         echo "success";
     }
     else {

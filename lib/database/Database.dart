@@ -26,6 +26,7 @@ class Database {
     http.Response response = await http.get(url,headers: {'authorization':auth});
 
     print(response.body);
+    print(response.body.length);
 
     if (response.body != "-1"){
       User.loginStatus = true;
@@ -54,6 +55,15 @@ class Database {
       return null;
     }
 
+  }
+
+  static Future<http.Response> post(String path, Map<String,String> query) async {
+
+    String url =  hostname + path;
+    print(url);
+    http.Response response = await http.post(url,headers: {'authorization':basicAuth},body: query);
+
+    print(response.body);
   }
 
   static void test()async{
