@@ -15,7 +15,6 @@ login.php | login.. | Y
 manageBuyRequests.php | create/update/delete  buy requests | Y
 manageFavourites.php | create/delete favourites | Y
 manageItems.php | create/update/delete items | Y
-manageTransactions.php | create/update/delete transaction | N
 profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
 register.php | register user | N
