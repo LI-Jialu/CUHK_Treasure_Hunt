@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
@@ -90,16 +91,16 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () async {
                     //Database.test();
-                    Database.login('0000000001', 'steviewonder');
+                    Database.login('0000000002', 'admin3');
 
                     /*Timer(Duration(seconds: 2), () async{
                       http.Response res = await Database.get('/data/profile.php', '');
-                      print(res.body);
+                      print(json.decode(res.body)[0]['username']);
                     });*/
                     Timer(Duration(seconds: 2), () async{
                       Database.post(
-                          "/data/manageFavourites.php",
-                          {'action':'delete','item_id':'2','favourite_id':''}
+                          "/data/manageTransactions.php",
+                          {'action':'delete','type':'sell','transaction_id':'3'}
                           );
                     });
 

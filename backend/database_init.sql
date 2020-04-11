@@ -30,8 +30,11 @@ CREATE TABLE users (
     PRIMARY KEY (user_id),
     FOREIGN KEY (college_id) REFERENCES colleges(college_id)
 );
-INSERT INTO users VALUES (DEFAULT,'system admin','0000000000','notagoodpassword',10,0,'--',5);
-INSERT INTO users VALUES (DEFAULT, "Steve", '0000000001','steviewonder',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT,'admin1','0000000000','admin1',10,0,'--',5);
+INSERT INTO users VALUES (DEFAULT, "admin2", '0000000001','admin2',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT, "admin3", '0000000002','admin3',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT, "admin4", '0000000003','admin4',6,2,'--',DEFAULT);
+INSERT INTO users VALUES (DEFAULT, "admin5", '0000000004','admin5',6,2,'--',DEFAULT);
 
 CREATE TABLE items (
 	item_id int unsigned NOT NULL AUTO_INCREMENT,
@@ -43,9 +46,16 @@ CREATE TABLE items (
     PRIMARY KEY (item_id),
     FOREIGN KEY (poster_id) REFERENCES users(user_id)
 );
-INSERT INTO items VALUES (DEFAULT, 1, 'homework coupon', 10000, 0, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 1, 'homework coupon', 10000, 1, DEFAULT);
 INSERT INTO items VALUES (DEFAULT, 1, 'coronavirus vaccine', 99999, 1, DEFAULT);
 INSERT INTO items VALUES (DEFAULT, 2, 'plane ticket to chengdu', 4699, 2, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 2, 'exam solution', 10000, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 3, 'UGFH book', 10.0, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 3, 'UGFN book', 10.0, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 4, 'Expired Mask', 10.0, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 4, 'Used Lipstick', 100.0, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 5, 'Fingernail', 105.0, 1, DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 5, 'Hair', 3.0, 1, DEFAULT);
 
 CREATE TABLE transactions (
 	transaction_id int unsigned NOT NULL AUTO_INCREMENT,
