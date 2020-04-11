@@ -23,6 +23,8 @@ updateProfile.php | updateProfile | N
 updateReputation.php | updateReputation | N
 usernameExists.php | check whether username exists | Y
 
+### Important Note: The files can only be used after login cause user Authentication is required.
+
 ### Guides to using using these files:
 1. Use the static methods get/post to call these files (except for login)
 2. Look into the file. If you see $_GET use get, if you see $_POST use post
