@@ -20,7 +20,7 @@ profile.php | retrieve profile | Y
 register.php | register user | N
 transactions.php | retrieve transactions | Y (not yet tested)
 updateProfile.php | updateProfile | N
-updateReputation.php updateReputation | N
+updateReputation.php | updateReputation | N
 usernameExists.php | check whether username exists | Y
 
 ### Guides to using using these files:
@@ -31,4 +31,10 @@ usernameExists.php | check whether username exists | Y
     - See what is following $_GET and $_Post
 5. For get, query should be in the following format: "?parameter1=value1&parameter2=value2"
 6. For post, query should be an associative array: {"parameter1":"value1", "parameter2" : "value2"}
-7. For post, even of the value is number, wrap it with a ""
+7. For post, even if the value is number, wrap it with a ""
+8. The return data for get will be a json encoded array
+    - Each element of the array will be an associative array
+    - Look at the php files to find out what are the keys (Look at what's following SELECT in $sql)
+    - Use json.decode(response.body) to retrieve the array of associative arrays
+    - Access the values as you would do normally: arr[0]['key']
+9. The return data for post will be either 'success' or 'fail' (not encoded)
