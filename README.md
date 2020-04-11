@@ -17,8 +17,10 @@ manageFavourites.php | create/delete favourites | Y
 manageItems.php | create/update/delete items | Y
 manageTransactions.php | create/update/delete transaction | N
 profile.php | retrieve profile | Y
+updateProfile.php | make changes to profile | Y
 register.php | register user | N
 transactions.php | retrieve transactions | Y (not yet tested)
+manageTransactions | create/update/delete transactions | Half way
 updateProfile.php | updateProfile | N
 updateReputation.php | updateReputation | N
 usernameExists.php | check whether username exists | Y
