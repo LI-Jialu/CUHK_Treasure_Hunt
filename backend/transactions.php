@@ -1,5 +1,4 @@
-// deprecated
-// will update
+// need to test correctness
 
 <?php
 
