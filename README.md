@@ -2,15 +2,33 @@
 
 A second hand market based in CU
 
-## Getting Started
+## How to use backend
+by Dixon
 
-This project is a starting point for a Flutter application.
+### Backend Files
+file|use|completed
+--|--|--
+buyRequests.php | retrieve buy requests | Y
+favourites.php | retrieve favourites | Y
+itemsPosted.php|retrieve items posted | Y
+login.php | login.. | Y
+manageBuyRequests.php | create/update/delete  buy requests | Y
+manageFavourites.php | create/delete favourites | Y
+manageItems.php | create/update/delete items | Y
+manageTransactions.php | create/update/delete transaction | N
+profile.php | retrieve profile | Y
+register.php | register user | N
+transactions.php | retrieve transactions | Y (not yet tested)
+updateProfile.php | updateProfile | N
+updateReputation.php updateReputation | N
+usernameExists.php | check whether username exists | Y
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Guides to using using these files:
+1. Use the static methods get/post to call these files (except for login)
+2. Look into the file. If you see $_GET use get, if you see $_POST use post
+3. provide the path to the get/post methods: "/data/<filename, including .php>"
+4. Look into the files to see what query parameters u need
+    - See what is following $_GET and $_Post
+5. For get, query should be in the following format: "?parameter1=value1&parameter2=value2"
+6. For post, query should be an associative array: {"parameter1":"value1", "parameter2" : "value2"}
+7. For post, even of the value is number, wrap it with a ""
