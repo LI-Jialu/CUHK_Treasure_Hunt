@@ -92,22 +92,22 @@ class _ContactCardState extends State<ContactCard> {
       height: SizeConfig.safeBlockVertical * 10,
       width: SizeConfig.screenWidth,
       color: Colors.white,
-      child: Row(
-        children: <Widget>[
-          Container(
-              height: SizeConfig.safeBlockVertical * 10,
-              width: SizeConfig.safeBlockVertical * 10,
-              child: Icon(
-                Icons.person,
-              )),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatroomScreen()),
-              );
-            },
-            child: Column(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatroomScreen()),
+          );
+        },
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: SizeConfig.safeBlockVertical * 10,
+                width: SizeConfig.safeBlockVertical * 10,
+                child: Icon(
+                  Icons.person,
+                )),
+            Column(
               children: <Widget>[
                 Container(
                   child: Text(
@@ -120,8 +120,8 @@ class _ContactCardState extends State<ContactCard> {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
