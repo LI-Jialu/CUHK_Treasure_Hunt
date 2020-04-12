@@ -1,14 +1,15 @@
+import 'package:cuhk_treasure_hunt/screens/post_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_chat_list.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_profile.dart';
-import 'package:cuhk_treasure_hunt/widgets/profile_browsing_history.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   static String id = 'HomeScreen';
+
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -19,14 +20,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _children = [
     //the color containers are only for debug use only
-    HomescreenExplore(),
+    HomescreenExplore(
+      key: PageStorageKey('page1'),
+    ),
 //    Container(
 //      color: Colors.green,
 //    ),
-    null,
-    HomeScreenChat(),
+    PostScreen(
+      key: PageStorageKey('page2'),
+    ),
+    HomeScreenChat(
+      key: PageStorageKey('page3'),
+    ),
     //Container(color: Colors.green,),
-    HomescreenProfile(),
+    HomescreenProfile(
+      key: PageStorageKey('page4'),
+    ),
   ]; //the list of children widgets that will be rendered based on the choice
 
   final List<Widget> _childrenAppbar = [
@@ -38,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
       elevation: 0,
     ),
   ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
 
   void _onItemTapped(int index) //set the index to the current index
   {
@@ -58,7 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
 //      ),
       appBar: _childrenAppbar[_selectedIndex],
       body: SafeArea(
-        child: _children[_selectedIndex],
+        child: PageStorage(
+          child: _children[_selectedIndex],
+          bucket: bucket,
+        ),
       ),
 
       bottomNavigationBar: BottomNavigationBar(

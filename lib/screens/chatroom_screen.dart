@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:flutter/material.dart';
 
 String input_message;
 
@@ -23,23 +23,23 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
             ),
           ),
           Container(
-            height: SizeConfig.safeBlockVertical*10,
+            height: SizeConfig.safeBlockVertical * 10,
             width: SizeConfig.screenWidth,
             child: Row(
               children: <Widget>[
                 Container(
-                  height: SizeConfig.safeBlockVertical*10,
-                  width: SizeConfig.safeBlockVertical*10,
+                  height: SizeConfig.safeBlockVertical * 10,
+                  width: SizeConfig.safeBlockVertical * 10,
                   child: Icon(Icons.mic),
                 ),
                 Expanded(
                   child: Container(
-                    height: SizeConfig.safeBlockVertical*10,
+                    height: SizeConfig.safeBlockVertical * 10,
                     child: TextField(
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.send,
                       maxLines: 1,
-                      onChanged: (value){
+                      onChanged: (value) {
                         input_message = value;
                         print(input_message);
                       },
@@ -47,8 +47,8 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                   ),
                 ),
                 Container(
-                  height: SizeConfig.safeBlockVertical*10,
-                  width: SizeConfig.safeBlockVertical*10,
+                  height: SizeConfig.safeBlockVertical * 10,
+                  width: SizeConfig.safeBlockVertical * 10,
                   child: Icon(Icons.add_circle),
                 ),
               ],
@@ -56,7 +56,6 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
           ),
         ],
       ),
-
     );
   }
 }
