@@ -1,9 +1,11 @@
+import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 
 class HomescreenProfile extends StatefulWidget {
   const HomescreenProfile({Key key}) : super(key: key);
-
   @override
   _HomescreenProfileScreenState createState() =>
       _HomescreenProfileScreenState();
@@ -109,7 +111,13 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           width: SizeConfig.safeBlockVertical * 15,
                           child: Icon(Icons.favorite_border)),
                       GestureDetector(
-                        onTap: () {}, //go to Favourites
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavoriteScreen()),
+                          );
+                        }, //go to Favourites
                         child: Container(
                           child: Text(
                             "Favourites",
@@ -151,7 +159,13 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             color: Colors.black,
                           )),
                       GestureDetector(
-                        onTap: () {}, //go to Browsing History
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder:
+                                (context) => BrowsingHistoryScreen(),),
+                          );
+                        }, //go to Browsing History
                         child: Container(
                           child: Text(
                             "Browsing History",

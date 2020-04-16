@@ -88,41 +88,53 @@ class ContactCard extends StatefulWidget {
 class _ContactCardState extends State<ContactCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: SizeConfig.safeBlockVertical * 10,
-      width: SizeConfig.screenWidth,
-      color: Colors.white,
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ChatroomScreen()),
-          );
-        },
-        child: Row(
-          children: <Widget>[
-            Container(
-                height: SizeConfig.safeBlockVertical * 10,
-                width: SizeConfig.safeBlockVertical * 10,
-                child: Icon(
-                  Icons.person,
-                )),
-            Column(
+    return Stack(
+      children: <Widget>[
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ChatroomScreen()),
+            );
+          },
+          child: Container(
+          height: SizeConfig.safeBlockVertical * 10,
+          width: SizeConfig.screenWidth,
+          color: Colors.white,
+            child: Row(
               children: <Widget>[
                 Container(
-                  child: Text(
-                    "Imane",
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-                Container(
-                  child: Text("Aloha"),
+                    height: SizeConfig.safeBlockVertical * 10,
+                    width: SizeConfig.safeBlockVertical * 10,
+                    child: Icon(
+                      Icons.person,
+                    )),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        "Imane",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    Container(
+                      child: Text("Aloha"),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
       ),
+        ),
+        Positioned(
+          left: SizeConfig.safeBlockHorizontal*80,
+          height: SizeConfig.safeBlockHorizontal*15,
+          width: SizeConfig.safeBlockVertical*10,
+          child: Container(
+            child: Center(child: Text("12:00")),  //to connect to the backend for time
+          ),
+        ),
+    ],
     );
   }
 }

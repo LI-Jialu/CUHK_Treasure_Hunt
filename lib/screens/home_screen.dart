@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     null,
     null,
     AppBar(
-      title: Text("Browsing"),
+      title: Text("Profile"),
       elevation: 0,
     ),
   ];
