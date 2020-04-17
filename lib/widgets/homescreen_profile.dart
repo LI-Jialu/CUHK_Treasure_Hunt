@@ -1,8 +1,14 @@
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
+import 'dart:async';
+import 'package:cuhk_treasure_hunt/database/Database.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart';
 
 class HomescreenProfile extends StatefulWidget {
   const HomescreenProfile({Key key}) : super(key: key);
@@ -15,6 +21,12 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    Future<Response> get_favotite()async{
+      var favorites;
+      favorites =await Database.get("/data/favorites.php", "");
+      return favorites;
+    }
 
     return Scaffold(
       body: ListView.builder(
@@ -111,11 +123,25 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           width: SizeConfig.safeBlockVertical * 15,
                           child: Icon(Icons.favorite_border)),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async{
+                          Map favorite_list;
+                          try{
+                            Response favorites = await get_favotite();
+                            if (favorites!=null)
+                              {
+                                print("the body is not null");
+                                favorite_list = json.decode(favorites.body);
+                              }
+                            else
+                              print("the body is null");
+                          }
+                          catch(e){
+                            print("fail to acquire the list");
+                          }
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => FavoriteScreen()),
+                                builder: (context) => FavoriteScreen(favorite_list: favorite_list,)),
                           );
                         }, //go to Favourites
                         child: Container(
