@@ -1,31 +1,48 @@
 <?php
-  
+
+
     // called from manageTransactions.php
-    
-    
-    $rating = $_POST['rating'];
-    $user_id = $_POST['user_id']; // user id of the user rated
-    
-    $sql = "SELECT reputation FROM users WHERE user_id = {$user_id};";
-    
-    $result = $con->query($sql);
-    
-    $reputation = $result->fetch_assoc()['reputation'];
-    
-    if ($reputation == -1){ // first time complete tranaction
-        $reputation = $rating;
-    }
-    else {
+    function updateRep($id, $rating,$con){
         
-        // get number of existing completed transactions
-        $sql = "SELECT NULL FROM transactions WHERE (seller_id = {$user_id} OR buyer_id = {$user_id}) AND status_s = 1 AND status_b = 1;";
-        
+        // get reputation now
+        $sql = "SELECT reputation FROM users WHERE user_id = {$id};";
+
         $result = $con->query($sql);
-        
-        $n = $result->num_rows;
+
+        $reputation = $result->fetch_assoc()['reputation'];
         
         // calculate new reputation
-        $reputation = ($reputation * $n + $rating) / ($n + 1);
+        if ($reputation == -1){ // first time complete tranaction
+            $reputation = $rating;
+        }
+        else {
+            
+            // get number of existing completed transactions
+            $sql = "SELECT NULL FROM transactions WHERE (seller_id = {$id} OR buyer_id = {$id}) AND status_s = 1 AND status_b = 1;";
+            
+            $result = $con->query($sql);
+            
+            $n = $result->num_rows;
+            
+            // calculate new reputation
+            $reputation = ($reputation * ($n-1) + $rating) / ($n);
+            
+        }
+
+        // update reputation
+        $sql = "UPDATE users SET reputation = {$reputation} WHERE user_id = {$id};";
+        require('query.php');
         
     }
+
+    $sql = "SELECT seller_id, buyer_id, rating_s, rating_b FROM transactions WHERE transaction_id = {$transaction_id} AND {$id} = {$user_id}";
+
+    $result = $con->query($sql);
+    
+    $res = $result->fetch_assoc();
+    
+
+    updateRep($res['seller_id'],$res['rating_s'],$con);
+    updateRep($res['buyer_id'],$res['rating_b'],$con);
+
 ?>

@@ -14,42 +14,44 @@
     
     // update/delete parameters
     $transaction_id = $_POST['transaction_id'];
-    $type = $_POST['type']; // is the user buyer or seller? 'buy'/'sell'
+    $type = $_POST['type']; // is the user buyer or seller? 'b'/'s', where 'b' for buy and 's' for sell
     
+    // update parameter
+    $rating  = $_POST['rating'];
     
     $sql;
     
     if ($action == 'insert'){
         // called when user creates a transaction
-        $sql = "INSERT INTO transactions VALUES (DEFAULT, 0, 0, {$seller_id}, {$buyer_id}, {$item_id}, {$price}, {$quantity}, DEFAULT);";
-        
+        $sql = "INSERT INTO transactions VALUES (DEFAULT, 0, 0, {$seller_id}, {$buyer_id}, DEFAULT, DEFAULT,{$item_id}, {$price}, {$quantity}, DEFAULT);";
+//        echo $sql;
         require_once('query.php');
     }
     else if ($action == 'update'){
         // called when user indicates completion of transaction
         
-        $status_type = $type == 'buy'? 'status_b' : 'status_s';
-        $id = $type == 'sell'? 'seller_id':'buyer_id';
+        $id = $type == 's'? 'seller_id':'buyer_id';
+        $rating_type = $type == 's'? 'b':'s';
         
-        $sql = "UPDATE transactions SET {$status_type} = 1 WHERE transaction_id = {$transaction_id} AND {$id} = {$user_id};";
+        $sql = "UPDATE transactions SET status_{$type} = 1, rating_{$rating_type} = {$rating} WHERE transaction_id = {$transaction_id} AND {$id} = {$user_id};";
         
         require_once('query.php');
         
-        /*// trigger reputation recomputation
+        // trigger reputation recomputation
         $sql = "SELECT status_s+status_b AS sum FROM transactions WHERE transaction_id = {$transaction_id} AND {$id} = {$user_id};";
         
         $result = $con->query($sql);
         
         if ($result->fetch_assoc()['sum'] == 2){ // transaction complete
             require_once('updateReputation.php');
-        }*/
+        }
         
     }
     else if ($action == 'delete'){
         
         // called when user wants to cancel transaction
         
-        $id = $type == 'sell'? 'seller_id':'buyer_id';
+        $id = $type == 's'? 'seller_id':'buyer_id';
         
         $sql = "DELETE FROM transactions WHERE transaction_id = {$transaction_id} AND {$id} = {$user_id};";
         
