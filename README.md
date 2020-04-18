@@ -18,7 +18,7 @@ manageItems.php | create/update/delete items | Y
 profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
 register.php | register user | N
-transactions.php | retrieve transactions | Y (not yet tested)
+transactions.php | retrieve transactions/history | Y (not yet tested)
 manageTransactions | create/update/delete transactions | Y (message left)
 updateProfile.php | updateProfile | Y
 updateReputation.php | updateReputation | Y
