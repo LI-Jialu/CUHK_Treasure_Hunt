@@ -91,19 +91,18 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () async {
                     //Database.test();
-                    Database.login('0000000002', 'admin3');
+                    Database.login('0000000001', 'admin2');
 
                     /*Timer(Duration(seconds: 2), () async{
                       http.Response res = await Database.get('/data/profile.php', '');
-                      print(json.decode(res.body)[0]['username']);
+                      print(json.decode(res.body)[0]['reputation']);
                     });*/
                     Timer(Duration(seconds: 2), () async{
                       Database.post(
                           "/data/manageTransactions.php",
-                          {'action':'delete','type':'sell','transaction_id':'3'}
+                          {'action':'update','type':'b','transaction_id':'3','rating':'4'}
                           );
                     });
-
 
                     Navigator.push(
                       context,

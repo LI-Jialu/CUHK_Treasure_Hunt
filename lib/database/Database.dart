@@ -63,7 +63,7 @@ class Database {
     print(url);
     http.Response response = await http.post(url,headers: {'authorization':basicAuth},body: query);
 
-    print(response.body == 'success\n');
+    print(response.body);
     print(response.body[0] == 's');
 
     return response.body[0] == 's';

@@ -19,9 +19,9 @@ profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
 register.php | register user | N
 transactions.php | retrieve transactions | Y (not yet tested)
-manageTransactions | create/update/delete transactions | Half way
-updateProfile.php | updateProfile | N
-updateReputation.php | updateReputation | N
+manageTransactions | create/update/delete transactions | Y (message left)
+updateProfile.php | updateProfile | Y
+updateReputation.php | updateReputation | Y
 usernameExists.php | check whether username exists | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
