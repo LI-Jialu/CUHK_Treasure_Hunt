@@ -23,6 +23,7 @@ manageTransactions | create/update/delete transactions | Half way
 updateProfile.php | updateProfile | N
 updateReputation.php | updateReputation | N
 usernameExists.php | check whether username exists | Y
+search.php | search for items (by name) | half way (will add other search types e.g. tags)
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 
