@@ -20,7 +20,7 @@ updateProfile.php | make changes to profile | Y
 register.php | register user | N
 transactions.php | retrieve transactions | Y (not yet tested)
 manageTransactions | create/update/delete transactions | Half way
-updateProfile.php | updateProfile | N
+updateProfile.php | updateProfile | Y
 updateReputation.php | updateReputation | N
 usernameExists.php | check whether username exists | Y
 search.php | search for items (by name) | half way (will add other search types e.g. tags)
