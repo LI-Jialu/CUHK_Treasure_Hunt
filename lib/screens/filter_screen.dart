@@ -4,8 +4,6 @@ import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
 import '../utilities/constants.dart';
-import '../utilities/constants.dart';
-import '../utilities/constants.dart';
 
 class FilterScreen extends StatefulWidget {
   double minprice = 0.0;

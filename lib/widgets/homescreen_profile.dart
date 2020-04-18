@@ -3,9 +3,7 @@ import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'dart:async';
-import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'dart:convert';
 
 import 'package:http/http.dart';

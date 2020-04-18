@@ -13,35 +13,6 @@ class Database {
   static String basicAuth;
 
   // methods
-  static Future<bool> login(String studentID, String password) async {
-
-    if (studentID == null || password == null){
-      return null;
-    }
-
-    String path = "/data/login.php";
-    String auth = 'Basic ' + base64Encode((utf8.encode(studentID+":"+password)));
-
-    String url = hostname + path;
-    http.Response response = await http.get(url,headers: {'authorization':auth});
-
-    print("user id"+response.body);
-    //print(response.body.length);
-
-    if (response.body != "-1"){
-      User.loginStatus = true;
-      //print(User.loginStatus);
-      userIDPW = response.body+":"+password;
-      basicAuth = 'Basic '+base64Encode(utf8.encode(userIDPW));
-      //print(basicAuth);
-
-      return true;
-    }
-    else {
-      return false;
-    }
-
-  }
 
   static Future<http.Response> get(String path, String query) async {
 
