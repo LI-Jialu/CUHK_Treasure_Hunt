@@ -25,7 +25,6 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       favorites =await Database.get("/data/favorites.php", "");
       return favorites;
     }
-
     return Scaffold(
       body: ListView.builder(
         scrollDirection: Axis.vertical,
