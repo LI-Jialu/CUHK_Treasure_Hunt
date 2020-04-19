@@ -121,13 +121,14 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           child: Icon(Icons.favorite_border)),
                       GestureDetector(
                         onTap: () async{
-                          List<Map<String, String>> favorite_list;
+                          var favorite_list;
                           try{
                             Response favorites = await get_favotite();
                             if (favorites.body!=null)
                               {
                                 print("the body is not null");
                                 favorite_list = json.decode(favorites.body);
+                                print(json.decode(favorites.body),);
                                 print("decode complete");
                               }
                             else

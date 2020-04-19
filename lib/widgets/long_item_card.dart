@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
 class LongItemCard extends StatefulWidget {
+  String price;
+  String name;
+  LongItemCard({this.name,this.price});
+
+
   @override
   _LongItemCardState createState() => _LongItemCardState();
 }
@@ -33,10 +38,10 @@ class _LongItemCardState extends State<LongItemCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text("Item Name"),
+                    child: Text(widget.name),
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text(widget.price),
                   ),
                 ],
               ),
