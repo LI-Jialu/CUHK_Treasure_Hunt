@@ -1,12 +1,16 @@
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/posted_item_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/transaction_history_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart';
+
 
 class HomescreenProfile extends StatefulWidget {
   const HomescreenProfile({Key key}) : super(key: key);
@@ -37,7 +41,10 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Container(
                 height: SizeConfig.safeBlockHorizontal * 25,
                 width: SizeConfig.safeBlockHorizontal * 25,
-                color: Colors.amber, //user icon
+                decoration: new BoxDecoration(
+                  color: Colors.orange,
+                  shape: BoxShape.circle,
+                ), //user icon
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 1,
@@ -102,7 +109,13 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             color: Colors.black,
                           )),
                       GestureDetector(
-                        onTap: () {}, //go to posted items
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder:
+                                (context) => PostedItemsScreen(),),
+                          );
+                        }, //go to posted items
                         child: Container(
                           child: Text(
                             "Posted items",
@@ -162,7 +175,13 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             color: Colors.black,
                           )),
                       GestureDetector(
-                        onTap: () {}, //go to Transaction history
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder:
+                                (context) => TransactionHistoryScreen(),),
+                          );
+                        }, //go to Transaction history
                         child: Container(
                           child: Text(
                             "Transaction history",
@@ -205,13 +224,20 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   Container(
                     // Log out
                     child: GestureDetector(
-                      onTap: () {}, //Lot out
+                      onTap: () {
+                        SystemNavigator.pop();
+                      }, //Lot out
                       child: Container(
-                        child: Text(
-                          "Log out",
-                          style: TextStyle(fontSize: 24),
+                        height: SizeConfig.safeBlockVertical * 5,
+                        width: SizeConfig.safeBlockVertical * 25,
+                        child: Center(
+                          child: Text(
+                            "Log Out",
+                            style: TextStyle(fontSize: 24),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        color: Colors.red,
+                        color: Colors.red[200],
                       ),
                     ),
                   ),

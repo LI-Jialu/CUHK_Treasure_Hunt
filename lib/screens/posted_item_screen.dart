@@ -1,26 +1,26 @@
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/widgets/long_item_card_Transaction_History.dart';
+import 'package:cuhk_treasure_hunt/widgets/long_item_card_Posted_Items.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 
-class TransactionHistoryScreen extends StatefulWidget {
+class PostedItemsScreen extends StatefulWidget {
   @override
-  _TransactionHistoryScreenState createState() =>
-      _TransactionHistoryScreenState();
+  _PostedItemsScreenState createState() =>
+      _PostedItemsScreenState();
 }
 
-class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
+class _PostedItemsScreenState extends State<PostedItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('TransactionHistory History'),),
+      appBar: AppBar(title: Text('Posted Items'),),
       body: SafeArea(
         child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index){
-              return LongItemCardTransactionHistory();
+              return LongItemCardPostedItems();
             }),
       ),
     );
