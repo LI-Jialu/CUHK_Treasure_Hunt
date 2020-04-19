@@ -4,7 +4,7 @@
     $student_id = $_SERVER['PHP_AUTH_USER'];
     $password = $_SERVER['PHP_AUTH_PW'];
 
-    $sql = "SELECT user_id, password FROM users WHERE student_id = '{$student_i$
+    $sql = "SELECT user_id, password FROM users WHERE student_id = '{$student_id}';";
     
     $result = $con->query($sql);
     

@@ -12,7 +12,7 @@ class UserVerification{
   static int _code;
 
   // methods
-  static Future<bool> sendVerificationEmail(String sid, String username) async {
+  static Future<bool> sendVerificationEmail(String studentID, String username) async {
 
     var rng = new Random(new DateTime.now().millisecondsSinceEpoch);
 
@@ -22,7 +22,7 @@ class UserVerification{
 
     String url = Database.hostname + "/verificationMail.php";
 
-    http.Response response = await http.post(url,body: {'sid':sid,'username':username,'code':'$code'});
+    http.Response response = await http.post(url,body: {'sid':studentID,'username':username,'code':'$code'});
 
     print(response.body);
 

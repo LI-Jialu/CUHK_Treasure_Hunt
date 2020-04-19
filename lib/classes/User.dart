@@ -47,4 +47,18 @@ class User{
 
   }
 
+  static Future<bool> register(String studentID, String password, String username, String college, String year, String dorm)async{
+
+    String url = Database.hostname + "/data/register.php";
+    String auth = 'Basic ' + base64Encode((utf8.encode(studentID+":"+password)));
+
+    Map<String,String> query = {"username":username,"college":college,"year":year,"dorm":dorm};
+    http.Response response = await http.post(url,headers: {'authorization':auth},body: query);
+
+    print(response.body);
+
+    return response.body[0] == 's';
+
+  }
+
 }

@@ -17,7 +17,7 @@ manageFavourites.php | create/delete favourites | Y
 manageItems.php | create/update/delete items | Y
 profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
-register.php | register user | N
+register.php | register user | Y
 transactions.php | retrieve transactions/history | Y (not yet tested)
 manageTransactions | create/update/delete transactions | Y (message left)
 updateProfile.php | updateProfile | Y

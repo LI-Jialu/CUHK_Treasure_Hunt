@@ -92,13 +92,13 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () async {
                     //Database.test();
-                    User.login('0000000001', 'admin2');
+                    //User.login('0000000001', 'admin2');
 
                     /*Timer(Duration(seconds: 2),(){
                       User.logout();
                     });*/
 
-                    print(await UserVerification.sendVerificationEmail("", ""));
+                    //print(await UserVerification.sendVerificationEmail("", ""));
                     //print(UserVerification.verifyCode("619605"));
                     
                     /*Timer(Duration(seconds: 2), () async{
@@ -112,6 +112,8 @@ class LoginScreen extends StatelessWidget {
                           {'action':'update','type':'b','transaction_id':'3','rating':'4'}
                           );
                     });*/
+
+                    //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
 
                     Navigator.push(
                       context,
