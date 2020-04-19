@@ -3,6 +3,9 @@ import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 
 String searchinput;
 
@@ -14,6 +17,33 @@ class HomescreenExplore extends StatefulWidget {
 }
 
 class _HomescreenExploreState extends State<HomescreenExplore> {
+  Map item_list;
+  @override
+  void initState()
+  {
+    super.initState();
+    initialize_item_list();
+  }
+  void initialize_item_list() async{
+    try
+    {
+      var item_list_data = await Database.get("/data/itemPosted.php","");
+      if (item_list_data!=null)
+      {
+        print("the body is not null");
+        item_list = json.decode(item_list_data.body);
+      }
+      else
+        {
+          print("the body is null");
+        }
+    }
+    catch(e){
+        print("fail to acquire the item list");
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(
