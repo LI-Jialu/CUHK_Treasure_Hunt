@@ -24,6 +24,7 @@ updateProfile.php | updateProfile | Y
 updateReputation.php | updateReputation | Y
 usernameExists.php | check whether username exists | Y
 search.php | search for items (by name) | half way (will add other search types e.g. tags)
+verificationMail.php | send verification email | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 

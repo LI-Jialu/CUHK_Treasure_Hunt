@@ -1,9 +1,6 @@
 // define the class to acquire data from database
 
 import 'dart:convert';
-import 'package:cuhk_treasure_hunt/classes/User.dart';
-import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
-import 'package:cuhk_treasure_hunt/classes/UserReputation.dart';
 import 'package:http/http.dart' as http;
 
 class Database {
