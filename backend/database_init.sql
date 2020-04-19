@@ -26,11 +26,11 @@ CREATE TABLE users (
     college_id tinyint unsigned DEFAULT 10,
     year tinyint unsigned DEFAULT 0,
     dorm varchar(20) DEFAULT "--", -- foreign key, collect names of all dorms
-    reputation double(3,2) DEFAULT -1,
+    reputation decimal(6,5) DEFAULT -1,
     PRIMARY KEY (user_id),
     FOREIGN KEY (college_id) REFERENCES colleges(college_id)
 );
-INSERT INTO users VALUES (DEFAULT,'admin1','0000000000','admin1',10,0,'--',5);
+INSERT INTO users VALUES (DEFAULT,'admin1','0000000000','admin1',10,0,'--',DEFAULT);
 INSERT INTO users VALUES (DEFAULT, "admin2", '0000000001','admin2',6,2,'--',DEFAULT);
 INSERT INTO users VALUES (DEFAULT, "admin3", '0000000002','admin3',6,2,'--',DEFAULT);
 INSERT INTO users VALUES (DEFAULT, "admin4", '0000000003','admin4',6,2,'--',DEFAULT);
@@ -63,6 +63,8 @@ CREATE TABLE transactions (
     status_b tinyint NOT NULL DEFAULT 0,
     seller_id mediumint unsigned NOT NULL,
     buyer_id mediumint unsigned NOT NULL,
+    rating_s tinyint NOT NULL DEFAULT -1,  -- rating of s by b
+    rating_b tinyint NOT NULL DEFAULT -1,  -- rating of b by s
     item_id int unsigned NOT NULL,
     price double(6,1) NOT NULL,
     quantity smallint unsigned NOT NULL,
@@ -72,7 +74,7 @@ CREATE TABLE transactions (
     FOREIGN KEY (buyer_id) REFERENCES users (user_id),
     FOREIGN KEY (item_id) REFERENCES items (item_id)
 );
-INSERT INTO transactions VALUES(DEFAULT, 1, 1, 1, 2, 1, 2.2, 1, DEFAULT);
+INSERT INTO transactions VALUES(DEFAULT, DEFAULT, DEFAULT, 1, 2, DEFAULT, DEFAULT, 1, 2.2, 1, DEFAULT);
 
 CREATE TABLE favourites ( -- create surrogate key to allow set null
 	favourite_id int unsigned NOT NULL AUTO_INCREMENT,

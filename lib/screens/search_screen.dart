@@ -4,8 +4,6 @@ import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/screens/filter_screen.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
 import '../utilities/constants.dart';
-import '../utilities/constants.dart';
-import '../utilities/constants.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key key, @required this.searchinput}) : super(key: key);

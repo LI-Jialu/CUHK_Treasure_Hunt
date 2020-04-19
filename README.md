@@ -17,12 +17,14 @@ manageFavourites.php | create/delete favourites | Y
 manageItems.php | create/update/delete items | Y
 profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
-register.php | register user | N
-transactions.php | retrieve transactions | Y (not yet tested)
-manageTransactions | create/update/delete transactions | Half way
-updateProfile.php | updateProfile | N
-updateReputation.php | updateReputation | N
+register.php | register user | Y
+transactions.php | retrieve transactions/history | Y (not yet tested)
+manageTransactions | create/update/delete transactions | Y (message left)
+updateProfile.php | updateProfile | Y
+updateReputation.php | updateReputation | Y
 usernameExists.php | check whether username exists | Y
+search.php | search for items (by name) | half way (will add other search types e.g. tags)
+verificationMail.php | send verification email | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 

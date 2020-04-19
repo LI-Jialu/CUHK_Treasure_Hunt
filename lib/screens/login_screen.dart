@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
+import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -91,19 +92,28 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () async {
                     //Database.test();
-                    Database.login('0000000002', 'admin3');
+                    //User.login('0000000001', 'admin2');
 
+                    /*Timer(Duration(seconds: 2),(){
+                      User.logout();
+                    });*/
+
+                    //print(await UserVerification.sendVerificationEmail("", ""));
+                    //print(UserVerification.verifyCode("619605"));
+                    
                     /*Timer(Duration(seconds: 2), () async{
                       http.Response res = await Database.get('/data/profile.php', '');
-                      print(json.decode(res.body)[0]['username']);
+                      print(await json.decode(res.body));
+                      //print(json.decode(res.body)[0]['college']);
                     });*/
-                    Timer(Duration(seconds: 2), () async{
+                    /*Timer(Duration(seconds: 2), () async{
                       Database.post(
                           "/data/manageTransactions.php",
-                          {'action':'delete','type':'sell','transaction_id':'3'}
+                          {'action':'update','type':'b','transaction_id':'3','rating':'4'}
                           );
-                    });
+                    });*/
 
+                    //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
 
                     Navigator.push(
                       context,
