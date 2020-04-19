@@ -22,7 +22,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
 
     Future<Response> get_favotite()async{
       var favorites;
-      favorites =await Database.get("/data/favorites.php", "");
+      favorites =await Database.get("/data/favourites.php", "");
       return favorites;
     }
     return Scaffold(
@@ -121,16 +121,17 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           child: Icon(Icons.favorite_border)),
                       GestureDetector(
                         onTap: () async{
-                          Map favorite_list;
+                          List<Map<String, String>> favorite_list;
                           try{
                             Response favorites = await get_favotite();
-                            if (favorites!=null)
+                            if (favorites.body!=null)
                               {
                                 print("the body is not null");
                                 favorite_list = json.decode(favorites.body);
+                                print("decode complete");
                               }
                             else
-                              print("the body is null");
+                              print("debug");
                           }
                           catch(e){
                             print("fail to acquire the list");

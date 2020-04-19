@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/widgets/long_item_card.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  Map<String,dynamic> favorite_list;
+  List<Map<String, String>> favorite_list;
   FavoriteScreen({this.favorite_list});
   @override
   _FavoriteScreenState createState() => _FavoriteScreenState();
