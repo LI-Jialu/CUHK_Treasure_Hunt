@@ -5,17 +5,23 @@ import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
+import 'package:cuhk_treasure_hunt/screens/loading_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
 
 import 'package:http/http.dart' as http;
 
-String username;
-String password;
+
 
 class LoginScreen extends StatelessWidget {
+  String username;
+  String password;
+  @override
+  LoginScreen({this.username, this.password});
 
   @override
   static String id = '/LoginScreen';
@@ -49,7 +55,8 @@ class LoginScreen extends StatelessWidget {
               Container(
                 height: SizeConfig.safeBlockVertical*10,
                 width: SizeConfig.safeBlockHorizontal*80,
-                child: TextField(
+                child: TextFormField(
+                  initialValue: username,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   maxLines: 1,
@@ -69,7 +76,8 @@ class LoginScreen extends StatelessWidget {
               Container(
                 height: SizeConfig.safeBlockVertical*10,
                 width: SizeConfig.safeBlockHorizontal*80,
-                child: TextField(
+                child: TextFormField(
+                  initialValue: password,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   maxLines: 1,
@@ -83,16 +91,51 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: SizeConfig.safeBlockVertical*20,
+                height: SizeConfig.safeBlockVertical*10,
+              ),
+              Container(
+                color: Colors.orange,
+                width: SizeConfig.safeBlockHorizontal*80,
+                height: SizeConfig.safeBlockVertical*6,
+                child: FlatButton(
+                  onPressed: ()  {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                    );
+                  },
+                  child: Center(
+                      child: Text('Sign Up', style: klogin_button_text,)),
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*4,
               ),
               Container(
                 color: klogin_button_color,
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
                 child: FlatButton(
-                  onPressed: () async {
+                  onPressed: ()  {
                     //Database.test();
                     User.login('0000000001', 'admin2');
+//                    User.login('0000000001', 'admin2');
+//                    try
+//                    {
+//                      var item_list_data = await Database.get("/data/favourites.php","");
+//                      if (item_list_data!=null)
+//                      {
+//                        print("the item_list body is not null");
+//                        var item_list = json.decode(item_list_data.body);
+//                      }
+//                      else
+//                      {
+//                        print("the item_body is null");
+//                      }
+//                    }
+//                    catch(e){
+//                      print("fail to acquire the item_list list");
+//                    }
 
 
                     Timer(Duration(seconds: 2),()async {
@@ -116,10 +159,11 @@ class LoginScreen extends StatelessWidget {
                     });*/
 
                     //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
-
+                    //the login process has been moved to loading screen
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => LoadingScreen(
+                        username: username,password: password,)),
                     );
                   },
                   child: Center(

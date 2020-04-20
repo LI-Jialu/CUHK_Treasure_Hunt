@@ -1,15 +1,24 @@
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 
 class LongItemCard extends StatefulWidget {
+  String price;
+  String name;
+  bool isFavorite = false;
+  String item_id;
+  String favourite_id;
+  LongItemCard({this.name,this.price,this.favourite_id,this.item_id,this.isFavorite});
+
+
   @override
   _LongItemCardState createState() => _LongItemCardState();
 }
 
 class _LongItemCardState extends State<LongItemCard> {
 
-  bool isFavorite = false;  //to implement the backend to check if its favorite
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +42,10 @@ class _LongItemCardState extends State<LongItemCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text("Item Name"),
+                    child: Text(widget.name),
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text(widget.price),
                   ),
                 ],
               ),
@@ -70,11 +79,37 @@ class _LongItemCardState extends State<LongItemCard> {
                   height: SizeConfig.safeBlockVertical * 3,
                   width: SizeConfig.safeBlockVertical * 3,
                   child: GestureDetector(
-                    onTap: () {
-                      isFavorite = !isFavorite;
-                      setState(() {});
+                    onTap: () async {
+                      widget.isFavorite = !widget.isFavorite;
+                      if (widget.isFavorite==true)
+                      {
+                        try{
+                          print(widget.item_id);
+                          await Database.post("/data/manageFavourites.php",
+                              {"action":"insert","item_id":"$widget.item_id",
+                                "favourite_id":"$widget.favourite_id"});
+                        }
+                        catch(e){
+                          print("fail to add to favourites");
+                        }
+                        //implement favorite management
+                      }
+                      else
+                      {
+                        try{
+                          await Database.post("/data/manageFavourites.php",
+                              {"action":"delete","item_id":widget.item_id,
+                                "favourite_id":widget.favourite_id});
+                        }
+                        catch(e){
+                          print("fail to delete from the favorites");
+                        }
+                      }
+                      setState(() {
+
+                      });
                     },
-                    child: isFavorite
+                    child: widget.isFavorite
                         ? Icon(
                       Icons.favorite,
                       color: Colors.pinkAccent,

@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
 //        fontFamily: 'Georgia',
         textTheme: TextTheme(
           headline: TextStyle(color: Color(0xFF3E8373), fontSize: 24, fontWeight: FontWeight.w800),
+          body1:  TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
       ),
       initialRoute: LoginScreen.id,

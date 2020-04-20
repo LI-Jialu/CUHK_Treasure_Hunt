@@ -14,3 +14,4 @@ const ksmall_black_textstyle = TextStyle(color: Color(0xFF000000), fontSize: 14)
 const ksmall_white_textstyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14);
 const kmiddle_black_textstyle = TextStyle(color: Color(0xFF000000), fontSize: 20);
 const kmiddle_red_textstyle = TextStyle(color: Color(0xFFFF0000), fontSize: 20);
+const kSignup_Screen_Textstyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
