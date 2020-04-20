@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class User {
   static bool loginStatus = false;
+  static String studentID = "";
 
   // methods
   static Future<bool> login(String studentID, String password) async {
@@ -29,6 +30,7 @@ class User {
       Database.userIDPW = response.body + ":" + password;
       Database.basicAuth =
           'Basic ' + base64Encode(utf8.encode(Database.userIDPW));
+      User.studentID = studentID;
       //print(basicAuth);
 
       return true;

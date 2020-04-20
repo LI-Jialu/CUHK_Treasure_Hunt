@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
@@ -13,7 +15,6 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 import 'package:cuhk_treasure_hunt/screens/loading_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
-
 import 'package:http/http.dart' as http;
 
 
@@ -31,7 +32,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-
+    print(Database.hostname+"/data/images/image_picker_01B76C55-4FAC-4401-954C-C7BEC581DDB3-85795-00057E86A6E3A261.jpg");
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -117,9 +118,7 @@ class LoginScreen extends StatelessWidget {
                 width: SizeConfig.safeBlockHorizontal*80,
                 height: SizeConfig.safeBlockVertical*6,
                 child: FlatButton(
-                  onPressed: ()  {
-                    //Database.test();
-                    User.login('0000000000', 'admin1');
+                  onPressed: ()  async {
 //                    User.login('0000000001', 'admin2');
 //                    try
 //                    {
@@ -138,11 +137,13 @@ class LoginScreen extends StatelessWidget {
 //                      print("fail to acquire the item_list list");
 //                    }
 
-
-                    Timer(Duration(seconds: 2),()async {
+                    //var image = await PostItem.pickImage();
+                    //PostItem.uploadImage(image);
+                    
+                    /*Timer(Duration(seconds: 2),()async {
                       http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
                       print(json.decode(res.body));
-                    });
+                    });*/
 
                     //print(await UserVerification.sendVerificationEmail("", ""));
                     //print(UserVerification.verifyCode("619605"));
