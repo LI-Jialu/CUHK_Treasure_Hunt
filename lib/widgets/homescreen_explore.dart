@@ -7,8 +7,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 
-String searchinput;
-
 class HomescreenExplore extends StatefulWidget {
   const HomescreenExplore({Key key}) : super(key: key);
 
@@ -68,11 +66,11 @@ class _HomescreenExploreState extends State<HomescreenExplore> {
               maxLines: 1,
               decoration: InputDecoration(hintText: 'Search'),
               onChanged: (value) {
-                searchinput = value;
+                String searchinput = value;
                 print(searchinput);
               },
               onSubmitted: (value) {
-                searchinput = value;
+                String searchinput = value;
                 if (searchinput.length != 0) {
                   Navigator.push(
                     context,

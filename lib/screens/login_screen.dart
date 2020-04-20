@@ -5,6 +5,7 @@ import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/register_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -118,6 +119,7 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: ()  {
                     //Database.test();
+                    User.login('0000000000', 'admin1');
 //                    User.login('0000000001', 'admin2');
 //                    try
 //                    {
@@ -136,9 +138,11 @@ class LoginScreen extends StatelessWidget {
 //                      print("fail to acquire the item_list list");
 //                    }
 
-                    /*Timer(Duration(seconds: 2),(){
-                      User.logout();
-                    });*/
+
+                    Timer(Duration(seconds: 2),()async {
+                      http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
+                      print(json.decode(res.body));
+                    });
 
                     //print(await UserVerification.sendVerificationEmail("", ""));
                     //print(UserVerification.verifyCode("619605"));
@@ -160,8 +164,9 @@ class LoginScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoadingScreen(
-                        username: username,password: password,)),
+                        username: username,password: password,),),
                     );
+
                   },
                   child: Center(
                       child: Text('Log In', style: klogin_button_text,)),

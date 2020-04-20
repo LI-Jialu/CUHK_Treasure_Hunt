@@ -29,6 +29,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       favorites =await Database.get("/data/favourites.php", "");
       return favorites;
     }
+
     return Scaffold(
       body: ListView.builder(
         scrollDirection: Axis.vertical,
@@ -140,6 +141,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             if (favorites.body!=null)
                               {
                                 print("the body is not null");
+
                                 favorite_list = json.decode(favorites.body);
                                 print(json.decode(favorites.body),);
                                 print("decode complete");

@@ -1,9 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import '../utilities/constants.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'package:cuhk_treasure_hunt/database/database.dart';
 
 class DetailScreen extends StatefulWidget {
+  DetailScreen({Key key, this.itemid}) : super(key: key);
+  String itemid = "1";
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -14,6 +21,13 @@ class _DetailScreenState extends State<DetailScreen> {
     initialPage: 0,
     viewportFraction: 1,
   );
+  Future<Response> _itemdetails;
+  Future<Response> getItemDetails() async {
+    print("try getting item ${widget.itemid} details");
+    Response itemdetails;
+    // backend to finish
+    itemdetails = await Database.get("/data/", "");
+  }
   @override
   void dispose() {
     _controller.dispose();

@@ -92,11 +92,17 @@ CREATE TABLE messages (
     sender_id mediumint unsigned NOT NULL,
     receiver_id mediumint unsigned NOT NULL,
     message varchar(200) NOT NULL,
-    create_time datetime NOT NULL,
+    create_time datetime NOT NULL DEFAULT NOW(),
     PRIMARY KEY (message_id),
     FOREIGN KEY (sender_id) REFERENCES users (user_id),
     FOREIGN KEY (receiver_id) REFERENCES users (user_id)
 );
+INSERT INTO messages VALUES (DEFAULT,2,1,'i wanna buy ur vaccine',DEFAULT);
+INSERT INTO messages VALUES (DEFAULT,1,2,'hv u got money',DEFAULT);
+INSERT INTO messages VALUES (DEFAULT,2,1,'no...',DEFAULT);
+INSERT INTO messages VALUES (DEFAULT,3,1,'i wanna buy ur vaccine too',DEFAULT);
+INSERT INTO messages VALUES (DEFAULT,1,3,'too? how do u know???? wtf?',DEFAULT);
+INSERT INTO messages VALUES (DEFAULT,1,2,'then piss off',DEFAULT);
 
 CREATE TABLE buy_requests ( -- create surrogate key to allow set null
 	buy_request_id int unsigned NOT NULL AUTO_INCREMENT,
