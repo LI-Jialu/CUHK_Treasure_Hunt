@@ -122,7 +122,6 @@ class LoginScreen extends StatelessWidget {
 //                    try
 //                    {
 //                      var item_list_data = await Database.get("/data/favourites.php","");
-//                      // TODO: will be implemented as the recommended items later
 //                      if (item_list_data!=null)
 //                      {
 //                        print("the item_list body is not null");
@@ -157,7 +156,7 @@ class LoginScreen extends StatelessWidget {
                     });*/
 
                     //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
-
+                    //the login process has been moved to loading screen
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoadingScreen(

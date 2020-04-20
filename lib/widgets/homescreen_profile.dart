@@ -145,7 +145,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                                 print("decode complete");
                               }
                             else
-                              print("debug");
+                              print("the body is null");
                           }
                           catch(e){
                             print("fail to acquire the list");
@@ -242,6 +242,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                       ),
                     ),
                   ),
+                  SizedBox(height: SizeConfig.safeBlockVertical*10,),
                 ],
               ),
             ],

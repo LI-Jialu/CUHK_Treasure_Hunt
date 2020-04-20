@@ -14,8 +14,13 @@ class _BrowsingHistoryScreenState extends State<BrowsingHistoryScreen> {
       body: SafeArea(
         child: ListView.builder(
           scrollDirection: Axis.vertical,
+            itemCount: 10,
             itemBuilder: (context, index){
-            return LongItemCard();
+            return Container(
+              child: Text("$index"),
+              height: 200,
+              color: Colors.orange,
+            );
             }),
       ),
     );

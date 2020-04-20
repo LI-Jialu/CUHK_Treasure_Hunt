@@ -28,7 +28,11 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
       body: SafeArea(
           child: Container(
+            padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*10),
             child: Column(
+//              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+
               children: <Widget>[
 //                Container(
 //                  height: 300,
@@ -86,6 +90,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     Container(
                       child: Text("Verification Code"),
                     ),
+                    SizedBox(
+                      width: SizeConfig.safeBlockHorizontal*10,
+                    ),
                     Container(
                       height: SizeConfig.safeBlockVertical*10,
                       width: SizeConfig.safeBlockHorizontal*40,
@@ -104,6 +111,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical*10,
                 ),
                 Container(
                   color: Colors.orange,
