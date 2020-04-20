@@ -119,6 +119,7 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: ()  {
                     //Database.test();
+                    User.login('0000000001', 'admin2');
 //                    User.login('0000000001', 'admin2');
 //                    try
 //                    {
@@ -137,9 +138,11 @@ class LoginScreen extends StatelessWidget {
 //                      print("fail to acquire the item_list list");
 //                    }
 
-                    /*Timer(Duration(seconds: 2),(){
-                      User.logout();
-                    });*/
+
+                    Timer(Duration(seconds: 2),()async {
+                      http.Response res = await Database.get("/data/favourites.php", "");
+                      print(json.decode(res.body));
+                    });
 
                     //print(await UserVerification.sendVerificationEmail("", ""));
                     //print(UserVerification.verifyCode("619605"));
