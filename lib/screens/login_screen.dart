@@ -118,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: ()  {
                     //Database.test();
-                    User.login('0000000001', 'admin2');
+                    User.login('0000000000', 'admin1');
 //                    User.login('0000000001', 'admin2');
 //                    try
 //                    {
@@ -139,7 +139,7 @@ class LoginScreen extends StatelessWidget {
 
 
                     Timer(Duration(seconds: 2),()async {
-                      http.Response res = await Database.get("/data/favourites.php", "");
+                      http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
                       print(json.decode(res.body));
                     });
 
