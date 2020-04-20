@@ -8,19 +8,29 @@ String sellingPriceInput;
 String descriptionInput;
 String locationInput;
 
-// TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
+//TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
 class PostScreen extends StatelessWidget {
   const PostScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build post screen
-    return SafeArea(
-      child: Column(
+    SizeConfig().init(context);
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(),
+      body: Column(
         children: <Widget>[
-          Text("Title"),
           Container(
-            height: SizeConfig.safeBlockVertical * 10,
+            padding: EdgeInsets.only(
+                left: SizeConfig.safeBlockHorizontal * 10,
+                right: SizeConfig.safeBlockHorizontal * 5),
+            height: SizeConfig.safeBlockVertical * 5,
+            alignment: Alignment.bottomLeft,
+            child: Text('Title', style: ksmall_black_textstyle),
+          ),
+          Container(
+            height: SizeConfig.safeBlockVertical * 5,
             width: SizeConfig.safeBlockHorizontal * 80,
             child: TextField(
               keyboardType: TextInputType.text,
@@ -35,10 +45,17 @@ class PostScreen extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Text("Bought price"),
               Container(
-                height: SizeConfig.safeBlockVertical * 10,
-                width: SizeConfig.safeBlockHorizontal * 40,
+                padding: EdgeInsets.only(
+                    left: SizeConfig.safeBlockHorizontal * 10,
+                    right: SizeConfig.safeBlockHorizontal * 5),
+                height: SizeConfig.safeBlockVertical * 5,
+                alignment: Alignment.bottomLeft,
+                child: Text('Bought price', style: ksmall_black_textstyle),
+              ),
+              Container(
+                height: SizeConfig.safeBlockVertical * 5,
+                width: SizeConfig.safeBlockHorizontal * 50,
                 child: TextField(
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -55,10 +72,17 @@ class PostScreen extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Text("Selling price"),
               Container(
-                height: SizeConfig.safeBlockVertical * 10,
-                width: SizeConfig.safeBlockHorizontal * 40,
+                padding: EdgeInsets.only(
+                    left: SizeConfig.safeBlockHorizontal * 10,
+                    right: SizeConfig.safeBlockHorizontal * 5),
+                height: SizeConfig.safeBlockVertical * 5,
+                alignment: Alignment.bottomLeft,
+                child: Text('Selling price', style: ksmall_black_textstyle),
+              ),
+              Container(
+                height: SizeConfig.safeBlockVertical * 5,
+                width: SizeConfig.safeBlockHorizontal * 50,
                 child: TextField(
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -73,25 +97,51 @@ class PostScreen extends StatelessWidget {
               ),
             ],
           ),
-          Text("Description"),
           Container(
-            height: SizeConfig.safeBlockVertical * 50,
-            width: SizeConfig.safeBlockHorizontal * 80,
-            child: TextField(
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              maxLines: 10,
-              decoration:
-                  InputDecoration(hintText: 'Descriptions of your item'),
-              onChanged: (value) {
-                descriptionInput = value;
-                print(descriptionInput);
-              },
+            padding: EdgeInsets.only(
+                left: SizeConfig.safeBlockHorizontal * 10,
+                right: SizeConfig.safeBlockHorizontal * 5),
+            height: SizeConfig.safeBlockVertical * 5,
+            alignment: Alignment.bottomLeft,
+            child: Text('Description', style: ksmall_black_textstyle),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              left: SizeConfig.safeBlockHorizontal * 5,
+              right: SizeConfig.safeBlockHorizontal * 5,
+            ),
+            child: Container(
+              height: SizeConfig.safeBlockVertical * 20,
+              width: SizeConfig.safeBlockHorizontal * 80,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 0.5),
+              ),
+              padding: EdgeInsets.only(
+                  left: SizeConfig.safeBlockHorizontal * 5,
+                  right: SizeConfig.safeBlockHorizontal * 5),
+              child: TextField(
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
+                maxLines: 10,
+                decoration: InputDecoration(
+                    hintText: 'Detailed information', border: InputBorder.none),
+                onChanged: (value) {
+                  descriptionInput = value;
+                  print(descriptionInput);
+                },
+              ),
             ),
           ),
-          Text("Location"),
           Container(
-            height: SizeConfig.safeBlockVertical * 10,
+            padding: EdgeInsets.only(
+                left: SizeConfig.safeBlockHorizontal * 10,
+                right: SizeConfig.safeBlockHorizontal * 5),
+            height: SizeConfig.safeBlockVertical * 5,
+            alignment: Alignment.bottomLeft,
+            child: Text('Location', style: ksmall_black_textstyle),
+          ),
+          Container(
+            height: SizeConfig.safeBlockVertical * 5,
             width: SizeConfig.safeBlockHorizontal * 80,
             child: TextField(
               keyboardType: TextInputType.text,
@@ -104,28 +154,36 @@ class PostScreen extends StatelessWidget {
               },
             ),
           ),
-          Text("Choose tags"),
+          Container(
+            padding: EdgeInsets.only(
+                left: SizeConfig.safeBlockHorizontal * 10,
+                right: SizeConfig.safeBlockHorizontal * 5),
+            height: SizeConfig.safeBlockVertical * 5,
+            alignment: Alignment.bottomLeft,
+            child: Text('Choose tags', style: ksmall_black_textstyle),
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                color: klogin_button_color,
-                width: SizeConfig.safeBlockHorizontal * 40,
-                height: SizeConfig.safeBlockVertical * 6,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 0.5),
+                ),
+                height: SizeConfig.safeBlockVertical * 5,
+                width: SizeConfig.safeBlockHorizontal * 30,
                 child: Center(
-                    child: Text(
-                  'Deliverable',
-                  style: klogin_button_text,
-                )),
+                  child: Text("Brand new"),
+                ),
               ),
               Container(
-                color: klogin_button_color,
-                width: SizeConfig.safeBlockHorizontal * 40,
-                height: SizeConfig.safeBlockVertical * 6,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 0.5),
+                ),
+                height: SizeConfig.safeBlockVertical * 5,
+                width: SizeConfig.safeBlockHorizontal * 30,
                 child: Center(
-                    child: Text(
-                  'Give-away-free',
-                  style: klogin_button_text,
-                )),
+                  child: Text("Brand new"),
+                ),
               ),
             ],
           ),
