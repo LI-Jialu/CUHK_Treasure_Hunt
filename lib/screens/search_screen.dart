@@ -108,8 +108,8 @@ class _SearchScreenState extends State<SearchScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
           ),
-          //Expanded(child: Container(color: Colors.amber,),)
-          //Expanded(child: ItemListView(),)
+          // Expanded(child: Container(color: Colors.amber,),)
+          // Expanded(child: ItemListView(),)
         ];
         if (snapshot.hasData) {
           childrenofcolumn.add(
