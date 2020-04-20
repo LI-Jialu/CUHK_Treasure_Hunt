@@ -1,3 +1,4 @@
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/detail_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -8,6 +9,8 @@ import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 
 class ItemGridView extends StatefulWidget {
+  final Item item;
+  ItemGridView(this.item);
   @override
   _ItemGridViewState createState() => _ItemGridViewState();
 }
@@ -34,15 +37,15 @@ class _ItemGridViewState extends State<ItemGridView> {
                     width: SizeConfig.safeBlockHorizontal * 40,
                   ),
                   Container(
-                    child: Text("Title"),
+                    child: Text(widget.item.name),
                     height: SizeConfig.safeBlockVertical * 2,
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text("\$" + widget.item.price, style: ksmall_red_textstyle),
                     height: SizeConfig.safeBlockVertical * 2,
                   ),
                   Container(
-                    child: Text("New Asia"),
+                    child: Text("Unknown College"),
                     height: SizeConfig.safeBlockVertical * 2,
                   ),
                 ],
@@ -71,7 +74,7 @@ class _ItemGridViewState extends State<ItemGridView> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => DetailScreen()),
+            MaterialPageRoute(builder: (context) => DetailScreen(item: widget.item)),
           );
         });
   }
@@ -79,6 +82,8 @@ class _ItemGridViewState extends State<ItemGridView> {
 
 // To return a widget that scrolls down the page to view the items
 class ItemListView extends StatelessWidget {
+  final List<Item> itemlist;
+  ItemListView(this.itemlist);
   @override
   Widget build(BuildContext context) {
     return _itemListView(context);
@@ -87,16 +92,29 @@ class ItemListView extends StatelessWidget {
   Widget _itemListView(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.vertical,
+        itemCount: (itemlist.length ~/ 2 + itemlist.length % 2),
         itemBuilder: (context, index) {
+          List<Widget> children = [
+            ItemGridView(itemlist[index * 2]),
+            SizedBox(
+              width: SizeConfig.safeBlockHorizontal * 10,
+            ),
+          ];
+          if (index + 1 <= itemlist.length ~/ 2) {
+            children.add(
+              ItemGridView(itemlist[index * 2 + 1])
+            );
+          }
+          else {
+            children.add(
+              SizedBox(
+                width: SizeConfig.safeBlockHorizontal * 40,
+              )
+            );
+          }
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ItemGridView(),
-              SizedBox(
-                width: SizeConfig.safeBlockHorizontal * 10,
-              ),
-              ItemGridView(),
-            ],
+            children: children,
           );
         });
   }

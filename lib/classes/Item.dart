@@ -4,12 +4,13 @@ import 'package:flutter/cupertino.dart';
 
 class Item{
 
-  String item_id;
-  String poster_id;
-  String name;
-  String price;
-  String quantity;
-  String create_time;
+  String item_id = "-1";
+  String poster_id = "-1";
+  String name = "default_name";
+  String price = "-1";
+  String quantity = "-1";
+  String create_time = "-1";
+  Item(this.name);
   Item.fromJson(Map<String, dynamic> json) {
     item_id = json["item_id"];
     poster_id = json["poster_id"];

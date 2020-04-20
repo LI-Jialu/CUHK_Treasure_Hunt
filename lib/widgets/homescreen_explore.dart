@@ -1,3 +1,4 @@
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/detail_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -126,16 +127,16 @@ class _ExploreBodyState extends State<ExploreBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ItemGridView(),
+                ItemGridView(Item("sampleitem1")),
                 SizedBox(
                   width: SizeConfig.safeBlockHorizontal * 10,
                 ),
-                ItemGridView(),
+                ItemGridView(Item("sampleitem2")),
               ],
             ),
           ],
         ),
-        ItemListView(),
+        ItemListView([Item("sample1"), Item("sample2"), Item("sample3"), Item("sample4"), Item("sample5")]),
       ],
     ));
   }

@@ -1,5 +1,6 @@
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
+import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -133,7 +134,11 @@ class _SearchScreenState extends State<SearchScreen> {
             resultlist.forEach((resultmap) {
               itemlist.add(Item.fromJson(resultmap));
             });
-            
+            childrenofcolumn.add(
+              Expanded(
+                child: ItemListView(itemlist),
+              )
+            );
           }
         }
         else if (snapshot.hasError) {
