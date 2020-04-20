@@ -12,7 +12,6 @@ import 'package:http/http.dart';
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key key, @required this.searchinput}) : super(key: key);
   final String searchinput;
-  String sorttype = 'Recommended';
   
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -20,15 +19,16 @@ class SearchScreen extends StatefulWidget {
 
 
 class _SearchScreenState extends State<SearchScreen> {
+  String sorttype = 'Recommended';
   final List<String> _sorttypename = [
     'Newest', 'Recommended', 'Nearest', 'Highest reputation',
   ];
   Future<Response> _searchresults;
   Future<Response> getSearchResults() async {
-    print("we are in this part!");
+    print("try getting search results!");
     Response searchresults;
     searchresults = await Database.get("/data/search.php?search=" + widget.searchinput, "");
-    print("we did this part");
+    print("search results got!");
     print(searchresults.body);
     return searchresults;
   }
@@ -70,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
-                      value: widget.sorttype,
+                      value: sorttype,
                       style: ksmall_black_textstyle,
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(value: 'Newest', child: Text('Newest'),),
@@ -80,7 +80,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ],
                       onChanged: (value){
                         setState(() {
-                          widget.sorttype = value;
+                          sorttype = value;
                         });
                       },
                     ),
@@ -118,12 +118,24 @@ class _SearchScreenState extends State<SearchScreen> {
         }
         else if (snapshot.hasError) {
           childrenofcolumn.add(
-            Text('Error: ${snapshot.error}')
+            Container(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text('Error: ${snapshot.error}'),
+              ),
+              height: SizeConfig.safeBlockVertical*10,
+            ),
           );
         }
         else {
           childrenofcolumn.add(
-            Text('Loading...')
+            Container(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text('Loading...'),
+              ),
+              height: SizeConfig.safeBlockVertical*10,
+            ),
           );
         }
 
