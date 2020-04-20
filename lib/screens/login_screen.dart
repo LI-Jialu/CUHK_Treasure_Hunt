@@ -5,6 +5,7 @@ import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/register_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -163,8 +164,9 @@ class LoginScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoadingScreen(
-                        username: username,password: password,)),
+                        username: username,password: password,),),
                     );
+
                   },
                   child: Center(
                       child: Text('Log In', style: klogin_button_text,)),
