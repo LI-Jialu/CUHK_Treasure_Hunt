@@ -31,8 +31,10 @@ class UserVerification{
   }
 
   static bool verifyCode(String code){
-
-    return '$_code' == code;
+    if ('$_code' == code)
+      return true;
+    else
+      return false;
 
   }
 
