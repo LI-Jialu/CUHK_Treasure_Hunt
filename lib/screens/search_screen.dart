@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
     print(searchresults.body);
     return searchresults;
   }
-  
+
   @override
   @mustCallSuper
   void didChangeDependencies() {
