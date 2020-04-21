@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
@@ -137,8 +135,7 @@ class LoginScreen extends StatelessWidget {
 //                      print("fail to acquire the item_list list");
 //                    }
 
-                    //var image = await PostItem.pickImage();
-                    //PostItem.uploadImage(image);
+                    //PostItem.uploadImageWeb();
                     
                     /*Timer(Duration(seconds: 2),()async {
                       http.Response res = await Database.get("/data/messages.php", "?contact_id=2");

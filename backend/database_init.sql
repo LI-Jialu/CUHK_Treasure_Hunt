@@ -86,6 +86,13 @@ CREATE TABLE favourites ( -- create surrogate key to allow set null
 );
 INSERT INTO favourites VALUES (DEFAULT, 1, 2);
 INSERT INTO favourites VALUES (DEFAULT, 2, 2);
+INSERT INTO favourites VALUES (DEFAULT, 3, 1);
+INSERT INTO favourites VALUES (DEFAULT, 5, 2);
+INSERT INTO favourites VALUES (DEFAULT, 9, 2);
+INSERT INTO favourites VALUES (DEFAULT, 10, 2);
+INSERT INTO favourites VALUES (DEFAULT, 8, 2);
+INSERT INTO favourites VALUES (DEFAULT, 7, 3);
+INSERT INTO favourites VALUES (DEFAULT, 8, 3);
 
 CREATE TABLE messages (
 	message_id bigint unsigned NOT NULL AUTO_INCREMENT,
