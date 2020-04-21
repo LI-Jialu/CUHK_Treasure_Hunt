@@ -1,3 +1,6 @@
+
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
+import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -16,7 +19,6 @@ class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
-
 
 class _SearchScreenState extends State<SearchScreen> {
   String sorttype = 'Recommended';
@@ -112,9 +114,32 @@ class _SearchScreenState extends State<SearchScreen> {
           // Expanded(child: ItemListView(),)
         ];
         if (snapshot.hasData) {
-          childrenofcolumn.add(
-            Text(snapshot.data.body)
-          );
+          var resultlist = json.decode(snapshot.data.body);
+          print(resultlist.runtimeType);
+          print(resultlist is List<dynamic>);
+          if (resultlist.isEmpty) {
+            childrenofcolumn.add(
+              Container(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text('Sorry! No results found!'),
+                ),
+                height: SizeConfig.safeBlockVertical*10,
+              ),
+            );
+          }
+          else {
+            print(resultlist[0].runtimeType);
+            List<Item> itemlist = [];
+            resultlist.forEach((resultmap) {
+              itemlist.add(Item.fromJson(resultmap));
+            });
+            childrenofcolumn.add(
+              Expanded(
+                child: ItemListView(itemlist),
+              )
+            );
+          }
         }
         else if (snapshot.hasError) {
           childrenofcolumn.add(

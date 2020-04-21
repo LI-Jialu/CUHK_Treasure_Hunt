@@ -158,7 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       Positioned(
                         right: 0,
                         child: IconButton(
-                          icon: Icon(password_visible?Icons.visibility:Icons.visibility_off),
+                          icon: Icon(password_visible?Icons.visibility_off:Icons.visibility),
                           onPressed: (){
                             password_visible = !password_visible;
                             setState(() {

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -9,8 +10,8 @@ import 'dart:convert';
 import 'package:cuhk_treasure_hunt/database/database.dart';
 
 class DetailScreen extends StatefulWidget {
-  DetailScreen({Key key, this.itemid}) : super(key: key);
-  String itemid = "1";
+  final Item item;
+  DetailScreen({Key key, this.item}) : super(key: key);
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -21,6 +22,7 @@ class _DetailScreenState extends State<DetailScreen> {
     initialPage: 0,
     viewportFraction: 1,
   );
+  /*
   Future<Response> _itemdetails;
   Future<Response> getItemDetails() async {
     print("try getting item ${widget.itemid} details");
@@ -28,6 +30,7 @@ class _DetailScreenState extends State<DetailScreen> {
     // backend to finish
     itemdetails = await Database.get("/data/", "");
   }
+  */
   @override
   void dispose() {
     _controller.dispose();
@@ -63,13 +66,13 @@ class _DetailScreenState extends State<DetailScreen> {
                   height: SizeConfig.safeBlockVertical*5,
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   alignment: Alignment.bottomLeft,
-                  child: Text("Jimmy-Choo high heels", style: kmiddle_black_textstyle),
+                  child: Text(widget.item.name, style: kmiddle_black_textstyle),
                 ),
                 Container(
                   height: SizeConfig.safeBlockVertical*5,
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   alignment: Alignment.topLeft,
-                  child: Text("\$800", style: kmiddle_red_textstyle),
+                  child: Text("\$" + widget.item.price, style: kmiddle_red_textstyle),
                 ),
                 Container(
                   height: SizeConfig.safeBlockVertical*10,
@@ -91,12 +94,12 @@ class _DetailScreenState extends State<DetailScreen> {
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
                               alignment: Alignment.bottomLeft,
-                              child: Text("CHAN Tai Man", style: kmiddle_black_textstyle),
+                              child: Text("Unknown poster", style: kmiddle_black_textstyle),
                             ),
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
                               alignment: Alignment.topLeft,
-                              child: Text("Woo Sing College", style: ksmall_black_textstyle),
+                              child: Text("Unknown College", style: ksmall_black_textstyle),
                             ),
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -108,76 +111,27 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 Container(
                   height: SizeConfig.safeBlockVertical*10,
-                  child: ListView(
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
+                    itemCount: 6,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children : <Widget>[
+                          SizedBox(width:SizeConfig.safeBlockHorizontal*3),
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey, width: 0.5),
+                              ),
+                              height: SizeConfig.safeBlockVertical*5,
+                              padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
+                              child: Center(child: Text("unknown tag " + index.toString(), style: ksmall_black_textstyle),),
+                            ),
                           ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                          ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                          ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                          ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                          ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                      SizedBox(width:SizeConfig.safeBlockHorizontal*3),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                          ),
-                          height: SizeConfig.safeBlockVertical*5,
-                          padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                          child: Center(child: Text("Brand new", style: ksmall_black_textstyle),),
-                        ),
-                      ),
-                    ],
+                        ],
+                      );
+                    }
                   ),
                 ),
                 Container(
@@ -193,7 +147,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       border: Border.all(color: Colors.grey, width: 0.5),
                     ),
                     padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*5),
-                    child: Text('Ankle-high buffed leather boots in black. Round toe. Ankle-high buffed leather boots in black. Ankle-high buffed leather boots in black. Round toe. \nPlease contact me if you like it!', style: ksmall_black_textstyle),
+                    child: Text('This part is to be finished\n Backend hasn\'t implemented this part yet!\n Text\n Text\n 中文文本', style: ksmall_black_textstyle),
                   ),
                 )
               ],

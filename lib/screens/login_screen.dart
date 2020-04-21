@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
@@ -33,145 +31,140 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    print(Database.hostname+"/data/images/image_picker_01B76C55-4FAC-4401-954C-C7BEC581DDB3-85795-00057E86A6E3A261.jpg");
+    String src = Database.hostname+"/data/images/image_picker_9DE8946C-5C31-47E2-974B-41A35DCAB5E7-32717-00059E8569C81C6B.jpg";
 
     return Scaffold(
-//      resizeToAvoidBottomPadding: false,//to avoid the bottom pixel overflow
+      resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
       body: SafeArea(
         child: Center(
-          child: Container(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  //place the avatar of the user
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical*10,
+          child: Column(
+            children: <Widget>[
+              //place the avatar of the user
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*10,
 
+              ),
+              Container(
+                height: SizeConfig.safeBlockVertical*30,
+                width: SizeConfig.safeBlockVertical*30,
+                child: Image.network(src,width: SizeConfig.safeBlockVertical*30,height: SizeConfig.safeBlockVertical*30),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*5,
+              ),
+              //Input the username into the box
+              Container(
+                height: SizeConfig.safeBlockVertical*10,
+                width: SizeConfig.safeBlockHorizontal*80,
+                child: TextFormField(
+                  initialValue: username,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      hintText: 'Username/Email'
                   ),
-                  Container(
-                    height: SizeConfig.safeBlockVertical*30,
-                    width: SizeConfig.safeBlockVertical*30,
-                    color: Colors.amber,
+                  onChanged: (value){
+                    username = value;
+                    print(username);
+                  },
+                ),
+              ),
+              //input the password into the box
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*2,
+              ),
+              Container(
+                height: SizeConfig.safeBlockVertical*10,
+                width: SizeConfig.safeBlockHorizontal*80,
+                child: TextFormField(
+                  initialValue: password,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      hintText: 'Password'
                   ),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical*5,
-                  ),
-                  //Input the username into the box
-                  Container(
-                    height: SizeConfig.safeBlockVertical*10,
-                    width: SizeConfig.safeBlockHorizontal*80,
-                    child: TextFormField(
-                      initialValue: username,
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                          hintText: 'Username/Email'
-                      ),
-                      onChanged: (value){
-                        username = value;
-                        print(username);
-                      },
-                    ),
-                  ),
-                  //input the password into the box
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical*2,
-                  ),
-
-                  PasswordType(),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical*10,
-                  ),
-                  Container(
-                    color: klogin_button_color,
-                    width: SizeConfig.safeBlockHorizontal*80,
-                    height: SizeConfig.safeBlockVertical*6,
-                    child: FlatButton(
-                      onPressed: ()  async {
+                  onChanged: (value){
+                    password = value;
+                    print(password);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*10,
+              ),
+              Container(
+                color: Colors.orange,
+                width: SizeConfig.safeBlockHorizontal*80,
+                height: SizeConfig.safeBlockVertical*6,
+                child: FlatButton(
+                  onPressed: ()  {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                    );
+                  },
+                  child: Center(
+                      child: Text('Sign Up', style: klogin_button_text,)),
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical*4,
+              ),
+              Container(
+                color: klogin_button_color,
+                width: SizeConfig.safeBlockHorizontal*80,
+                height: SizeConfig.safeBlockVertical*6,
+                child: FlatButton(
+                  onPressed: ()  async {
 //                    User.login('0000000001', 'admin2');
-//                    try
-//                    {
-//                      var item_list_data = await Database.get("/data/favourites.php","");
-//                      if (item_list_data!=null)
-//                      {
-//                        print("the item_list body is not null");
-//                        var item_list = json.decode(item_list_data.body);
-//                      }
-//                      else
-//                      {
-//                        print("the item_body is null");
-//                      }
-//                    }
-//                    catch(e){
-//                      print("fail to acquire the item_list list");
-//                    }
 
-                        //var image = await PostItem.pickImage();
-                        //PostItem.uploadImage(image);
+                    //var image = await PostItem.pickImage();
+                    //PostItem.uploadImage(image);
 
-                        /*Timer(Duration(seconds: 2),()async {
+                    // Some function testing
+
+                    /*Timer(Duration(seconds: 2),()async {
                       http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
                       print(json.decode(res.body));
                     });*/
 
-                        //print(await UserVerification.sendVerificationEmail("", ""));
-                        //print(UserVerification.verifyCode("619605"));
+                    //print(await UserVerification.sendVerificationEmail("", ""));
+                    //print(UserVerification.verifyCode("619605"));
 
-                        /*Timer(Duration(seconds: 2), () async{
+                    /*Timer(Duration(seconds: 2), () async{
                       http.Response res = await Database.get('/data/profile.php', '');
                       print(await json.decode(res.body));
                       //print(json.decode(res.body)[0]['college']);
                     });*/
-                        /*Timer(Duration(seconds: 2), () async{
+                    /*Timer(Duration(seconds: 2), () async{
                       Database.post(
                           "/data/manageTransactions.php",
                           {'action':'update','type':'b','transaction_id':'3','rating':'4'}
                           );
                     });*/
 
-                        //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
-                        //the login process has been moved to loading screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoadingScreen(
-                            username: username,password: password,),),
-                        );
+                    //the login process has been moved to loading screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoadingScreen(
+                        username: username,password: password,),),
+                    );
 
-                      },
-                      child: Center(
-                          child: Text('Log In', style: klogin_button_text,)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical*4,
-                  ),
-                  Container(
-                    color: Colors.orange,
-                    width: SizeConfig.safeBlockHorizontal*80,
-                    height: SizeConfig.safeBlockVertical*6,
-                    child: FlatButton(
-                      onPressed: ()  {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignupScreen()),
-                        );
-                      },
-                      child: Center(
-                          child: Text('Sign Up', style: klogin_button_text,)),
-                    ),
-                  ),
-
-
-                ],
+                  },
+                  child: Center(
+                      child: Text('Log In', style: klogin_button_text,)),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
 
 class PasswordType extends StatefulWidget {
   @override
@@ -204,7 +197,7 @@ class _PasswordTypeState extends State<PasswordType> {
         Positioned(
           right: 0,
           child: IconButton(
-            icon: Icon(password_visibility?Icons.visibility:Icons.visibility_off),
+            icon: Icon(password_visibility?Icons.visibility_off:Icons.visibility),
             onPressed: (){
               password_visibility = !password_visibility;
               setState(() {
@@ -217,3 +210,4 @@ class _PasswordTypeState extends State<PasswordType> {
     );
   }
 }
+
