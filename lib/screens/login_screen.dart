@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    print(Database.hostname+"/data/images/image_picker_01B76C55-4FAC-4401-954C-C7BEC581DDB3-85795-00057E86A6E3A261.jpg");
+    String src = Database.hostname+"/data/images/image_picker_9DE8946C-5C31-47E2-974B-41A35DCAB5E7-32717-00059E8569C81C6B.jpg";
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
               Container(
                 height: SizeConfig.safeBlockVertical*30,
                 width: SizeConfig.safeBlockVertical*30,
-                color: Colors.amber,
+                child: Image.network(src,width: SizeConfig.safeBlockVertical*30,height: SizeConfig.safeBlockVertical*30),
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical*5,
@@ -118,24 +118,11 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   onPressed: ()  async {
 //                    User.login('0000000001', 'admin2');
-//                    try
-//                    {
-//                      var item_list_data = await Database.get("/data/favourites.php","");
-//                      if (item_list_data!=null)
-//                      {
-//                        print("the item_list body is not null");
-//                        var item_list = json.decode(item_list_data.body);
-//                      }
-//                      else
-//                      {
-//                        print("the item_body is null");
-//                      }
-//                    }
-//                    catch(e){
-//                      print("fail to acquire the item_list list");
-//                    }
 
-                    //PostItem.uploadImageWeb();
+                    //var image = await PostItem.pickImage();
+                    //PostItem.uploadImage(image);
+                    
+                    // Some function testing
                     
                     /*Timer(Duration(seconds: 2),()async {
                       http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
@@ -157,7 +144,6 @@ class LoginScreen extends StatelessWidget {
                           );
                     });*/
 
-                    //User.register("0000000005", "admin6", "admin6", 'CC', "5", "--");
                     //the login process has been moved to loading screen
                     Navigator.push(
                       context,
