@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    String src = Database.hostname+"/data/images/image_picker_9DE8946C-5C31-47E2-974B-41A35DCAB5E7-32717-00059E8569C81C6B.jpg";
+    String src = Database.hostname+"/data/images/image_picker_120C4BA2-E0F3-49EF-ADF8-4EDBD6A388C7-46791-0005A818D6B5A70F.jpg";
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -118,32 +118,10 @@ class LoginScreen extends StatelessWidget {
                 height: SizeConfig.safeBlockVertical*6,
                 child: FlatButton(
                   onPressed: ()  async {
-//                    User.login('0000000001', 'admin2');
 
-                    //var image = await PostItem.pickImage();
-                    //PostItem.uploadImage(image);
 
-                    // Some function testing
-
-                    /*Timer(Duration(seconds: 2),()async {
-                      http.Response res = await Database.get("/data/messages.php", "?contact_id=2");
-                      print(json.decode(res.body));
-                    });*/
-
-                    //print(await UserVerification.sendVerificationEmail("", ""));
-                    //print(UserVerification.verifyCode("619605"));
-
-                    /*Timer(Duration(seconds: 2), () async{
-                      http.Response res = await Database.get('/data/profile.php', '');
-                      print(await json.decode(res.body));
-                      //print(json.decode(res.body)[0]['college']);
-                    });*/
-                    /*Timer(Duration(seconds: 2), () async{
-                      Database.post(
-                          "/data/manageTransactions.php",
-                          {'action':'update','type':'b','transaction_id':'3','rating':'4'}
-                          );
-                    });*/
+                    var user = await Database.get("/data/profile.php","");
+                    print(json.decode(user.body));
 
                     //the login process has been moved to loading screen
                     Navigator.push(
