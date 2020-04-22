@@ -28,6 +28,7 @@ verificationMail.php | send verification email | Y
 contactList.php | retrieve a user's contact list | Y
 messages.php | retrieve a user's chat history with another particular user | Y
 uploadImage.php | upload an image | Y
+checkProfile.php | check another user's profile | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 
