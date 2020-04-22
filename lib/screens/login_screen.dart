@@ -133,10 +133,9 @@ class LoginScreen extends StatelessWidget {
                       //the login process has been moved to loading screen
 
                       Timer(Duration(seconds: 3), () async{
-                        var response = await Database.get("/data/filter.php",
-                            "?tag=medical use&items=1,2,8");
-
-                        print(response.body);
+                        var response = await Database.get("/data/tags.php",
+                            "?item_id=4");
+                        print(json.decode(response.body)[0]);
                       });
 
                       Navigator.push(
