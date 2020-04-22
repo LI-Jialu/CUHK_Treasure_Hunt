@@ -17,7 +17,6 @@ class DetailScreen extends StatefulWidget {
   _DetailScreenState createState() => _DetailScreenState();
 }
 
-
 class _DetailScreenState extends State<DetailScreen> {
   PageController _controller = PageController(
     initialPage: 0,
