@@ -81,6 +81,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         DropdownMenuItem(value: 'Recommended', child: Text('Recommended'),),
                         DropdownMenuItem(value: 'Nearest', child: Text('Nearest'),),
                         DropdownMenuItem(value: 'Highest reputation', child: Text('Highest reputation'),),
+                        DropdownMenuItem(value: 'Highest Price', child: Text('Highest Price'),),
+                        DropdownMenuItem(value: 'Lowest Price', child: Text('Lowest Price'),),
                       ],
                       onChanged: (value){
                         setState(() {
@@ -142,9 +144,21 @@ class _SearchScreenState extends State<SearchScreen> {
               itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
               print(itemlist[0].name);
             }
-            else if (sorttype == "recommended") {
+            else if (sorttype == "Recommended" || sorttype == "Nearest") {
               print("sort again! recommended");
+              itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
+            }
+            else if (sorttype == "Newest") {
+              print("sort again! newest");
               itemlist.sort((left, right) => int.parse(left.item_id).compareTo(int.parse(right.item_id)));
+            }
+            else if (sorttype == "Highest Price") {
+              print("sort again!");
+              itemlist.sort((left, right) => double.parse(right.price).compareTo(double.parse(left.price)));
+            }
+            else if (sorttype == "Lowest Price") {
+              print("sort again!");
+              itemlist.sort((left, right) => double.parse(left.price).compareTo(double.parse(right.price)));
             }
             childrenofcolumn.add(
               Expanded(
@@ -180,7 +194,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
               ),
-              height: SizeConfig.safeBlockVertical*10,
+              height: SizeConfig.safeBlockVertical*40,
             ),
           );
         }
