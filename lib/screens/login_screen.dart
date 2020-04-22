@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
@@ -31,7 +32,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     SizeConfig().init(context);
-    String src = Database.hostname+"/data/images/image_picker_120C4BA2-E0F3-49EF-ADF8-4EDBD6A388C7-46791-0005A818D6B5A70F.jpg";
+    String src = Item.imagePath+"IMAG09752020-04-21-22:55:52.jpg";
 
     return Scaffold(
 //      resizeToAvoidBottomPadding: false,  //to avoid the bottom pixel overflow
@@ -130,6 +131,7 @@ class LoginScreen extends StatelessWidget {
 //                      var user = await Database.get("/data/profile.php","");
 //                      print(json.decode(user.body));
                       //the login process has been moved to loading screen
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoadingScreen(
