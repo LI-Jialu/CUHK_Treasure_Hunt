@@ -13,7 +13,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-
 class HomescreenProfile extends StatefulWidget {
   const HomescreenProfile({Key key}) : super(key: key);
   @override
@@ -22,6 +21,8 @@ class HomescreenProfile extends StatefulWidget {
 }
 
 class _HomescreenProfileScreenState extends State<HomescreenProfile> {
+  String username;
+  String studentID;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -32,38 +33,31 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       return favorites;
     }
 
-    String username;
-    String studentID;
     Future<Response> get_user()async{
       var user;
-      user =await Database.get("/data/profile.php", "");
+      user = await Database.get("/data/profile.php", "");
       return user;
     }
-    void setUser() async{
-      var user;
-      try{
-        Response user = await get_user();
-        if (user.body!=null)
-        {
-          print("the body is not null");
-          username = json.decode(user.body)[0]['username'];
-          studentID = json.decode(user.body)[1]['student_id'];
-        }
-        else
-          print("the body is null");
+
+    void set_user() async{
+      Response user = await get_user();
+      setState(() {
+        username = json.decode(user.body)[0]['username'];
+        studentID = json.decode(user.body)[0]['student_id'];
       }
-      catch(e){
-        print("fail to acquire the user");
-      }
+      );
     }
-    setUser();
+    set_user();
+
+
 
     return Scaffold(
       body: ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: 1,
         itemBuilder: (context, index) {
-          return Column(
+          return Card(
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               //user icon, user's email and reputation
@@ -280,6 +274,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                 ],
               ),
             ],
+          ),
           );
         },
       ),

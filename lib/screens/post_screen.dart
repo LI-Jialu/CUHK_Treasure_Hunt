@@ -1,3 +1,4 @@
+import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -99,6 +100,26 @@ class PostScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              Container(
+                height: SizeConfig.safeBlockVertical * 5,
+                alignment: Alignment.bottomLeft,
+                child: Text('Pictures', style: ksmall_black_textstyle),
+              ),
+              SizedBox(
+                height: SizeConfig.safeBlockVertical * 5,
+                width: SizeConfig.safeBlockHorizontal * 38,
+                child: OutlineButton(
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    disabledTextColor: Colors.grey,
+                    padding: EdgeInsets.all(8.0),
+                    borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                    onPressed: () {
+                      PostItem.showChoiceDialog(context);
+                    },
+                    child: Text("Select pictures")),
+              ),
+              PostItem.decideImageView(),
               Divider(),
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
@@ -190,7 +211,7 @@ class PostScreen extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  /*...*/
+                  // PostItem.uploadImage(PostItem.picture);
                 },
                 child: Text(
                   "Post",

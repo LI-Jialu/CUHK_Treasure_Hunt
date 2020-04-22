@@ -126,10 +126,19 @@ INSERT INTO buy_requests VALUES (DEFAULT, 1, 2, 1);
 
 CREATE TABLE tags (
 	tag_id tinyint unsigned NOT NULL AUTO_INCREMENT,
-    tag varchar(15) NOT NULL,
+    tag varchar(30) NOT NULL,
     PRIMARY KEY (tag_id)
 );
 INSERT INTO tags VALUES (DEFAULT, 'free');
+INSERT INTO tags VALUES (DEFAULT, 'other');
+INSERT INTO tags VALUES (DEFAULT, 'stationery');
+INSERT INTO tags VALUES (DEFAULT, 'clothing');
+INSERT INTO tags VALUES (DEFAULT, 'book');
+INSERT INTO tags VALUES (DEFAULT, 'electric appliance');
+INSERT INTO tags VALUES (DEFAULT, 'food');
+INSERT INTO tags VALUES (DEFAULT, 'daily use');
+INSERT INTO tags VALUES (DEFAULT, 'medical use');
+INSERT INTO tags VALUES (DEFAULT, 'cosmetics');
 
 CREATE TABLE item_tags (
 	item_id int unsigned NOT NULL,
@@ -139,3 +148,13 @@ CREATE TABLE item_tags (
     FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
 );
 INSERT INTO item_tags VALUES (1, 1);
+INSERT INTO item_tags VALUES (2, 9);
+INSERT INTO item_tags VALUES (3, 2);
+INSERT INTO item_tags VALUES (4, 8);
+INSERT INTO item_tags VALUES (4, 5);
+INSERT INTO item_tags VALUES (5, 5);
+INSERT INTO item_tags VALUES (6, 5);
+INSERT INTO item_tags VALUES (7, 9);
+INSERT INTO item_tags VALUES (8, 10);
+INSERT INTO item_tags VALUES (9, 2);
+INSERT INTO item_tags VALUES (10, 2);
