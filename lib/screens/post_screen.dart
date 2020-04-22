@@ -1,3 +1,4 @@
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
@@ -8,10 +9,23 @@ String boughtPriceInput;
 String sellingPriceInput;
 String descriptionInput;
 String locationInput;
+String quantity;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
-class PostScreen extends StatelessWidget {
+class PostScreen extends StatefulWidget{
+
   const PostScreen({Key key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return PostScreenState();
+  }
+}
+
+class PostScreenState extends State<PostScreen> {
+
+  List<int> tags = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,31 +64,31 @@ class PostScreen extends StatelessWidget {
                 ),
               ),
               Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    alignment: Alignment.centerLeft,
-                    child: Text('Bought price', style: ksmall_black_textstyle),
-                  ),
-                  Container(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    width: SizeConfig.safeBlockHorizontal * 50,
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      maxLines: 1,
-                      decoration:
-                          InputDecoration(hintText: 'The price you bought it.'),
-                      onChanged: (value) {
-                        boughtPriceInput = value;
-                        print(boughtPriceInput);
-                      },
-                    ),
-                  ),
-                ],
-              ),
+//              Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                children: <Widget>[
+//                  Container(
+//                    height: SizeConfig.safeBlockVertical * 5,
+//                    alignment: Alignment.centerLeft,
+//                    child: Text('Bought price', style: ksmall_black_textstyle),
+//                  ),
+//                  Container(
+//                    height: SizeConfig.safeBlockVertical * 5,
+//                    width: SizeConfig.safeBlockHorizontal * 50,
+//                    child: TextField(
+//                      keyboardType: TextInputType.text,
+//                      textInputAction: TextInputAction.done,
+//                      maxLines: 1,
+//                      decoration:
+//                          InputDecoration(hintText: 'The price you bought it.'),
+//                      onChanged: (value) {
+//                        boughtPriceInput = value;
+//                        print(boughtPriceInput);
+//                      },
+//                    ),
+//                  ),
+//                ],
+//              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -91,7 +105,7 @@ class PostScreen extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                       maxLines: 1,
                       decoration: InputDecoration(
-                          hintText: 'The price you want to sell at'),
+                          hintText: 'Price for 1 item'),
                       onChanged: (value) {
                         sellingPriceInput = value;
                         print(sellingPriceInput);
@@ -148,24 +162,49 @@ class PostScreen extends StatelessWidget {
                 ),
               ),
               Divider(),
-              Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.bottomLeft,
-                child: Text('Location', style: ksmall_black_textstyle),
-              ),
-              Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                width: SizeConfig.safeBlockHorizontal * 80,
-                child: TextField(
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  maxLines: 1,
-                  decoration: InputDecoration(hintText: 'Delivering location'),
-                  onChanged: (value) {
-                    locationInput = value;
-                    print(locationInput);
-                  },
-                ),
+//              Container(
+//                height: SizeConfig.safeBlockVertical * 5,
+//                alignment: Alignment.bottomLeft,
+//                child: Text('Location', style: ksmall_black_textstyle),
+//              ),
+//              Container(
+//                height: SizeConfig.safeBlockVertical * 5,
+//                width: SizeConfig.safeBlockHorizontal * 80,
+//                child: TextField(
+//                  keyboardType: TextInputType.text,
+//                  textInputAction: TextInputAction.done,
+//                  maxLines: 1,
+//                  decoration: InputDecoration(hintText: 'Delivering location'),
+//                  onChanged: (value) {
+//                    locationInput = value;
+//                    print(locationInput);
+//                  },
+//                ),
+//              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    height: SizeConfig.safeBlockVertical * 5,
+                    alignment: Alignment.centerLeft,
+                    child: Text('Quantity', style: ksmall_black_textstyle),
+                  ),
+                  Container(
+                    height: SizeConfig.safeBlockVertical * 5,
+                    width: SizeConfig.safeBlockHorizontal * 50,
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                          hintText: 'Number of items to sell'),
+                      onChanged: (value) {
+                        quantity = value;
+                        print(quantity);
+                      },
+                    ),
+                  ),
+                ],
               ),
               Divider(),
               Container(
@@ -173,34 +212,71 @@ class PostScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text('Choose tags', style: ksmall_black_textstyle),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    width: SizeConfig.safeBlockHorizontal * 38,
-                    child: OutlineButton(
-                        //color: Colors.white,
-                        textColor: Colors.black,
-                        disabledTextColor: Colors.grey,
-                        padding: EdgeInsets.all(8.0),
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                        onPressed: () {},
-                        child: Text("Brand new")),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    width: SizeConfig.safeBlockHorizontal * 38,
-                    child: OutlineButton(
-                        color: Colors.white,
-                        textColor: Colors.black,
-                        disabledTextColor: Colors.grey,
-                        padding: EdgeInsets.all(8.0),
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                        onPressed: () {},
-                        child: Text("free")),
-                  ),
-                ],
+//              Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                children: <Widget>[
+//                  SizedBox(
+//                    height: SizeConfig.safeBlockVertical * 5,
+//                    width: SizeConfig.safeBlockHorizontal * 38,
+//                    child: OutlineButton(
+//                        //color: Colors.white,
+//                        textColor: Colors.black,
+//                        disabledTextColor: Colors.grey,
+//                        padding: EdgeInsets.all(8.0),
+//                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
+//                        onPressed: () {},
+//                        child: Text("Brand new")),
+//                  ),
+//                  SizedBox(
+//                    height: SizeConfig.safeBlockVertical * 5,
+//                    width: SizeConfig.safeBlockHorizontal * 38,
+//                    child: OutlineButton(
+//                        color: Colors.white,
+//                        textColor: Colors.black,
+//                        disabledTextColor: Colors.grey,
+//                        padding: EdgeInsets.all(8.0),
+//                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
+//                        onPressed: () {},
+//                        child: Text("free")),
+//                  ),
+//                ],
+//              ),
+              Container(
+                height: SizeConfig.safeBlockVertical * 5,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: Item.tags.length,
+                    itemBuilder: (BuildContext context, int index){
+                      bool selected = tags.indexOf(index) != -1;
+                      return Container(
+                        height: SizeConfig.safeBlockVertical * 5,
+                        width: SizeConfig.safeBlockHorizontal * 38,
+                        color: !selected? Colors.white:Colors.grey[300],
+                        child: OutlineButton(
+                            textColor: Colors.black,
+                            padding: EdgeInsets.all(8.0),
+                            borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                            onPressed: () {
+                              if (!selected){
+                                setState(() {
+                                  tags.add(index);
+                                });
+                                print(tags);
+                              }
+                              else {
+                                setState(() {
+                                  tags.remove(index);
+                                });
+                                print(tags);
+                              }
+                            },
+                            child: Text("${Item.tags[index]}")),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index){
+                      return VerticalDivider();
+                    },
+                ),
               ),
               Divider(),
               FlatButton(
