@@ -9,11 +9,18 @@ import 'package:cuhk_treasure_hunt/widgets/chat_bubble.dart';
 import 'dart:collection';
 
 String input_message;
+class message_pack{
+  message_pack({this.message,this.time, this.sender});
+  String message;
+  String time;
+  String sender;
+}
 
 class ChatroomScreen extends StatefulWidget {
   String user_id;
   String contact_name;
   ChatroomScreen({this.contact_name, this.user_id});
+
 
   @override
   _ChatroomScreenState createState() => _ChatroomScreenState();
@@ -21,13 +28,16 @@ class ChatroomScreen extends StatefulWidget {
 
 class _ChatroomScreenState extends State<ChatroomScreen> {
 //  Future<Response> message_info;
+
   Future<Response> message_info;
+  List<message_pack> message_pack_list = [test];
+  static message_pack test = new message_pack(sender: "a", message: "a", time: "a");
 
   var message_info_decoded;
   @override
   void initState() {
     super.initState();
-    get_message();
+
   }
   void get_message(){
     var user_id = widget.user_id;
@@ -42,8 +52,11 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
     print(result);
   }
 
+  var _inputtextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    get_message();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.contact_name),
@@ -59,26 +72,37 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
             message_info_decoded = json.decode(snapshot.data.body);
             print(message_info_decoded);
             print(message_info_decoded.length);
+            int i;
+            //iterate all the information in the cloud
+            message_pack_list = [test];
+            for(i=0;i<=message_info_decoded.length-1;i++)
+              {
+                message_pack newPack = new message_pack(message: message_info_decoded[i]['message'],
+                time: message_info_decoded[i]['createtime'],
+                sender: message_info_decoded[i]['sender_id']);
+                message_pack_list.add(newPack);
+                print(message_pack_list);
+              }
             return Expanded(
               child: Stack(
                 children: <Widget>[
                     Container(
                     color: Colors.amber,),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: SizeConfig.safeBlockHorizontal*4),
+
                       child: ListView.builder(
+                        reverse: true,
                         itemCount: message_info_decoded.length,
                           itemBuilder: (context, index)
                           {
-                            print(widget.user_id);
-                            print(message_info_decoded[index]['sender_id']);
+                            print(index);
                             bool sent_by_me;
                             if (widget.user_id!=message_info_decoded[index]['sender_id'])
                               {
                                 sent_by_me=true;
                               }
                             else {
-                              sent_by_me=false;
+                                sent_by_me=false;
                               }
 //                            sent_by_me=(widget.user_id!=message_info_decoded[index]['reveiver_id'])?true:false;
                             print(sent_by_me);
@@ -123,10 +147,19 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                   child: Container(
                     height: SizeConfig.safeBlockVertical * 10,
                     child: TextField(
+                      controller: _inputtextController,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.send,
                       onSubmitted: (term){
                         send_message(widget.user_id, input_message);
+                        _inputtextController.clear();
+//                        message_pack newpack = new message_pack(
+//                            message: input_message, time: "a", sender: widget.user_id);
+//                        message_pack_list.add(newpack);
+                        get_message();
+                        setState(() {
+
+                        });
                       },
 //                      maxLines: 1,
                       onChanged: (value) {
