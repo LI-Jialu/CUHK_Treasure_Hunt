@@ -29,6 +29,7 @@ contactList.php | retrieve a user's contact list | Y
 messages.php | retrieve a user's chat history with another particular user | Y
 uploadImage.php | upload an image | Y
 checkProfile.php | check another user's profile | Y
+filter.php | filter search results using a tag (can only filter based on 1 tag at a time) | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 

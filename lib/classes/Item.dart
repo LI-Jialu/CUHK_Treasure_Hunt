@@ -1,11 +1,15 @@
 // Define Item class
 
-
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 
 class Item{
 
   static String imagePath = "http://ec2-3-80-187-207.compute-1.amazonaws.com/data/images/";
+  static List<String> tags = ['free','other','stationery','clothing','book',
+    'electric appliance','food','daily use','medical use','cosmetics'];
+
 
   String item_id = "-1";
   String poster_id = "-1";
