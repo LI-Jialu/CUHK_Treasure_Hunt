@@ -1,4 +1,3 @@
-
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ import 'package:http/http.dart';
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key key, @required this.searchinput}) : super(key: key);
   final String searchinput;
-  
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -23,18 +22,22 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   String sorttype = 'Recommended';
   final List<String> _sorttypename = [
-    'Newest', 'Recommended', 'Nearest', 'Highest reputation',
+    'Newest',
+    'Recommended',
+    'Nearest',
+    'Highest reputation',
   ];
   Future<Response> _searchresults;
   Future<Response> getSearchResults() async {
     print("try getting search results!");
     Response searchresults;
-    searchresults = await Database.get("/data/search.php?search=" + widget.searchinput, "");
+    searchresults =
+        await Database.get("/data/search.php?search=" + widget.searchinput, "");
     print("search results got!");
     print(searchresults.body);
     return searchresults;
   }
-  
+
   @override
   @mustCallSuper
   void didChangeDependencies() {
@@ -44,7 +47,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     SizeConfig().init(context);
 
     return FutureBuilder<Response>(
@@ -54,33 +56,50 @@ class _SearchScreenState extends State<SearchScreen> {
           Container(
             child: Align(
               alignment: Alignment(-0.9, 0.0),
-              child: Text(widget.searchinput, style: ksearch_keyword_textstyle,),
+              child: Text(
+                widget.searchinput,
+                style: ksearch_keyword_textstyle,
+              ),
             ),
-            height: SizeConfig.safeBlockVertical*10,
+            height: SizeConfig.safeBlockVertical * 10,
           ),
           Container(
-            padding: EdgeInsets.only(bottom: SizeConfig.safeBlockVertical*1),
+            padding: EdgeInsets.only(bottom: SizeConfig.safeBlockVertical * 1),
             child: Row(
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 0.5),
                   ),
-                  height: SizeConfig.safeBlockVertical*5,
-                  width: SizeConfig.safeBlockHorizontal*40,
+                  height: SizeConfig.safeBlockVertical * 5,
+                  width: SizeConfig.safeBlockHorizontal * 40,
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
+                  padding: EdgeInsets.only(
+                      left: SizeConfig.safeBlockHorizontal * 1,
+                      right: SizeConfig.safeBlockHorizontal * 1),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       value: sorttype,
                       style: ksmall_black_textstyle,
                       items: <DropdownMenuItem>[
-                        DropdownMenuItem(value: 'Newest', child: Text('Newest'),),
-                        DropdownMenuItem(value: 'Recommended', child: Text('Recommended'),),
-                        DropdownMenuItem(value: 'Nearest', child: Text('Nearest'),),
-                        DropdownMenuItem(value: 'Highest reputation', child: Text('Highest reputation'),),
+                        DropdownMenuItem(
+                          value: 'Newest',
+                          child: Text('Newest'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Recommended',
+                          child: Text('Recommended'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Nearest',
+                          child: Text('Nearest'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Highest reputation',
+                          child: Text('Highest reputation'),
+                        ),
                       ],
-                      onChanged: (value){
+                      onChanged: (value) {
                         setState(() {
                           sorttype = value;
                         });
@@ -89,23 +108,25 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
                 GestureDetector(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 0.5),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 0.5),
+                      ),
+                      height: SizeConfig.safeBlockVertical * 5,
+                      width: SizeConfig.safeBlockHorizontal * 40,
+                      child: Center(
+                        child: Text(
+                          'Filter',
+                          style: ksmall_black_textstyle,
+                        ),
+                      ),
                     ),
-                    height: SizeConfig.safeBlockVertical*5,
-                    width: SizeConfig.safeBlockHorizontal*40,
-                    child: Center(
-                      child: Text('Filter', style: ksmall_black_textstyle,),
-                    ),
-                  ),
-                  onTap: (){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => FilterScreen()),
-                    );
-                  }
-                ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FilterScreen()),
+                      );
+                    }),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
@@ -124,42 +145,37 @@ class _SearchScreenState extends State<SearchScreen> {
                   alignment: Alignment.center,
                   child: Text('Sorry! No results found!'),
                 ),
-                height: SizeConfig.safeBlockVertical*10,
+                height: SizeConfig.safeBlockVertical * 10,
               ),
             );
-          }
-          else {
+          } else {
             print(resultlist[0].runtimeType);
             List<Item> itemlist = [];
             resultlist.forEach((resultmap) {
               itemlist.add(Item.fromJson(resultmap));
             });
-            childrenofcolumn.add(
-              Expanded(
-                child: ItemListView(itemlist),
-              )
-            );
+            childrenofcolumn.add(Expanded(
+              child: ItemListView(itemlist),
+            ));
           }
-        }
-        else if (snapshot.hasError) {
+        } else if (snapshot.hasError) {
           childrenofcolumn.add(
             Container(
               child: Align(
                 alignment: Alignment.center,
                 child: Text('Error: ${snapshot.error}'),
               ),
-              height: SizeConfig.safeBlockVertical*10,
+              height: SizeConfig.safeBlockVertical * 10,
             ),
           );
-        }
-        else {
+        } else {
           childrenofcolumn.add(
             Container(
               child: Align(
                 alignment: Alignment.center,
                 child: Text('Loading...'),
               ),
-              height: SizeConfig.safeBlockVertical*10,
+              height: SizeConfig.safeBlockVertical * 10,
             ),
           );
         }
