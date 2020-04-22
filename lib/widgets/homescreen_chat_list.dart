@@ -47,52 +47,110 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
             contact_list_result = snapshot.data;
             result = json.decode(contact_list_result.body);
             print(result);
-            return Column(
-              children: <Widget>[
-                Container(
-                  height: SizeConfig.safeBlockVertical * 10,
-                  width: SizeConfig.safeBlockHorizontal * 80,
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    maxLines: 1,
-                    decoration: InputDecoration(hintText: 'Search'),
-                    onChanged: (value) {
-                      search_keyword = value;
-                      print(search_keyword);
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: result.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: <Widget>[
-                            Dismissible(
-                              background: slideRightBackground(),
-                              secondaryBackground: slideLeftBackground(),
-                              onDismissed: (DismissDirection direction){
-                                setState(() {
-                                  //remove
-                                  //TODO: delete the message from the database?
-                                });
-                              },
-                              child: ContactCard(
-                                name: result[index]["username"],
-                                message: result[index]["message"],
-
-                              ),
-                              key: UniqueKey(),
-                            ),
-                          ],
-                        );
-                      }),
-                ),
-              ],
-            );
+            if (result.length==0)
+              {
+                //TODO: to be tested
+                return Column(
+                  children: <Widget>[
+                    Container(
+                      height: SizeConfig.safeBlockVertical * 10,
+                      width: SizeConfig.safeBlockHorizontal * 80,
+                      child: TextField(
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        maxLines: 1,
+                        decoration: InputDecoration(hintText: 'Search'),
+                        onChanged: (value) {
+                          search_keyword = value;
+                          print(search_keyword);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        child: Center(child: Text("No contact yet")),
+                      ),
+                    ),
+                  ],
+                );
+              }
+            else
+              {
+                return Column(
+                  children: <Widget>[
+                    Container(
+                      height: SizeConfig.safeBlockVertical * 10,
+                      width: SizeConfig.safeBlockHorizontal * 80,
+                      child: TextField(
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        maxLines: 1,
+                        decoration: InputDecoration(hintText: 'Search'),
+                        onChanged: (value) {
+                          search_keyword = value;
+                          print(search_keyword);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: result.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: <Widget>[
+                                Dismissible(
+                                  background: slideRightBackground(),
+                                  secondaryBackground: slideLeftBackground(),
+                                  onDismissed: (DismissDirection direction){
+                                    setState(() {
+                                      //remove
+                                      //TODO: delete the message from the database?
+                                    });
+                                  },
+                                  child: ContactCard(
+                                    name: result[index]["username"],
+                                    message: result[index]["message"],
+                                    user_id: result[index]['user_id'],
+                                  ),
+                                  key: UniqueKey(),
+                                ),
+                              ],
+                            );
+                          }),
+                    ),
+                  ],
+                );
+              }
+            
           }
+//        else if (!snapshot.hasData)
+//          {
+//            //TODO: to be tested
+//            return Column(
+//              children: <Widget>[
+//                Container(
+//                  height: SizeConfig.safeBlockVertical * 10,
+//                  width: SizeConfig.safeBlockHorizontal * 80,
+//                  child: TextField(
+//                    keyboardType: TextInputType.text,
+//                    textInputAction: TextInputAction.done,
+//                    maxLines: 1,
+//                    decoration: InputDecoration(hintText: 'Search'),
+//                    onChanged: (value) {
+//                      search_keyword = value;
+//                      print(search_keyword);
+//                    },
+//                  ),
+//                ),
+//                Expanded(
+//                  child: Container(
+//                    child: Center(child: Text("No contact yet")),
+//                  ),
+//                ),
+//              ],
+//            );
+//          }
         else
           {
             return Center(
@@ -174,7 +232,8 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
 class ContactCard extends StatefulWidget {
   String name;
   String message;
-  ContactCard({this.name, this.message});
+  String user_id;
+  ContactCard({this.name, this.message, this.user_id});
 
 
   @override
@@ -191,7 +250,9 @@ class _ContactCardState extends State<ContactCard> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ChatroomScreen()),
+            MaterialPageRoute(builder: (context) => ChatroomScreen(
+              contact_name:widget.name,
+            user_id: widget.user_id,)),
           );
         },
         child: ListTile(
@@ -250,3 +311,8 @@ class _ContactCardState extends State<ContactCard> {
 //    );
   }
 }
+
+
+
+
+

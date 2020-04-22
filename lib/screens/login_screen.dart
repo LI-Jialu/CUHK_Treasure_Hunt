@@ -45,10 +45,10 @@ class LoginScreen extends StatelessWidget {
                   height: SizeConfig.safeBlockVertical*10,
 
                 ),
-                Container(
-                  height: SizeConfig.safeBlockVertical*30,
-                  width: SizeConfig.safeBlockVertical*30,
-                  child: Image.network(src,width: SizeConfig.safeBlockVertical*30,height: SizeConfig.safeBlockVertical*30),
+                CircleAvatar(
+                  radius: SizeConfig.safeBlockVertical*10,
+                  backgroundImage:
+                  Image.network(src,width: SizeConfig.safeBlockVertical*30,height: SizeConfig.safeBlockVertical*30).image,
                 ),
                 SizedBox(
                   height: SizeConfig.safeBlockVertical*5,

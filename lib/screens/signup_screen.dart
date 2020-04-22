@@ -27,6 +27,23 @@ class _SignupScreenState extends State<SignupScreen> {
   bool verification_status;
   bool password_visible = false;
   bool username_repitition = false;
+
+  final FocusNode _usernameFocus = FocusNode();
+  final FocusNode _sidFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+  final FocusNode _vericodeFocus = FocusNode();
+
+  var _usernameController = TextEditingController();
+  var _sidController = TextEditingController();
+  var _passwordController = TextEditingController();
+  var _vericodeController = TextEditingController();
+
+  _fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +78,15 @@ class _SignupScreenState extends State<SignupScreen> {
                       Container(
                         height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockHorizontal*80,
-                        child: TextField(
+                        child: TextFormField(
+                          controller: _usernameController,
                           autofocus: true,
                           keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
+                          textInputAction: TextInputAction.next,
+                          focusNode: _usernameFocus,
+                          onFieldSubmitted: (term){
+                            _fieldFocusChange(context, _usernameFocus, _sidFocus);
+                          },
                           maxLines: 1,
                           decoration: InputDecoration(
                               hintText: 'Rocky Tuan'
@@ -111,10 +133,15 @@ class _SignupScreenState extends State<SignupScreen> {
                       Container(
                         height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockHorizontal*40,
-                        child: TextField(
+                        child: TextFormField(
+                          controller: _sidController,
                           keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.done,
+                          textInputAction: TextInputAction.next,
                           maxLines: 1,
+                          focusNode: _sidFocus,
+                          onFieldSubmitted: (term){
+                            _fieldFocusChange(context, _sidFocus, _passwordFocus);
+                          },
                           maxLength: 10,
                           decoration: InputDecoration(
                               hintText: '1155******'
@@ -142,9 +169,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockHorizontal*80,
                         child: TextField(
+                          focusNode: _passwordFocus,
+                          controller: _passwordController,
+                          onSubmitted: (term){
+                            _fieldFocusChange(context, _passwordFocus, _vericodeFocus);
+                          },
                           obscureText: password_visible?true:false,
                           keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
+                          textInputAction: TextInputAction.next,
                           maxLines: 1,
                           decoration: InputDecoration(
                               hintText: 'Irwin King'
@@ -180,6 +212,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         height: SizeConfig.safeBlockVertical*10,
                         width: SizeConfig.safeBlockHorizontal*40,
                         child: TextField(
+                          focusNode: _vericodeFocus,
+                          controller: _vericodeController,
+                          onSubmitted: (term){
+                            _vericodeFocus.unfocus();
+                          },
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           maxLines: 1,

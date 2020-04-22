@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     null,
     AppBar(
       title: Text("Chat"),
+      automaticallyImplyLeading: false,
       elevation: 0,
     ),
     AppBar(
