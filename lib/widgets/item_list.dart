@@ -11,16 +11,20 @@ import 'package:http/http.dart';
 
 class ItemGridView extends StatefulWidget {
   final Item item;
-  Future<Response> _posterinfo;
-  Future<Response> getPosterInfo() async {
-    print("try getting poster info!");
+  Set<String> tagset = new Set();
+  Future<List<Response>> _posterandtags;
+  Future<List<Response>> getPosterAndTags() async {
+    print("try getting poster and tags info!");
     Response posterinfo;
     posterinfo = await Database.get("/data/checkProfile.php?check_id=" + item.poster_id, "");
     print(posterinfo.body);
-    return posterinfo;
+    Response tagsinfo;
+    tagsinfo = await Database.get("/data/tags.php?item_id=" + item.item_id, "");
+    print(tagsinfo.body);
+    return <Response>[posterinfo, tagsinfo];
   }
   ItemGridView(this.item) {
-    _posterinfo = getPosterInfo();
+    _posterandtags = getPosterAndTags();
   }
   @override
   _ItemGridViewState createState() => _ItemGridViewState();
@@ -38,12 +42,15 @@ class _ItemGridViewState extends State<ItemGridView> {
     
     SizeConfig().init(context);
 
-    return FutureBuilder<Response>(
-      future: widget._posterinfo,
-      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+    return FutureBuilder<List<Response>>(
+      future: widget._posterandtags,
+      builder: (BuildContext context, AsyncSnapshot<List<Response>> snapshot) {
         String college = "Loading...";
         if (snapshot.hasData) {
-          var resultlist = json.decode(snapshot.data.body);
+          var resultlist = json.decode(snapshot.data[0].body);
+          var taglist = json.decode(snapshot.data[1].body);
+          widget.tagset = taglist.toSet();
+          
           college = resultlist[0]["college"];
           return GestureDetector(
           child: Container(
@@ -97,7 +104,7 @@ class _ItemGridViewState extends State<ItemGridView> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DetailScreen(item: widget.item, userinfo: resultlist[0])),
+              MaterialPageRoute(builder: (context) => DetailScreen(item: widget.item, userinfo: resultlist[0], tagset: widget.tagset)),
             );
           });
         }

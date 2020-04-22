@@ -84,30 +84,11 @@ class _SearchScreenState extends State<SearchScreen> {
                       value: sorttype,
                       style: ksmall_black_textstyle,
                       items: <DropdownMenuItem>[
-<<<<<<< HEAD
-                        DropdownMenuItem(
-                          value: 'Newest',
-                          child: Text('Newest'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Recommended',
-                          child: Text('Recommended'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Nearest',
-                          child: Text('Nearest'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Highest reputation',
-                          child: Text('Highest reputation'),
-                        ),
-=======
                         DropdownMenuItem(value: 'Newest', child: Text('Newest'),),
                         DropdownMenuItem(value: 'Recommended', child: Text('Recommended'),),
                         DropdownMenuItem(value: 'Highest reputation', child: Text('Highest reputation'),),
                         DropdownMenuItem(value: 'Highest Price', child: Text('Highest Price'),),
                         DropdownMenuItem(value: 'Lowest Price', child: Text('Lowest Price'),),
->>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -164,11 +145,6 @@ class _SearchScreenState extends State<SearchScreen> {
             resultlist.forEach((resultmap) {
               itemlist.add(Item.fromJson(resultmap));
             });
-<<<<<<< HEAD
-            childrenofcolumn.add(Expanded(
-              child: ItemListView(itemlist),
-            ));
-=======
             if (sorttype == "Highest reputation") {
               print("sort again! highest reputation!");
               //itemlist[1].reputation = "1";
@@ -196,7 +172,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: ItemListView(itemlist),
               )
             );
->>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
           }
         } else if (snapshot.hasError) {
           childrenofcolumn.add(
@@ -222,13 +197,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   size: 100.0,
                 ),
               ),
-<<<<<<< HEAD
-              height: SizeConfig.safeBlockVertical * 10,
-=======
             ),
               ),
               height: SizeConfig.safeBlockVertical*40,
->>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
             ),
           );
         }

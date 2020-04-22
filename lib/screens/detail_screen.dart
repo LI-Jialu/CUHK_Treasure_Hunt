@@ -13,7 +13,8 @@ import 'package:cuhk_treasure_hunt/database/database.dart';
 class DetailScreen extends StatefulWidget {
   final Item item;
   final Map<String, dynamic> userinfo;
-  DetailScreen({Key key, this.item, this.userinfo}) : super(key: key);
+  final Set<String> tagset;
+  DetailScreen({Key key, this.item, this.userinfo, this.tagset}) : super(key: key);
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -40,6 +41,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    List<String> taglist = widget.tagset.toList();
     return Scaffold(
       appBar: AppBar(
         title: Text("Details"),
@@ -118,7 +120,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   height: SizeConfig.safeBlockVertical*10,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: Item.tags.length,
+                    itemCount: taglist.length,
                     itemBuilder: (context, index) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +133,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                               height: SizeConfig.safeBlockVertical*5,
                               padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                              child: Center(child: Text(Item.tags[index], style: ksmall_black_textstyle),),
+                              child: Center(child: Text(taglist[index], style: ksmall_black_textstyle),),
                             ),
                           ),
                         ],
