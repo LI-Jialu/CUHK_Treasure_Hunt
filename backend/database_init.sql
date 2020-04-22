@@ -77,6 +77,7 @@ CREATE TABLE transactions (
     FOREIGN KEY (item_id) REFERENCES items (item_id)
 );
 INSERT INTO transactions VALUES(DEFAULT, DEFAULT, DEFAULT, 1, 2, DEFAULT, DEFAULT, 1, 2.2, 1, DEFAULT);
+INSERT INTO transactions VALUES(DEFAULT, DEFAULT, DEFAULT, 1, 2, DEFAULT, DEFAULT, 1, 2.2, 1, DEFAULT);
 
 CREATE TABLE favourites ( -- create surrogate key to allow set null
 	favourite_id int unsigned NOT NULL AUTO_INCREMENT,
