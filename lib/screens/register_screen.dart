@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 10),
+          padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 20),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -55,45 +55,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: SizeConfig.safeBlockVertical * 20,
                   color: Colors.orange,
                 ),
-                DropdownButton(
-                    value: college,
-                    items: _college.map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(dropDownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (selectedDorm) {
-                      setState(() {
-                        dorm = selectedDorm;
-                      });
-                    }),
-                DropdownButton(
-                    value: dorm,
-                    items: _dorm.map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(dropDownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (selectedYear) {
-                      setState(() {
-                        year = selectedYear;
-                      });
-                    }),
-                DropdownButton(
-                    value: year,
-                    items: _year.map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(dropDownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (selectedYear) {
-                      setState(() {
-                        year = selectedYear;
-                      });
-                    }),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.school,
+                      color: Colors.lightBlueAccent,
+                    ),
+                    DropdownButton(
+//                  isExpanded: true,
+                        value: college,
+                        items: _college.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (selectedDorm) {
+                          setState(() {
+                            dorm = selectedDorm;
+                          });
+                        }),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.room,
+                      color: Colors.lightBlueAccent,
+                    ),
+                    DropdownButton(
+                        value: dorm,
+                        items: _dorm.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (selectedYear) {
+                          setState(() {
+                            year = selectedYear;
+                          });
+                        }),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(Icons.book, color: Colors.lightBlueAccent),
+                    DropdownButton(
+                        value: year,
+                        items: _year.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (selectedYear) {
+                          setState(() {
+                            year = selectedYear;
+                          });
+                        }),
+                  ],
+                ),
                 Center(
                   child: Container(
                     color: klogin_button_color,
