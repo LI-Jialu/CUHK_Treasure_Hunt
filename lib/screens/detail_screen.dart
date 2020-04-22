@@ -57,7 +57,9 @@ class _DetailScreenState extends State<DetailScreen> {
                     controller: _controller,
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      Container(color: Colors.amber),
+                      Container(
+                        child: Image.network(widget.item.image, height: SizeConfig.safeBlockVertical * 50, width: SizeConfig.safeBlockVertical * 100),
+                      ),
                       Container(color: Colors.pink),
                       Container(color: Colors.purple),
                     ],
@@ -81,11 +83,13 @@ class _DetailScreenState extends State<DetailScreen> {
                   alignment: Alignment.center,
                   child: Row(
                     children: <Widget>[
-                      ClipOval(
-                        child: Container(
-                          height: SizeConfig.safeBlockVertical*8,
-                          width: SizeConfig.safeBlockVertical*8,
-                          color: Colors.amber,
+                      Container(
+                        height: SizeConfig.safeBlockVertical*8,
+                        width: SizeConfig.safeBlockVertical*8,
+                        child: CircleAvatar(
+                          radius: SizeConfig.safeBlockVertical*8,
+                          backgroundImage:
+                          Image.network(Item.imagePath+"IMAG09752020-04-21-22:55:52.jpg", height: SizeConfig.safeBlockVertical * 8).image,
                         ),
                       ),
                       Container(
@@ -95,7 +99,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
                               alignment: Alignment.bottomLeft,
-                              child: Text("Unknown poster", style: kmiddle_black_textstyle),
+                              child: Text(widget.item.poster_id, style: kmiddle_black_textstyle),
                             ),
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
@@ -114,7 +118,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   height: SizeConfig.safeBlockVertical*10,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 6,
+                    itemCount: Item.tags.length,
                     itemBuilder: (context, index) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +131,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                               height: SizeConfig.safeBlockVertical*5,
                               padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*1, right: SizeConfig.safeBlockHorizontal*1),
-                              child: Center(child: Text("unknown tag " + index.toString(), style: ksmall_black_textstyle),),
+                              child: Center(child: Text(Item.tags[index], style: ksmall_black_textstyle),),
                             ),
                           ),
                         ],
@@ -148,7 +152,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       border: Border.all(color: Colors.grey, width: 0.5),
                     ),
                     padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*5),
-                    child: Text('This part is to be finished\n Backend hasn\'t implemented this part yet!\n Text\n Text\n 中文文本', style: ksmall_black_textstyle),
+                    child: Text(widget.item.description, style: ksmall_black_textstyle),
                   ),
                 )
               ],

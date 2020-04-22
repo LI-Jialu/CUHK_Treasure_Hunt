@@ -33,7 +33,7 @@ class _ItemGridViewState extends State<ItemGridView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    color: Colors.amber,
+                    child: Image.network(widget.item.image, width: SizeConfig.safeBlockHorizontal * 40, height: SizeConfig.safeBlockVertical * 20),
                     height: SizeConfig.safeBlockVertical * 20,
                     width: SizeConfig.safeBlockHorizontal * 40,
                   ),
