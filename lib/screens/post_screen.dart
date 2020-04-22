@@ -18,7 +18,8 @@ class PostScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: AppBar(),
+        appBar: AppBar(
+        ),
         body: SafeArea(
           child: ListView(
             //separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -107,7 +108,7 @@ class PostScreen extends StatelessWidget {
               Container(
                 child: Container(
                   height: SizeConfig.safeBlockVertical * 20,
-                  width: SizeConfig.safeBlockHorizontal * 80,
+                  width: SizeConfig.safeBlockHorizontal   * 80,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 0.5),
                   ),
