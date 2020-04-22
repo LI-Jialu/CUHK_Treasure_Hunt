@@ -92,7 +92,7 @@ class _FilterScreenState extends State<FilterScreen> {
           Container(
             height: SizeConfig.safeBlockVertical*10,
             padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5),
-            child: Text("Localtion", style: ksmall_black_textstyle),
+            child: Text("Location", style: ksmall_black_textstyle),
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               border: Border(
