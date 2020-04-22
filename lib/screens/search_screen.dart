@@ -79,7 +79,6 @@ class _SearchScreenState extends State<SearchScreen> {
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(value: 'Newest', child: Text('Newest'),),
                         DropdownMenuItem(value: 'Recommended', child: Text('Recommended'),),
-                        DropdownMenuItem(value: 'Nearest', child: Text('Nearest'),),
                         DropdownMenuItem(value: 'Highest reputation', child: Text('Highest reputation'),),
                         DropdownMenuItem(value: 'Highest Price', child: Text('Highest Price'),),
                         DropdownMenuItem(value: 'Lowest Price', child: Text('Lowest Price'),),
