@@ -21,16 +21,18 @@ class HomeScreenChat extends StatefulWidget {
 class _HomeScreenChatState extends State<HomeScreenChat> {
 
   bool contact_retrieve_status = false;
+  var contact_list_result;
+  var result;
+  Future<Response> contact_list;
 
-  Future get_contact_list() async{
-    var contact_list = await Database.get('/data/contactList.php', '');
-    var result = json.decode(contact_list.body);
-    print(contact_list.body);
+  void get_contact_list() {
+    contact_list = Database.get('/data/contactList.php', '');
+//    result = json.decode(contact_list.body);
+//    print(contact_list.body);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     get_contact_list();
   }
@@ -38,10 +40,13 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: get_contact_list(),
+      future: contact_list,
       builder: (BuildContext context, AsyncSnapshot snapshot){
-        if (snapshot.connectionState==true)
+        if (snapshot.hasData)
           {
+            contact_list_result = snapshot.data;
+            result = json.decode(contact_list_result.body);
+            print(result);
             return Column(
               children: <Widget>[
                 Container(
@@ -58,7 +63,33 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
                     },
                   ),
                 ),
-                ChatBody(),
+                Expanded(
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: result.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: <Widget>[
+                            Dismissible(
+                              background: slideRightBackground(),
+                              secondaryBackground: slideLeftBackground(),
+                              onDismissed: (DismissDirection direction){
+                                setState(() {
+                                  //remove
+                                  //TODO: delete the message from the database?
+                                });
+                              },
+                              child: ContactCard(
+                                name: result[index]["username"],
+                                message: result[index]["message"],
+
+                              ),
+                              key: UniqueKey(),
+                            ),
+                          ],
+                        );
+                      }),
+                ),
               ],
             );
           }
@@ -78,61 +109,81 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
       },
     );
   }
-}
-
-// mainbody of the chat (body of the scaffold)
-class ChatBody extends StatefulWidget {
-  @override
-  _ChatBodyState createState() => _ChatBodyState();
-}
-
-class _ChatBodyState extends State<ChatBody> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ChatListView(),
+  Widget slideRightBackground() {
+    return Container(
+      color: Colors.green,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.edit,
+              color: Colors.white,
+            ),
+            Text(
+              " Edit",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerLeft,
+      ),
     );
   }
-}
-
-// the scrollable list of the chat contacts
-class ChatListView extends StatefulWidget {
-  @override
-  _ChatListViewState createState() => _ChatListViewState();
-}
-
-class _ChatListViewState extends State<ChatListView> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Column(
-            children: <Widget>[
-              Dismissible(
-                onDismissed: (DismissDirection direction){
-                  setState(() {
-                    //remove
-                  });
-                },
-                child: ContactCard(),
-                key: UniqueKey(),
+  Widget slideLeftBackground() {
+    return Container(
+      color: Colors.red,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            Text(
+              " Delete",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
-            ],
-          );
-        });
+              textAlign: TextAlign.right,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerRight,
+      ),
+    );
   }
-  }
+
+}
+
 
 
 
 class ContactCard extends StatefulWidget {
+  String name;
+  String message;
+  ContactCard({this.name, this.message});
+
+
   @override
   _ContactCardState createState() => _ContactCardState();
 }
 
 class _ContactCardState extends State<ContactCard> {
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -147,8 +198,8 @@ class _ContactCardState extends State<ContactCard> {
           leading: CircleAvatar(
             backgroundImage: NetworkImage('https://m.media-amazon.com/images/M/MV5BMTk3NTc2NTI0N15BMl5BanBnXkFtZTgwMDA4MjcwNzM@._V1_SX300.jpg'),
           ),
-          title: Text("Imane"),
-          subtitle: Text("Une semaine!!"),
+          title: Text(widget.name),
+          subtitle: Text(widget.message),
           trailing: Text("2020"),
         ),
       ),
