@@ -14,8 +14,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     if (widget.favorite_list.length != 0)
       {
-        print("Successfully passed the favorite data");
-        print(widget.favorite_list);
 
 //        print(widget.favorite_list.length);
 //        print(widget.favorite_list[1]['item_id']);

@@ -3,8 +3,10 @@ import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
+import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:universal_html/html.dart';
 
 // this screen is for the new user to customise the avatar, college and other infos
 class RegisterScreen extends StatefulWidget {
@@ -18,25 +20,90 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   //initial value for debugging
-  String year = "2018";
+  String year = "year 1";
   String college = "SH";
   String dorm = "--";
-  var _college = [
+
+  // alert pickup image from web or gallery
+  Future<File> showChoiceDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Choose your icon"),
+            content: GestureDetector(
+              child: Image.asset('assets / images / batman.svg'),
+            ),
+          );
+        });
+  }
+
+  void decideDormRange(college) {
+    if (college == 'CC') {
+      _dorm = _dormCC;
+    } else if (college == 'CW') {
+      _dorm = _dormCW;
+    } else if (college == 'MC') {
+      _dorm = _dormMC;
+    } else if (college == 'NA') {
+      _dorm = _dormNA;
+    } else if (college == 'SC') {
+      _dorm = _dormSC;
+    } else if (college == 'SH') {
+      _dorm = _dormSH;
+    } else if (college == 'UC') {
+      _dorm = _dormUC;
+    } else if (college == 'WS') {
+      _dorm = _dormWS;
+    } else if (college == 'YS') {
+      _dorm = _dormYS;
+    }
+  }
+
+  static var _college = [
     'CC',
-    'SH',
-    'SC',
+    'CW',
+    'MC',
     'NA',
+    'SC',
+    'SH',
     'UC',
     'WS',
-    'WYS',
+    'YS',
+    '--',
   ];
   var _year = [
-    '2018',
-    '2019',
+    'year 1',
+    'year 2',
+    'year 3',
+    'year 4',
+    'year 5',
+    'year 6',
   ];
   var _dormCC = ['--', 'WL', 'PMLB'];
+  var _dormCW = [
+    '--',
+  ];
+  var _dormMC = ['--', 'NB', 'SB'];
+  var _dormNA = [
+    '--',
+  ];
+  var _dormSC = [
+    '--',
+  ];
   var _dormSH = ['--', 'LQW', 'HT'];
-  var _dorm = ['--'];
+  var _dormUC = [
+    '--',
+  ];
+  var _dormWS = [
+    '--',
+  ];
+  var _dormYS = [
+    '--',
+  ];
+  var _dorm = [
+    '--',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,22 +117,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Container(
-                  height: SizeConfig.safeBlockVertical * 20,
-                  width: SizeConfig.safeBlockVertical * 20,
-                  color: Colors.orange,
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical * 23,
+                  width: SizeConfig.safeBlockHorizontal * 40,
+                  child: OutlineButton(
+                      color: Colors.orange,
+                      textColor: Colors.black,
+                      disabledTextColor: Colors.grey,
+                      padding: EdgeInsets.all(8.0),
+                      borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                      onPressed: () {
+                        showChoiceDialog(context);
+                      },
+                      child: Text("Select pictures")),
                 ),
+                Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Icon(
                       Icons.school,
-                      color: Colors.lightBlueAccent,
+                      color: klogin_button_color,
                     ),
                     DropdownButton(
-//                  isExpanded: true,
+                        // isExpanded: true,
                         value: college,
                         items: _college.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem),
+                          );
+                        }).toList(),
+                        onChanged: (selectedCollege) {
+                          setState(() {
+                            college = selectedCollege;
+                            decideDormRange(college);
+                          });
+                        }),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.room,
+                      color: klogin_button_color,
+                    ),
+                    DropdownButton(
+                        value: dorm,
+                        items: _dorm.map((String dropDownStringItem) {
                           return DropdownMenuItem<String>(
                             value: dropDownStringItem,
                             child: Text(dropDownStringItem),
@@ -81,29 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Icon(
-                      Icons.room,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    DropdownButton(
-                        value: dorm,
-                        items: _dorm.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (selectedYear) {
-                          setState(() {
-                            year = selectedYear;
-                          });
-                        }),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Icon(Icons.book, color: Colors.lightBlueAccent),
+                    Icon(Icons.book, color: klogin_button_color),
                     DropdownButton(
                         value: year,
                         items: _year.map((String dropDownStringItem) {
@@ -119,6 +197,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }),
                   ],
                 ),
+                Divider(),
                 Center(
                   child: Container(
                     color: klogin_button_color,
