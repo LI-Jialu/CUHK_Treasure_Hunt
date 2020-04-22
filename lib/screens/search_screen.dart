@@ -6,6 +6,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/screens/filter_screen.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/database/database.dart';
 import 'dart:async';
@@ -135,6 +136,16 @@ class _SearchScreenState extends State<SearchScreen> {
             resultlist.forEach((resultmap) {
               itemlist.add(Item.fromJson(resultmap));
             });
+            if (sorttype == "Highest reputation") {
+              print("sort again! highest reputation!");
+              //itemlist[1].reputation = "1";
+              itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
+              print(itemlist[0].name);
+            }
+            else if (sorttype == "recommended") {
+              print("sort again! recommended");
+              itemlist.sort((left, right) => int.parse(left.item_id).compareTo(int.parse(right.item_id)));
+            }
             childrenofcolumn.add(
               Expanded(
                 child: ItemListView(itemlist),
@@ -158,7 +169,16 @@ class _SearchScreenState extends State<SearchScreen> {
             Container(
               child: Align(
                 alignment: Alignment.center,
-                child: Text('Loading...'),
+                child: Center(
+              child: Container(
+                width: SizeConfig.safeBlockHorizontal*30,
+                height: SizeConfig.safeBlockVertical*30,
+                child: SpinKitWave(
+                  color: Colors.teal,
+                  size: 100.0,
+                ),
+              ),
+            ),
               ),
               height: SizeConfig.safeBlockVertical*10,
             ),
