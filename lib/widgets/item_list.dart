@@ -159,7 +159,13 @@ class _ItemGridViewState extends State<ItemGridView> {
 // To return a widget that scrolls down the page to view the items
 class ItemListView extends StatelessWidget {
   final List<Item> itemlist;
-  ItemListView(this.itemlist);
+  List<ItemGridView> itemGridList;
+  ItemListView(this.itemlist){
+    itemGridList = [];
+    itemlist.forEach((item) {
+      itemGridList.add(ItemGridView(item));
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return _itemListView(context);
@@ -171,14 +177,14 @@ class ItemListView extends StatelessWidget {
         itemCount: (itemlist.length ~/ 2 + itemlist.length % 2),
         itemBuilder: (context, index) {
           List<Widget> children = [
-            ItemGridView(itemlist[index * 2]),
+            itemGridList[index * 2],
             SizedBox(
               width: SizeConfig.safeBlockHorizontal * 10,
             ),
           ];
           if (index + 1 <= itemlist.length ~/ 2) {
             children.add(
-              ItemGridView(itemlist[index * 2 + 1])
+              itemGridList[index * 2 + 1],
             );
           }
           else {
