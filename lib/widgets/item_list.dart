@@ -7,24 +7,46 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
+import 'package:http/http.dart';
 
 class ItemGridView extends StatefulWidget {
   final Item item;
-  ItemGridView(this.item);
+  Future<Response> _posterinfo;
+  Future<Response> getPosterInfo() async {
+    print("try getting poster info!");
+    Response posterinfo;
+    posterinfo = await Database.get("/data/checkProfile.php?check_id=" + item.poster_id, "");
+    print(posterinfo.body);
+    return posterinfo;
+  }
+  ItemGridView(this.item) {
+    _posterinfo = getPosterInfo();
+  }
   @override
   _ItemGridViewState createState() => _ItemGridViewState();
 }
 
 
 class _ItemGridViewState extends State<ItemGridView> {
-  @override
-
-  //determine if the item is favored or not
+  
   bool isFavorite = false;
 
+  //determine if the item is favored or not
+  
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        child: Container(
+    
+    SizeConfig().init(context);
+
+    return FutureBuilder<Response>(
+      future: widget._posterinfo,
+      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+        String college = "Loading...";
+        if (snapshot.hasData) {
+          var resultlist = json.decode(snapshot.data.body);
+          college = resultlist[0]["college"];
+          return GestureDetector(
+          child: Container(
           height: SizeConfig.safeBlockVertical * 30,
           width: SizeConfig.safeBlockHorizontal * 40,
           child: Stack(
@@ -46,7 +68,7 @@ class _ItemGridViewState extends State<ItemGridView> {
                     height: SizeConfig.safeBlockVertical * 2,
                   ),
                   Container(
-                    child: Text("Unknown College"),
+                    child: Text(college),
                     height: SizeConfig.safeBlockVertical * 2,
                   ),
                 ],
@@ -72,12 +94,65 @@ class _ItemGridViewState extends State<ItemGridView> {
             ],
           ),
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DetailScreen(item: widget.item)),
-          );
-        });
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DetailScreen(item: widget.item, userinfo: resultlist[0])),
+            );
+          });
+        }
+        else {
+          return Container(
+          height: SizeConfig.safeBlockVertical * 30,
+          width: SizeConfig.safeBlockHorizontal * 40,
+          child: Stack(
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Image.network(widget.item.image, width: SizeConfig.safeBlockHorizontal * 40, height: SizeConfig.safeBlockVertical * 20),
+                    height: SizeConfig.safeBlockVertical * 20,
+                    width: SizeConfig.safeBlockHorizontal * 40,
+                  ),
+                  Container(
+                    child: Text(widget.item.name),
+                    height: SizeConfig.safeBlockVertical * 2,
+                  ),
+                  Container(
+                    child: Text("\$" + widget.item.price, style: ksmall_red_textstyle),
+                    height: SizeConfig.safeBlockVertical * 2,
+                  ),
+                  Container(
+                    child: Text(college),
+                    height: SizeConfig.safeBlockVertical * 2,
+                  ),
+                ],
+              ),
+              Positioned(
+                right: SizeConfig.safeBlockHorizontal * 3,
+                top: SizeConfig.safeBlockVertical * 22,
+                child: GestureDetector(
+                    onTap: () {
+                      isFavorite = !isFavorite;
+                      setState(() {});
+                    },
+                    child: isFavorite
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.pink,
+                          )
+                        : Icon(
+                            Icons.favorite_border,
+                            color: Colors.pink,
+                          )),
+              ),
+            ],
+          ),
+        );
+        }
+      }
+    );
   }
 }
 

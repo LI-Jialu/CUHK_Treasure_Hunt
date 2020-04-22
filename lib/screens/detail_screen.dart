@@ -12,7 +12,8 @@ import 'package:cuhk_treasure_hunt/database/database.dart';
 
 class DetailScreen extends StatefulWidget {
   final Item item;
-  DetailScreen({Key key, this.item}) : super(key: key);
+  final Map<String, dynamic> userinfo;
+  DetailScreen({Key key, this.item, this.userinfo}) : super(key: key);
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -98,12 +99,12 @@ class _DetailScreenState extends State<DetailScreen> {
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
                               alignment: Alignment.bottomLeft,
-                              child: Text(widget.item.poster_id, style: kmiddle_black_textstyle),
+                              child: Text(widget.userinfo["username"], style: kmiddle_black_textstyle),
                             ),
                             Container(
                               height: SizeConfig.safeBlockVertical*5,
                               alignment: Alignment.topLeft,
-                              child: Text("Unknown College", style: ksmall_black_textstyle),
+                              child: Text(widget.userinfo["college"], style: ksmall_black_textstyle),
                             ),
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

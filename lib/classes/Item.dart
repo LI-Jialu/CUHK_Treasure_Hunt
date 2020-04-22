@@ -12,7 +12,7 @@ class Item{
 
 
   String item_id = "-1";
-  String poster_id = "-1";
+  String poster_id = "1";
   String name = "default_name";
   String price = "-1";
   String quantity = "-1";
