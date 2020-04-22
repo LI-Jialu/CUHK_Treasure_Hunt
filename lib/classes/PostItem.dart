@@ -58,42 +58,35 @@ class PostItem {
     }
   }
 
-  static String uploadImageWeb(){
+  static void uploadImageWeb(){
 
-    // just callin this is okay
+    // just calling this is okay
 
     html.InputElement uploadInput = html.FileUploadInputElement();
-    List<dynamic> image;
     uploadInput.click();
     uploadInput.accept = 'image/*';
     try {
-      uploadInput.onChange.listen((e) {
+      uploadInput.onChange.listen((e){
         var files = uploadInput.files;
         if (files.length == 1) {
           var reader = html.FileReader();
           reader.readAsArrayBuffer(files[0]);
           reader.onLoadEnd.listen((event) {
-             image = [files[0].name, reader.result];
-             //print(files[0].name);
+             print(files[0].name);
              //print(reader.result);
-
-             // add current time to file name to avoid duplicate
+             //add current time to file name to avoid duplicate
              DateFormat dateFormat = DateFormat("yyyy-MM-dd-HH:mm:ss");
              List<String> s = files[0].name.split(".");
              uploadWeb(s[0]+dateFormat.format(DateTime.now())+"."+s[1], reader.result);
-
           });
-          return files[0].name;
         }
         else {
           print("more than 1 image selected.");
-          return "";
         }
 
       });
     } on Exception catch (e) {
       print("Fail to upload image.");
-      return "";
     }
   }
 
@@ -103,7 +96,7 @@ class PostItem {
 
     try
     {
-      print(name);
+      //print(name);
       await http.post(Database.hostname+"/data/uploadImage.php",body:{
         "image":base64Encode(bytes),
         "name": name

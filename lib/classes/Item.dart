@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 
 class Item{
 
+  static String imagePath = "http://ec2-3-80-187-207.compute-1.amazonaws.com/data/images/";
+
   String item_id = "-1";
   String poster_id = "-1";
   String name = "default_name";

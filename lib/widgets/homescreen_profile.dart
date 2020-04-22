@@ -1,6 +1,8 @@
+import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/posted_item_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/transaction_history_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
@@ -30,6 +32,32 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       return favorites;
     }
 
+    String username;
+    String studentID;
+    Future<Response> get_user()async{
+      var user;
+      user =await Database.get("/data/profile.php", "");
+      return user;
+    }
+    void setUser() async{
+      var user;
+      try{
+        Response user = await get_user();
+        if (user.body!=null)
+        {
+          print("the body is not null");
+          username = json.decode(user.body)[0]['username'];
+          studentID = json.decode(user.body)[1]['student_id'];
+        }
+        else
+          print("the body is null");
+      }
+      catch(e){
+        print("fail to acquire the user");
+      }
+    }
+    setUser();
+
     return Scaffold(
       body: ListView.builder(
         scrollDirection: Axis.vertical,
@@ -52,7 +80,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               ),
               Container(
                 child: Text(
-                  "Imane",
+                  "$username",
                   style: TextStyle(fontSize: 24),
                 ), //user name
               ),
@@ -64,7 +92,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      "email: 1155108888@link.cuhk.edu.hk",
+                      "email: $studentID@link.cuhk.edu.hk",
                     ), //user email
                   ),
                   Container(
@@ -228,7 +256,11 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     // Log out
                     child: GestureDetector(
                       onTap: () {
-                        SystemNavigator.pop();
+                        User.logout();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                        );
                       }, //Lot out
                       child: Container(
                         height: SizeConfig.safeBlockVertical * 5,

@@ -41,9 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _childrenAppbar = [
     null,
     null,
-    null,
+    AppBar(
+      title: Text("Chat"),
+      automaticallyImplyLeading: false,
+      elevation: 0,
+    ),
     AppBar(
       title: Text("Profile"),
+      automaticallyImplyLeading: false,
       elevation: 0,
     ),
   ];
@@ -52,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onItemTapped(int index) //set the index to the current index
   {
+
     setState(() {
       _selectedIndex = index;
     });
@@ -122,9 +128,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class returnPostScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

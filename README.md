@@ -27,7 +27,7 @@ search.php | search for items (by name) | half way (will add other search types 
 verificationMail.php | send verification email | Y
 contactList.php | retrieve a user's contact list | Y
 messages.php | retrieve a user's chat history with another particular user | Y
-uploadImage.php | upload an image | Testing
+uploadImage.php | upload an image | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 
