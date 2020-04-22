@@ -23,6 +23,7 @@ class HomescreenProfile extends StatefulWidget {
 class _HomescreenProfileScreenState extends State<HomescreenProfile> {
   String username;
   String studentID;
+  String reputation;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -50,6 +51,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       setState(() {
         username = json.decode(user.body)[0]['username'];
         studentID = json.decode(user.body)[0]['student_id'];
+        reputation = json.decode(user.body)[0]['reputation'];
       }
       );
     }
@@ -96,7 +98,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     ), //user email
                   ),
                   Container(
-                    child: Text("reputation: 100/100"), //user reputation
+                    child: Text("reputation: $reputation/100"), //user reputation
                   ),
                 ],
               ),
@@ -105,7 +107,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // all 5 rows
+                  // all 4 rows
                   Row(
                     // location
                     children: <Widget>[
@@ -116,8 +118,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             Icons.location_on,
                             color: Colors.black,
                           )),
-                      GestureDetector(
-                        onTap: () {}, //go to location
+                      FlatButton(
+                        onPressed: () {}, //go to location
                         child: Container(
                           child: Text(
                             "Location",
@@ -137,8 +139,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             Icons.shopping_basket,
                             color: Colors.black,
                           )),
-                      GestureDetector(
-                        onTap: () async{
+                      FlatButton(
+                        onPressed: () async{
                           var item_list;
                           try{
                             Response items = await get_items();
@@ -223,8 +225,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             Icons.shopping_cart,
                             color: Colors.black,
                           )),
-                      GestureDetector(
-                        onTap: () {
+                      FlatButton(
+                        onPressed:() {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
@@ -250,8 +252,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             Icons.history,
                             color: Colors.black,
                           )),
-                      GestureDetector(
-                        onTap: () {
+                      FlatButton(
+                        onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
@@ -272,8 +274,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                   ),
                   Container(
                     // Log out
-                    child: GestureDetector(
-                      onTap: () {
+                    child: FlatButton(
+                      onPressed:() {
                         User.logout();
                         Navigator.push(
                           context,
