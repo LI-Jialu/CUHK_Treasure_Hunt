@@ -3,6 +3,9 @@
     // need to add filter
     // need to add tag search
     
+    // the complete url for the image: Item.imagePath + item['image']
+    // flutter can easily render an image based on the url
+    
     require_once('connectDB.php');
     //require_once('userAuthentication.php');
     

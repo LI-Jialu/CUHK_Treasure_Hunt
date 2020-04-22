@@ -63,18 +63,15 @@ class PostItem {
     // just calling this is okay
 
     html.InputElement uploadInput = html.FileUploadInputElement();
-    //List<dynamic> image;
     uploadInput.click();
     uploadInput.accept = 'image/*';
     try {
       uploadInput.onChange.listen((e){
         var files = uploadInput.files;
         if (files.length == 1) {
-
           var reader = html.FileReader();
           reader.readAsArrayBuffer(files[0]);
           reader.onLoadEnd.listen((event) {
-             //image = [files[0].name, reader.result];
              print(files[0].name);
              //print(reader.result);
              //add current time to file name to avoid duplicate
