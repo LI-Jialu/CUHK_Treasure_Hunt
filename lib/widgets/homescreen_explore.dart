@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 
 class HomescreenExplore extends StatefulWidget {
@@ -148,7 +149,16 @@ class _ExploreBodyState extends State<ExploreBody> {
             secondpage.add(Item.fromJson(resultmap));
           });
         }
-        else return Text("Loading...");
+        else return Center(
+              child: Container(
+                width: SizeConfig.safeBlockHorizontal*30,
+                height: SizeConfig.safeBlockVertical*30,
+                child: SpinKitWave(
+                  color: Colors.teal,
+                  size: 100.0,
+                ),
+              ),
+            );
       return Expanded(
         child: PageView(
       controller: _controller,
