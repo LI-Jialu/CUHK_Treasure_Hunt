@@ -14,7 +14,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 import 'package:cuhk_treasure_hunt/screens/loading_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/signup_screen.dart';
-import 'package:http/http.dart' as http;
+
 String password;
 bool password_visibility = true;
 
@@ -133,10 +133,10 @@ class LoginScreen extends StatelessWidget {
                       //the login process has been moved to loading screen
 
                       Timer(Duration(seconds: 3), () async{
-                        var response = await Database.post("/data/manageItems.php",
-                            {'action':'delete','item_id':'11'});
+                        var response = await Database.get("/data/filter.php",
+                            "?tag=medical use&items=1,2,8");
 
-                        print(response);
+                        print(response.body);
                       });
 
                       Navigator.push(
