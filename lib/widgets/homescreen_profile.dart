@@ -33,6 +33,12 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
       return favorites;
     }
 
+    Future<Response> get_items()async{
+      var items;
+      items =await Database.get("/data/itemsPosted.php", "");
+      return items;
+    }
+
     Future<Response> get_user()async{
       var user;
       user = await Database.get("/data/profile.php", "");
@@ -132,11 +138,29 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             color: Colors.black,
                           )),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async{
+                          var item_list;
+                          try{
+                            Response items = await get_items();
+                            if (items.body!=null)
+                            {
+                              print("the body is not null");
+
+                              item_list = json.decode(items.body);
+                              print(json.decode(items.body),);
+                              print("decode complete");
+                            }
+                            else
+                              print("the body is null");
+                          }
+                          catch(e){
+                            print("fail to acquire the list");
+                          }
+                          //FavoriteScreen(favorite_list: favorite_list,)),
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
-                                (context) => PostedItemsScreen(),),
+                                (context) => PostedItemsScreen(itemList: item_list,)),
                           );
                         }, //go to posted items
                         child: Container(

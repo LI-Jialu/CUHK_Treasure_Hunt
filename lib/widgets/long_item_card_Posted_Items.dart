@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
 class LongItemCardPostedItems extends StatefulWidget {
+  String itemID;
+  String itemPosterID;
+  String itemName;
+  String itemPrice;
+  String itemPostTime;
+  LongItemCardPostedItems({this.itemID, this.itemPosterID, this.itemName, this.itemPrice, this.itemPostTime});
   @override
   _LongItemCardPostedItemsState createState() => _LongItemCardPostedItemsState();
 }
@@ -30,10 +36,10 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text("Item Name"),
+                    child: Text(widget.itemName),
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text(widget.itemPrice),
                   ),
                 ],
               ),
@@ -46,11 +52,7 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
               onTap: () {},
               child: Container(
                 child: Center(
-                  child: Text(
-                    "2020 Mar 1",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
+                  child: Text(widget.itemPostTime),
                 ),
               ),
             ),
