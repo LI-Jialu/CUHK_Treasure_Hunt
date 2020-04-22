@@ -172,29 +172,24 @@ class _ItemGridViewState extends State<ItemGridView> {
 }
 
 // To return a widget that scrolls down the page to view the items
-class ItemListView extends StatefulWidget {
+class ItemListView extends StatelessWidget {
   final List<Item> itemlist;
-  List<String> tags = Item.tags;
-  ItemListView(this.itemlist, this.tags);
-  @override
-  _ItemListView createState() => _ItemListView();
-}
-
-class _ItemListView extends State<ItemListView> {
-  Widget build(BuildContext context) {
-    List<ItemGridView> itemGridList;
+  List<ItemGridView> itemGridList;
+  ItemListView(this.itemlist){
     itemGridList = [];
-    widget.itemlist.forEach((item) {
-      ItemGridView toadd = ItemGridView(item);
-      bool hastag = true;
-      toadd.tagset.forEach((tag) {
-        if (!widget.tags.contains(tag)) hastag = false;
-      });
-      if (hastag) itemGridList.add(toadd);
+    itemlist.forEach((item) {
+      itemGridList.add(ItemGridView(item));
     });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return _itemListView(context);
+  }
+
+  Widget _itemListView(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: (widget.itemlist.length ~/ 2 + widget.itemlist.length % 2),
+        itemCount: (itemlist.length ~/ 2 + itemlist.length % 2),
         itemBuilder: (context, index) {
           List<Widget> children = [
             itemGridList[index * 2],
@@ -202,7 +197,7 @@ class _ItemListView extends State<ItemListView> {
               width: SizeConfig.safeBlockHorizontal * 10,
             ),
           ];
-          if (index + 1 <= widget.itemlist.length ~/ 2) {
+          if (index + 1 <= itemlist.length ~/ 2) {
             children.add(
               itemGridList[index * 2 + 1],
             );
