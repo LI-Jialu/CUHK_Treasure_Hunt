@@ -11,7 +11,17 @@ import 'package:http/http.dart';
 
 class ItemGridView extends StatefulWidget {
   final Item item;
-  ItemGridView(this.item);
+  Future<Response> _posterinfo;
+  Future<Response> getPosterInfo() async {
+    print("try getting poster info!");
+    Response posterinfo;
+    posterinfo = await Database.get("/data/checkProfile.php?check_id=" + item.poster_id, "");
+    print(posterinfo.body);
+    return posterinfo;
+  }
+  ItemGridView(this.item) {
+    _posterinfo = getPosterInfo();
+  }
   @override
   _ItemGridViewState createState() => _ItemGridViewState();
 }
@@ -19,23 +29,9 @@ class ItemGridView extends StatefulWidget {
 
 class _ItemGridViewState extends State<ItemGridView> {
   
-  Future<Response> _posterinfo;
-  Future<Response> getPosterInfo() async {
-    print("try getting poster info!");
-    Response posterinfo;
-    posterinfo = await Database.get("/data/checkProfile.php?check_id=" + widget.item.poster_id, "");
-    print(posterinfo.body);
-    return posterinfo;
-  }
   bool isFavorite = false;
 
-  @override
   //determine if the item is favored or not
-  @mustCallSuper
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    this._posterinfo = getPosterInfo();
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -43,7 +39,7 @@ class _ItemGridViewState extends State<ItemGridView> {
     SizeConfig().init(context);
 
     return FutureBuilder<Response>(
-      future: _posterinfo,
+      future: widget._posterinfo,
       builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
         String college = "Loading...";
         if (snapshot.hasData) {
