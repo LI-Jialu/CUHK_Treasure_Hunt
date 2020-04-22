@@ -12,7 +12,8 @@ import 'package:cuhk_treasure_hunt/database/database.dart';
 
 class DetailScreen extends StatefulWidget {
   final Item item;
-  DetailScreen({Key key, this.item}) : super(key: key);
+  final Map<String, dynamic> userinfo;
+  DetailScreen({Key key, this.item, this.userinfo}) : super(key: key);
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
