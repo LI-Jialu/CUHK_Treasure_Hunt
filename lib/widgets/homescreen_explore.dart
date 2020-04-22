@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart';
 
 class HomescreenExplore extends StatefulWidget {
   const HomescreenExplore({Key key}) : super(key: key);
@@ -100,6 +102,22 @@ class _ExploreBodyState extends State<ExploreBody> {
     initialPage: 0,
     viewportFraction: 1, // to be changed later
   );
+
+  Future<Response> _recommendresults;
+  Future<Response> getSearchResults() async {
+    Response recommendresults;
+    recommendresults = await Database.get("/data/search.php?search=", "");
+    print("search results got!");
+    return recommendresults;
+  }
+
+  @override
+  @mustCallSuper
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    this._recommendresults = getSearchResults();
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -108,7 +126,40 @@ class _ExploreBodyState extends State<ExploreBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    
+    SizeConfig().init(context);
+    
+    return FutureBuilder<Response>(
+      future: _recommendresults,
+      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+        List<Widget> firstpage = [
+          ItemGridView(Item("Loading...")),
+          SizedBox(
+            width: SizeConfig.safeBlockHorizontal * 10,
+          ),
+          ItemGridView(Item("Loading...")),
+        ];
+        List<Item> secondpage = [Item("Loading..."), Item("Loading...")];
+        if (snapshot.hasData) {
+          var resultlist = json.decode(snapshot.data.body);
+          firstpage[0] = ItemGridView(Item.fromJson(resultlist[0]));
+          firstpage[2] = ItemGridView(Item.fromJson(resultlist[1]));
+          secondpage = [];
+          resultlist.forEach((resultmap) {
+            secondpage.add(Item.fromJson(resultmap));
+          });
+        }
+        else return Center(
+              child: Container(
+                width: SizeConfig.safeBlockHorizontal*30,
+                height: SizeConfig.safeBlockVertical*30,
+                child: SpinKitWave(
+                  color: Colors.teal,
+                  size: 100.0,
+                ),
+              ),
+            );
+      return Expanded(
         child: PageView(
       controller: _controller,
       scrollDirection: Axis.horizontal,
@@ -126,19 +177,18 @@ class _ExploreBodyState extends State<ExploreBody> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ItemGridView(Item("sampleitem1")),
-                SizedBox(
-                  width: SizeConfig.safeBlockHorizontal * 10,
-                ),
-                ItemGridView(Item("sampleitem2")),
-              ],
+              children: firstpage,
             ),
           ],
         ),
-        ItemListView([Item("sample1"), Item("sample2"), Item("sample3"), Item("sample4"), Item("sample5")]),
+        ItemListView(secondpage),
       ],
-    ));
+    )
+    );
+    }
+    );
+
+    
   }
 }
 

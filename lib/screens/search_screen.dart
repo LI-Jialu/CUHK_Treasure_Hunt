@@ -5,6 +5,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/screens/filter_screen.dart';
 import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/database/database.dart';
 import 'dart:async';
@@ -18,6 +19,7 @@ class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
+
 
 class _SearchScreenState extends State<SearchScreen> {
   String sorttype = 'Recommended';
@@ -82,6 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       value: sorttype,
                       style: ksmall_black_textstyle,
                       items: <DropdownMenuItem>[
+<<<<<<< HEAD
                         DropdownMenuItem(
                           value: 'Newest',
                           child: Text('Newest'),
@@ -98,6 +101,13 @@ class _SearchScreenState extends State<SearchScreen> {
                           value: 'Highest reputation',
                           child: Text('Highest reputation'),
                         ),
+=======
+                        DropdownMenuItem(value: 'Newest', child: Text('Newest'),),
+                        DropdownMenuItem(value: 'Recommended', child: Text('Recommended'),),
+                        DropdownMenuItem(value: 'Highest reputation', child: Text('Highest reputation'),),
+                        DropdownMenuItem(value: 'Highest Price', child: Text('Highest Price'),),
+                        DropdownMenuItem(value: 'Lowest Price', child: Text('Lowest Price'),),
+>>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -154,9 +164,39 @@ class _SearchScreenState extends State<SearchScreen> {
             resultlist.forEach((resultmap) {
               itemlist.add(Item.fromJson(resultmap));
             });
+<<<<<<< HEAD
             childrenofcolumn.add(Expanded(
               child: ItemListView(itemlist),
             ));
+=======
+            if (sorttype == "Highest reputation") {
+              print("sort again! highest reputation!");
+              //itemlist[1].reputation = "1";
+              itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
+              print(itemlist[0].name);
+            }
+            else if (sorttype == "Recommended" || sorttype == "Nearest") {
+              print("sort again! recommended");
+              itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
+            }
+            else if (sorttype == "Newest") {
+              print("sort again! newest");
+              itemlist.sort((left, right) => int.parse(left.item_id).compareTo(int.parse(right.item_id)));
+            }
+            else if (sorttype == "Highest Price") {
+              print("sort again!");
+              itemlist.sort((left, right) => double.parse(right.price).compareTo(double.parse(left.price)));
+            }
+            else if (sorttype == "Lowest Price") {
+              print("sort again!");
+              itemlist.sort((left, right) => double.parse(left.price).compareTo(double.parse(right.price)));
+            }
+            childrenofcolumn.add(
+              Expanded(
+                child: ItemListView(itemlist),
+              )
+            );
+>>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
           }
         } else if (snapshot.hasError) {
           childrenofcolumn.add(
@@ -173,9 +213,22 @@ class _SearchScreenState extends State<SearchScreen> {
             Container(
               child: Align(
                 alignment: Alignment.center,
-                child: Text('Loading...'),
+                child: Center(
+              child: Container(
+                width: SizeConfig.safeBlockHorizontal*30,
+                height: SizeConfig.safeBlockVertical*30,
+                child: SpinKitWave(
+                  color: Colors.teal,
+                  size: 100.0,
+                ),
               ),
+<<<<<<< HEAD
               height: SizeConfig.safeBlockVertical * 10,
+=======
+            ),
+              ),
+              height: SizeConfig.safeBlockVertical*40,
+>>>>>>> 9f17a6e8811a84ae8d979259bb31f351668c9e73
             ),
           );
         }

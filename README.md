@@ -31,6 +31,7 @@ uploadImage.php | upload an image | Y
 checkProfile.php | check another user's profile | Y
 filter.php | filter search results using a tag (can only filter based on 1 tag at a time) | Y
 tags.php | return tags of an item given item_id (used in item details?) | Y
+postTags.php | post the tags of an item | Y
 
 ### Important Note: The files can only be used after login cause user Authentication is required.
 

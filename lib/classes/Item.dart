@@ -12,11 +12,14 @@ class Item{
 
 
   String item_id = "-1";
-  String poster_id = "-1";
+  String poster_id = "1";
   String name = "default_name";
   String price = "-1";
   String quantity = "-1";
   String create_time = "-1";
+  String image = imagePath + "noImageUploaded.png";
+  String description = "";
+  String reputation = "0";
   Item(this.name);
   Item.fromJson(Map<String, dynamic> json) {
     item_id = json["item_id"];
@@ -25,6 +28,9 @@ class Item{
     price = json["price"];
     quantity = json["quantity"];
     create_time = json["create_time"];
+    image = imagePath + json["image"];
+    description = json["description"];
+    reputation = json["reputation"];
   }
 
   // methods

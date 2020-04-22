@@ -23,7 +23,7 @@ class PostItem {
   static Future<File> showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (BuildContext context){
           return AlertDialog(
             title: Text("Make a choice"),
             content: SingleChildScrollView(
@@ -31,8 +31,8 @@ class PostItem {
               children: <Widget>[
                 GestureDetector(
                   child: Text("Gallery"),
-                  onTap: () {
-                    picture = pickImage();
+                  onTap: () async {
+                    picture = await pickImage();
                     Navigator.of(context).pop(); // dismiss dialog
                   },
                 ),
