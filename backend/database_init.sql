@@ -42,21 +42,22 @@ CREATE TABLE items (
     name varchar(30) NOT NULL,
     price double(6,1) NOT NULL,
     quantity smallint unsigned NOT NULL,
+    description varchar(200) DEFAULT "",
     create_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     image varchar(150) NOT NULL DEFAULT "noImageUploaded.png",
     PRIMARY KEY (item_id),
     FOREIGN KEY (poster_id) REFERENCES users(user_id)
 );
-INSERT INTO items VALUES (DEFAULT, 1, 'homework coupon', 10000, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 1, 'coronavirus vaccine', 99999, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 2, 'plane ticket to chengdu', 4699, 2, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 2, 'exam solution', 10000, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 3, 'UGFH book', 10.0, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 3, 'UGFN book', 10.0, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 4, 'Expired Mask', 10.0, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 4, 'Used Lipstick', 100.0, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 5, 'Fingernail', 105.0, 1, DEFAULT,DEFAULT);
-INSERT INTO items VALUES (DEFAULT, 5, 'Hair', 3.0, 1, DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 1, 'homework coupon', 10000, 1, DEFAULT,DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 1, 'coronavirus vaccine', 99999, 1, 'precious vaccine',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 2, 'plane ticket to chengdu', 4699, 2, 'cost me 5000 RMB',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 2, 'exam solution', 10000, 1, 'i know u want it',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 3, 'UGFH book', 10.0, 1, 'i don\'t wanna see it anymore',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 3, 'UGFN book', 10.0, 1, 'same',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 4, 'Expired Mask', 10.0, 1, 'still can be used',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 4, 'Used Lipstick', 100.0, 1, 'gross, oh i mean, gloss',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 5, 'Fingernail', 105.0, 1, 'if you wanna curse me, u know',DEFAULT,DEFAULT);
+INSERT INTO items VALUES (DEFAULT, 5, 'Hair', 3.0, 1, 'good thing to have for cursing me',DEFAULT,DEFAULT);
 
 CREATE TABLE transactions (
 	transaction_id int unsigned NOT NULL AUTO_INCREMENT,
