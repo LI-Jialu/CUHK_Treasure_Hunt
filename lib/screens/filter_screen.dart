@@ -1,4 +1,6 @@
+import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
@@ -9,6 +11,8 @@ class FilterScreen extends StatefulWidget {
   double minprice = 0.0;
   double minnew = 0.0;
   bool giveawayfree = false;
+  SearchScreen searchscreen;
+  FilterScreen({this.searchscreen});
   @override
   _FilterScreenState createState() => _FilterScreenState();
 }
@@ -17,13 +21,35 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    List<Widget> tagChips = [];
+    Item.tags.forEach((tagstring) {
+      tagChips.add(
+        FilterChip(
+          label: Text(tagstring),
+          selected: widget.searchscreen.tags.contains(tagstring),
+          onSelected: (bool value) {
+            setState(() {
+              if (value) {
+                widget.searchscreen.tags.add(tagstring);
+              }
+              else {
+                widget.searchscreen.tags.removeWhere((String tag) {
+                  return tag == tagstring;
+                });
+              }
+            });
+          }
+        )
+      );
+    });
+    print("all tags " + Item.tags.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text("Filter"),
       ),
       body: Column(
         children: <Widget>[
-          Container(
+          /*Container(
             padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5),
             height: SizeConfig.safeBlockVertical*5,
             alignment: Alignment.bottomLeft,
@@ -92,13 +118,49 @@ class _FilterScreenState extends State<FilterScreen> {
           Container(
             height: SizeConfig.safeBlockVertical*10,
             padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5),
-            child: Text("Location", style: ksmall_black_textstyle),
+            child: Text("Tags", style: ksmall_black_textstyle),
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey, width: 0.5,),
-              ),
-            ),
+          ),
+          */
+          Container(
+            child: Wrap(
+              spacing: SizeConfig.safeBlockHorizontal * 3,
+              children: tagChips,
+              /*<Widget>[
+                FilterChip(
+                  label: Text("free"),
+                  selected: widget.searchscreen.tags.contains("free"),
+                  onSelected: (bool value) {
+                    setState(() {
+                      if (value) {
+                        widget.searchscreen.tags.add("free");
+                      }
+                      else {
+                        widget.searchscreen.tags.removeWhere((String tag) {
+                          return tag == "free";
+                        });
+                      }
+                    });
+                  }
+                ),
+                FilterChip(
+                  label: Text("other"),
+                  selected: widget.searchscreen.tags.contains("other"),
+                  onSelected: (bool value) {
+                    setState(() {
+                      if (value) {
+                        widget.searchscreen.tags.add("other");
+                      }
+                      else {
+                        widget.searchscreen.tags.removeWhere((String tag) {
+                          return tag == "other";
+                        });
+                      }
+                    });
+                  }
+                ),
+              ],*/
+            )
           )
         ],
       ),

@@ -181,7 +181,7 @@ class _ExploreBodyState extends State<ExploreBody> {
             ),
           ],
         ),
-        ItemListView(secondpage),
+        ItemListView(secondpage, Item.tags),
       ],
     )
     );

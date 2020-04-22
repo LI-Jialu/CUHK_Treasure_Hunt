@@ -13,7 +13,13 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key key, @required this.searchinput}) : super(key: key);
+  List<String> tags = [];
+  SearchScreen({Key key, @required this.searchinput}) : super(key: key) {
+    Item.tags.forEach((tag){
+      this.tags.add(tag);
+    });
+  }
+  
   final String searchinput;
 
   @override
@@ -115,7 +121,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FilterScreen()),
+                        MaterialPageRoute(builder: (context) => FilterScreen(searchscreen: widget)),
                       );
                     }),
               ],
@@ -169,7 +175,7 @@ class _SearchScreenState extends State<SearchScreen> {
             }
             childrenofcolumn.add(
               Expanded(
-                child: ItemListView(itemlist),
+                child: ItemListView(itemlist, widget.tags),
               )
             );
           }

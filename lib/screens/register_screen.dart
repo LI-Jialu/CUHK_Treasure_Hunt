@@ -6,7 +6,7 @@ import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:universal_html/html.dart';
+import 'package:universal_html/html.dart' as html;
 
 // this screen is for the new user to customise the avatar, college and other infos
 class RegisterScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String dorm = "--";
 
   // alert pickup image from web or gallery
-  Future<File> showChoiceDialog(BuildContext context) {
+  Future<html.File> showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {

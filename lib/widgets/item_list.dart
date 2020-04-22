@@ -49,7 +49,15 @@ class _ItemGridViewState extends State<ItemGridView> {
         if (snapshot.hasData) {
           var resultlist = json.decode(snapshot.data[0].body);
           var taglist = json.decode(snapshot.data[1].body);
-          widget.tagset = taglist.toSet();
+          print("targetlist runtimetype " + taglist.runtimeType.toString());
+          print("is targetlist a list?" + (taglist is List<String>).toString());
+          print("targetlist tostring" + taglist.toString());
+          print("targetlist content type " + taglist[0].runtimeType.toString());
+          widget.tagset = new Set();
+          taglist.forEach((tag) {
+            widget.tagset.add(tag);
+          });
+          print("widget.tagset tostring" + widget.tagset.toString());
           
           college = resultlist[0]["college"];
           return GestureDetector(
@@ -164,24 +172,29 @@ class _ItemGridViewState extends State<ItemGridView> {
 }
 
 // To return a widget that scrolls down the page to view the items
-class ItemListView extends StatelessWidget {
+class ItemListView extends StatefulWidget {
   final List<Item> itemlist;
-  List<ItemGridView> itemGridList;
-  ItemListView(this.itemlist){
-    itemGridList = [];
-    itemlist.forEach((item) {
-      itemGridList.add(ItemGridView(item));
-    });
-  }
+  List<String> tags = Item.tags;
+  ItemListView(this.itemlist, this.tags);
   @override
-  Widget build(BuildContext context) {
-    return _itemListView(context);
-  }
+  _ItemListView createState() => _ItemListView();
+}
 
-  Widget _itemListView(BuildContext context) {
+class _ItemListView extends State<ItemListView> {
+  Widget build(BuildContext context) {
+    List<ItemGridView> itemGridList;
+    itemGridList = [];
+    widget.itemlist.forEach((item) {
+      ItemGridView toadd = ItemGridView(item);
+      bool hastag = true;
+      toadd.tagset.forEach((tag) {
+        if (!widget.tags.contains(tag)) hastag = false;
+      });
+      if (hastag) itemGridList.add(toadd);
+    });
     return ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: (itemlist.length ~/ 2 + itemlist.length % 2),
+        itemCount: (widget.itemlist.length ~/ 2 + widget.itemlist.length % 2),
         itemBuilder: (context, index) {
           List<Widget> children = [
             itemGridList[index * 2],
@@ -189,7 +202,7 @@ class ItemListView extends StatelessWidget {
               width: SizeConfig.safeBlockHorizontal * 10,
             ),
           ];
-          if (index + 1 <= itemlist.length ~/ 2) {
+          if (index + 1 <= widget.itemlist.length ~/ 2) {
             children.add(
               itemGridList[index * 2 + 1],
             );
