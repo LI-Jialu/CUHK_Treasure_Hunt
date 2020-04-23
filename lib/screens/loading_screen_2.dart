@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
+import 'package:cuhk_treasure_hunt/screens/TransactionScreen.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/posted_item_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/transaction_history_screen.dart';
@@ -48,6 +49,18 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
     var history;
     history =await Database.get("/data/transactions.php", "?type=sell&status=1");
     return history;
+  }
+
+  Future<Response> getTransactionS()async{
+    var response;
+    response = await Database.get("/data/transactions.php", "?type=sell&status=0");
+    return response;
+  }
+
+  Future<Response> getTransactionB()async{
+    var response;
+    response = await Database.get("/data/transactions.php", "?type=buy&status=0");
+    return response;
   }
 
   void initState() {
@@ -157,6 +170,39 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
           context,
           MaterialPageRoute(
               builder: (context) => TransactionHistoryScreen(index:2, historyList: historyList)),
+        );
+      }
+      break;
+
+      case 5: {
+        var transactionB,transactionS;
+        try{
+          Response responseS = await getTransactionS();
+          Response responseB = await getTransactionB();
+          if (responseS.body!=null && responseB.body != null)
+          {
+            print("the body is not null");
+
+            transactionB = json.decode(responseB.body);
+            transactionS = json.decode(responseS.body);
+            print(transactionS);
+            print(transactionB);
+
+            print("decode complete");
+          }
+          else
+            print("the body is null");
+        }
+        catch(e){
+          print("fail to acquire the list");
+        }
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TransactionScreen(
+                transactionS: transactionS,
+                transactionB: transactionB,
+              )),
         );
       }
       break;
