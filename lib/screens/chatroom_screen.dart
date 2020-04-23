@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cuhk_treasure_hunt/widgets/chat_bubble.dart';
 import 'dart:collection';
+import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 
 class ChatroomScreen extends StatefulWidget {
   String user_id;
@@ -27,6 +28,11 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
   Timer _everyFiveSecond;
   String input_message;
   var _inputtextController = TextEditingController();
+  @override
+  void dispose (){
+    super.dispose();
+    _everyFiveSecond.cancel();
+  }
 
   @override
   void initState() {
@@ -92,6 +98,8 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                     Container(
                       color: Colors.amber,),
                     Container(
+                      padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*3,
+                      right: SizeConfig.safeBlockHorizontal*3),
                       child: ListView.builder(
                           reverse: true,
                           itemCount: value.length,
@@ -108,7 +116,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                             return ChatBubble(
                               message: value[index]['message'],
                               time: value[index]['create_time'],
-                              sent_by_me: sent_by_me,);
+                              sent_by_me: !sent_by_me,);
                           }),
                     ),
                   ],
@@ -119,25 +127,35 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
           ),
           //lower part(keyboard)
           Container(
-            height: SizeConfig.safeBlockVertical * 10,
+
+            height: SizeConfig.safeBlockVertical * 9,
             width: SizeConfig.screenWidth,
             child: Row(
               children: <Widget>[
-                Container(
-                  height: SizeConfig.safeBlockVertical * 10,
-                  width: SizeConfig.safeBlockVertical * 10,
-                  child: Icon(Icons.mic),
-                ),
+//                Container(
+//                  height: SizeConfig.safeBlockVertical * 10,
+//                  width: SizeConfig.safeBlockVertical * 10,
+//                  child: Icon(Icons.mic),
+//                ),
                 Expanded(
                   child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: SizeConfig.safeBlockHorizontal*4,
+                    vertical: SizeConfig.safeBlockVertical*1.3),
                     height: SizeConfig.safeBlockVertical * 10,
                     child: TextField(
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                       controller: _inputtextController,
                       keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.send,
+                      textInputAction: TextInputAction.done,
+                      decoration: new InputDecoration(
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(20.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                      ),
                       onSubmitted: (term) {
-                        send_message(widget.user_id, input_message);
-                        _inputtextController.clear();
+//                        _inputtextController.clear();
                       },
 //                      maxLines: 1,
                       onChanged: (value) {
@@ -147,10 +165,16 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                     ),
                   ),
                 ),
-                Container(
-                  height: SizeConfig.safeBlockVertical * 10,
-                  width: SizeConfig.safeBlockVertical * 10,
-                  child: Icon(Icons.add_circle),
+                IconButton(
+                  onPressed: (){
+                    if (input_message!=null)
+                      {
+                        send_message(widget.user_id, input_message);
+                        _inputtextController.clear();
+                      }
+                  },
+                  iconSize:  SizeConfig.safeBlockVertical * 5,
+                  icon: Icon(Icons.send, color: Colors.teal,),
                 ),
               ],
             ),

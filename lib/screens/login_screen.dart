@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                       height: SizeConfig.safeBlockVertical*10,
                       width: SizeConfig.safeBlockHorizontal*80,
                       child: TextFormField(
-//                        initialValue: password,
+                        initialValue: password,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         maxLines: 1,

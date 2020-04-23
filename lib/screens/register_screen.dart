@@ -298,9 +298,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 //                      widget.password = "asdasd";
 
                         // for debug purpose
-                        widget.student_id = "1155124275";
-                        widget.username = "Steve";
-                        widget.password = "abc";
                         try {
                           var register_success = await User.register(
                               widget.student_id,
@@ -326,7 +323,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           MaterialPageRoute(
                             builder: (context) => LoginScreen(
                               password: widget.password,
-                              username: widget.student_id,
+                              username: widget.student_id+"@link.cuhk.edu.hk",
                             ),
                           ),
                         );

@@ -113,21 +113,28 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sent_by_me = !sent_by_me;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Bubble(
-          color: sent_by_me?Colors.teal:Colors.white,
-          margin: BubbleEdges.only(top: 10),
-          nip: sent_by_me?BubbleNip.rightBottom:BubbleNip.leftBottom,
-          child: Text(message,
-            textAlign: sent_by_me?TextAlign.left:TextAlign.right,
-          style: TextStyle(
-            color: sent_by_me?Colors.white:Colors.black,
-          ),),
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.only(bottom: SizeConfig.safeBlockVertical*0.5),
+      width: SizeConfig.screenWidth,
+      child: Column(
+        crossAxisAlignment: sent_by_me?CrossAxisAlignment.end:CrossAxisAlignment.start,
+        children: <Widget>[
+          Bubble(
+            padding: BubbleEdges.symmetric(vertical: SizeConfig.safeBlockVertical*0.8,
+            horizontal: SizeConfig.safeBlockHorizontal*2),
+            margin: BubbleEdges.symmetric(vertical: SizeConfig.safeBlockVertical*0.5),
+            elevation: 2,
+            color: sent_by_me?Colors.teal:Colors.white,
+            nip: sent_by_me?BubbleNip.rightBottom:BubbleNip.leftBottom,
+            child: Text(message,
+              textAlign: sent_by_me?TextAlign.left:TextAlign.right,
+            style: TextStyle(
+              color: sent_by_me?Colors.white:Colors.black,
+              fontSize: 16
+            ),),
+          ),
+        ],
+      ),
     );
   }
 }
