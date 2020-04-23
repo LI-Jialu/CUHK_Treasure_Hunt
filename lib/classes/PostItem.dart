@@ -5,6 +5,7 @@ import 'dart:convert';
 //import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import "package:universal_html/prefer_sdk/html.dart" as html;
 import 'dart:typed_data';
@@ -62,33 +63,51 @@ class PostItem {
   }
 
   // methods
-  static void postItem(String insert, String name, String price,
-      String quantity, String description) async {
-    var result = await Database.post('/data/manageItems.php', {
+  static Future<String> postItem(String insert, String name, String price,
+      String quantity, String description,String imageName) async {
+    Map query = {
       "action": "$insert",
       "name": "$name",
       "price": "$price",
       "quantity": "$quantity",
-      "description": "$description"
-    });
-    print(result);
+      "description": "$description",
+      "image" : "$imageName"
+    };
+    String path = '/data/manageItems.php';
+    String url =  Database.hostname + path;
+    http.Response response = await http.post(url,headers: {'authorization':Database.basicAuth},body: query);
+    if (response.statusCode == 200){
+      return response.body;
+    }
+    else {
+      return "fail";
+    }
   }
 
-  static void uploadImage(File imageFile) async {
+  static void postTags(String itemID, List<int> tags)async{
+    String tagsString = tags.join(",");
+    var response = await Database.post(
+      "/data/postTags.php",
+      {"item_id":itemID,"tags":tagsString}
+    );
+    print(response);
+  }
+
+  static Future<String> uploadImage(File imageFile) async {
     // upload image to server give a File.
     print("start uploading");
     print(imageFile == null);
     var basename = imageFile.path.split('/').last;
     print(basename);
-    await http.post(Database.hostname + "/data/uploadImage.php", body: {
+    Response response = await http.post(Database.hostname + "/data/uploadImage.php", body: {
       "image": base64Encode(imageFile.readAsBytesSync()),
       "name": basename
-    }).then((value) {
-      if (value.statusCode == 200) {
-        print(value.body);
-        print("image uploaded");
-      }
     });
+    if (response.statusCode == 200) {
+      print(response.body);
+      print("image uploaded");
+    }
+    return basename;
   }
 
   static Future<File> pickImage() async {

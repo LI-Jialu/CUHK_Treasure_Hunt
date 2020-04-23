@@ -19,6 +19,13 @@
             $image = "noImageUploaded.png";
         }
         $sql = "INSERT INTO items VALUES (DEFAULT, {$user_id}, '{$name}', {$price}, {$quantity}, '{$description}',DEFAULT, '{$image}');";
+        $result = $con->query($sql);
+        if ($result){
+            echo $con->insert_id;
+        }
+        else {
+            echo "fail";
+        }
     }
     else if ($action == 'update'){
         $image_sql = "";
@@ -26,11 +33,11 @@
             $image_sql = ",image = '{$image}' ";
         }
         $sql = "UPDATE items SET name = '{$name}',price = {$price},description = '{$description}',quantity = {$quantity} {$image_sql} WHERE item_id = {$item_id} AND poster_id = {$user_id};";
+        require_once('query.php');
     }
     else if ($action == 'delete'){
         $sql = "DELETE FROM items WHERE item_id = {$item_id} AND poster_id = {$user_id};";
+        require_once('query.php');
     }
-    
-    require_once('query.php');
 
 ?>
