@@ -1,3 +1,4 @@
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
@@ -9,7 +10,8 @@ class LongItemCardTransactionHistory extends StatefulWidget {
   String time;
   String seller;
   String buyer;
-  LongItemCardTransactionHistory({this.index, this.price,this.name,this.time, this.seller, this.buyer});
+  String image;
+  LongItemCardTransactionHistory({this.index, this.price,this.name,this.time, this.seller, this.buyer, this.image});
   @override
   _LongItemCardTransactionHistoryState createState() => _LongItemCardTransactionHistoryState();
 }
@@ -35,7 +37,7 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 20,
-            color: Colors.amber,
+            child: Image.network(Database.hostname+"/data/images/"+widget.image, height: SizeConfig.safeBlockVertical * 13,width: SizeConfig.safeBlockHorizontal * 20),
           ),
           Expanded(
             child: Padding(

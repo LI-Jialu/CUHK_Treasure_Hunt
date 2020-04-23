@@ -41,6 +41,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                   time: widget.historyList[index]['create_time'],
                   seller: widget.historyList[index]['seller'],
                   buyer: widget.historyList[index]['buyer'],
+                  image: widget.historyList[index]['image'],
                 );
               }),
         ),
@@ -50,11 +51,11 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     {
       print("the list is empty");
       return Scaffold(
-        appBar: AppBar(title: Text('Favorites'),),
+        appBar: AppBar(title: Text('$name'),),
         body: SafeArea(
           child:Center(
             child: Container(
-              child: Text("No history", ),
+              child: Text("No $name", ),
             ),
           ),
         ),
