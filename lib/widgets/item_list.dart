@@ -153,32 +153,69 @@ class _ItemGridViewState extends State<ItemGridView> {
         }
         else {
           return Container(
-          height: SizeConfig.safeBlockVertical * 30,
+          height: SizeConfig.safeBlockVertical * 28,
           width: SizeConfig.safeBlockHorizontal * 40,
           child: Stack(
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Image.network(widget.item.image, width: SizeConfig.safeBlockHorizontal * 40, height: SizeConfig.safeBlockVertical * 20),
-                    height: SizeConfig.safeBlockVertical * 20,
-                    width: SizeConfig.safeBlockHorizontal * 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: new BorderRadius.all(Radius.circular(20)),
+                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                              child: Image.network(widget.item.image)),
+                          height: SizeConfig.safeBlockVertical * 20,
+                          width: SizeConfig.safeBlockHorizontal * 40,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: SizeConfig.safeBlockHorizontal*5),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                child: Text(widget.item.name),
+                                height: SizeConfig.safeBlockVertical * 2,
+                              ),
+                              Container(
+                                child: Text("\$" + widget.item.price, style: ksmall_red_textstyle),
+                                height: SizeConfig.safeBlockVertical * 2,
+                              ),
+                              Container(
+                                child: Text(college),
+                                height: SizeConfig.safeBlockVertical * 2,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
                   ),
-                  Container(
-                    child: Text(widget.item.name),
-                    height: SizeConfig.safeBlockVertical * 2,
-                  ),
-                  Container(
-                    child: Text("\$" + widget.item.price, style: ksmall_red_textstyle),
-                    height: SizeConfig.safeBlockVertical * 2,
-                  ),
-                  Container(
-                    child: Text(college),
-                    height: SizeConfig.safeBlockVertical * 2,
+                  Positioned(
+                    right: SizeConfig.safeBlockHorizontal * 3,
+                    top: SizeConfig.safeBlockVertical * 22,
+                    child: GestureDetector(
+                        onTap: () {
+                          isFavorite = !isFavorite;
+                          setState(() {});
+                        },
+                        child: isFavorite
+                            ? Icon(
+                                Icons.favorite,
+                                color: Colors.pink,
+                              )
+                            : Icon(
+                                Icons.favorite_border,
+                                color: Colors.pink,
+                              )),
                   ),
                 ],
               ),
+<<<<<<< HEAD
               Positioned(
                 right: SizeConfig.safeBlockHorizontal * 3,
                 top: SizeConfig.safeBlockVertical * 22,
@@ -200,6 +237,8 @@ class _ItemGridViewState extends State<ItemGridView> {
               ),
             ],
           ),
+=======
+>>>>>>> 0398e83edb49139fff09177b6c86658eaeab9ad9
         );
         }
       }
@@ -239,7 +278,7 @@ class ItemListView extends StatelessWidget {
           List<Widget> children = [
             itemGridList[index * 2],
             SizedBox(
-              width: SizeConfig.safeBlockHorizontal * 10,
+              width: SizeConfig.safeBlockHorizontal * 5,
             ),
           ];
           if (index + 1 <= itemlist.length ~/ 2) {

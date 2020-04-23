@@ -31,7 +31,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void logIn () async{
 
-    await User.login('0000000001', 'admin2');
+    await User.login('0000000004', 'admin5');
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),

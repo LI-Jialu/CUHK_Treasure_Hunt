@@ -129,15 +129,32 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
       }
       break;
       case 3: {
-        var historyList;
+        var historyList1;
         try{
-          Response history = await getBuyHistory();
-          if (history.body!=null)
+          Response buyHistory = await getBuyHistory();
+          if (buyHistory.body!=null)
           {
             print("the body is not null");
 
-            historyList = json.decode(history.body);
-            print(historyList);
+            historyList1 = json.decode(buyHistory.body);
+            print(historyList1);
+            print("decode complete");
+          }
+          else
+            print("the body is null");
+        }
+        catch(e){
+          print("fail to acquire the list");
+        }
+        var historyList2;
+        try{
+          Response sellHistory = await getSellHistory();
+          if (sellHistory.body!=null)
+          {
+            print("the body is not null");
+
+            historyList2 = json.decode(sellHistory.body);
+            print(historyList2);
             print("decode complete");
           }
           else
@@ -149,33 +166,7 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => TransactionHistoryScreen(index:1, historyList: historyList)),
-        );
-      }
-      break;
-
-      case 4: {
-        var historyList;
-        try{
-          Response history = await getSellHistory();
-          if (history.body!=null)
-          {
-            print("the body is not null");
-
-            historyList = json.decode(history.body);
-            print(historyList);
-            print("decode complete");
-          }
-          else
-            print("the body is null");
-        }
-        catch(e){
-          print("fail to acquire the list");
-        }
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => TransactionHistoryScreen(index:2, historyList: historyList)),
+              builder: (context) => TransactionHistoryScreen(historyList1: historyList1, historyList2: historyList2)),
         );
       }
       break;
