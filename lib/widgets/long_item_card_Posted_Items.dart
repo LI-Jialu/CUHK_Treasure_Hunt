@@ -43,7 +43,7 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
             Container(
               height: SizeConfig.safeBlockVertical * 13,
               width: SizeConfig.safeBlockHorizontal * 20,
-              color: Colors.amber,
+              child: Image.network(Database.hostname+"/data/images/"+widget.item['image']),
             ),
             Expanded(
               child: Padding(
