@@ -211,7 +211,7 @@ class PostScreenState extends State<PostScreen> {
                       label: Text(Item.tags[index]),
                       selected: selected,
                       onSelected: (bool value) {
-                        if (!selected) {
+                        if (value) {
                               setState(() {
                                 tags.add(index);
                               });
