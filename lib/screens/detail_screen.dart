@@ -34,6 +34,15 @@ class _DetailScreenState extends State<DetailScreen> {
     itemdetails = await Database.get("/data/", "");
   }
   */
+
+  Future<bool> buyItem() async {
+    bool result = await Database.post(
+      "/data/manageBuyRequests.php",
+      {"action":"insert", "item_id":"${widget.item.item_id}", "quantity":"1"}
+    );
+    return result;
+  }
+
   void addFavourites(String item_id)async{
     try{
       await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
@@ -224,7 +233,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: itemLiked?Colors.pinkAccent:Colors.white,
                     ),
                     height: SizeConfig.safeBlockVertical*5,
-                    width: SizeConfig.safeBlockHorizontal*40,
+                    width: SizeConfig.safeBlockHorizontal*30,
                     child: Center(
                       child: Text('Like', style: itemLiked?TextStyle(color: Colors.white):ksmall_black_textstyle,),
                     ),
@@ -245,12 +254,51 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: Colors.teal,
                     ),
                     height: SizeConfig.safeBlockVertical*5,
-                    width: SizeConfig.safeBlockHorizontal*40,
+                    width: SizeConfig.safeBlockHorizontal*30,
                     child: Center(
                       child: Text('Contact', style: TextStyle(color: Colors.white),),
                     ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () async{
+                    bool result = await buyItem();
+                    if (result) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Buy"),
+                            content: Text("Failed to send buy request!")
+                          );
+                        }
+                      );
+                    }
+                    else{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Buy"),
+                            content: Text("Successfully send buy request!")
+                          );
+                        }
+                      );
+                    }
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      color: Colors.amber,
+                    ),
+                    height: SizeConfig.safeBlockVertical*5,
+                    width: SizeConfig.safeBlockHorizontal*30,
+                    child: Center(
+                      child: Text('Buy', style: TextStyle(color: Colors.white),),
+                    ),
+                  ),
+                ),
+                
               ],
             ),
           )
