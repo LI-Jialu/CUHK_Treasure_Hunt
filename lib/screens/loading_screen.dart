@@ -30,7 +30,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void logIn () async{
-    await User.login('0000000000', 'admin1');
+
+    await User.login('0000000001', 'admin2');
     // TODO: will be implemented as the recommended items later
     Navigator.pushReplacement(
       context,

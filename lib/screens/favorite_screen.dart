@@ -30,6 +30,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         name: widget.favorite_list[index]['name'],
                         favourite_id: widget.favorite_list[index]['favourite_id'],
                         item_id: widget.favorite_list[index]['item_id'],
+                        image: widget.favorite_list[index]['image'],
                         isFavorite: true,
                       );
                 }),

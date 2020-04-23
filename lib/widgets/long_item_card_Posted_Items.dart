@@ -14,7 +14,8 @@ class LongItemCardPostedItems extends StatefulWidget {
   String itemName;
   String itemPrice;
   String itemPostTime;
-  LongItemCardPostedItems({this.item,this.itemID, this.itemPosterID, this.itemName, this.itemPrice, this.itemPostTime});
+  String image;
+  LongItemCardPostedItems({this.item,this.itemID, this.itemPosterID, this.itemName, this.itemPrice, this.itemPostTime, this.image});
   @override
   _LongItemCardPostedItemsState createState() => _LongItemCardPostedItemsState();
 }
@@ -43,7 +44,7 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
             Container(
               height: SizeConfig.safeBlockVertical * 13,
               width: SizeConfig.safeBlockHorizontal * 20,
-              color: Colors.amber,
+              child: Image.network(Database.hostname+"/data/images/"+widget.image, height: SizeConfig.safeBlockVertical * 13,width: SizeConfig.safeBlockHorizontal * 20),
             ),
             Expanded(
               child: Padding(
