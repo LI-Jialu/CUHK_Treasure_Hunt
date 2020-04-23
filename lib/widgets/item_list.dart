@@ -14,13 +14,13 @@ class ItemGridView extends StatefulWidget {
   Set<String> tagset = new Set();
   Future<List<Response>> _posterandtags;
   Future<List<Response>> getPosterAndTags() async {
-    print("try getting poster and tags info!");
+    //print("try getting poster and tags info!");
     Response posterinfo;
     posterinfo = await Database.get("/data/checkProfile.php?check_id=" + item.poster_id, "");
-    print(posterinfo.body);
+    //print(posterinfo.body);
     Response tagsinfo;
     tagsinfo = await Database.get("/data/tags.php?item_id=" + item.item_id, "");
-    print(tagsinfo.body);
+    //print(tagsinfo.body);
     return <Response>[posterinfo, tagsinfo];
   }
   ItemGridView(this.item) {
@@ -49,15 +49,15 @@ class _ItemGridViewState extends State<ItemGridView> {
         if (snapshot.hasData) {
           var resultlist = json.decode(snapshot.data[0].body);
           var taglist = json.decode(snapshot.data[1].body);
-          print("targetlist runtimetype " + taglist.runtimeType.toString());
-          print("is targetlist a list?" + (taglist is List<String>).toString());
-          print("targetlist tostring" + taglist.toString());
-          print("targetlist content type " + taglist[0].runtimeType.toString());
+          //print("targetlist runtimetype " + taglist.runtimeType.toString());
+          //print("is targetlist a list?" + (taglist is List<String>).toString());
+          //print("targetlist tostring" + taglist.toString());
+          //print("targetlist content type " + taglist[0].runtimeType.toString());
           widget.tagset = new Set();
           taglist.forEach((tag) {
             widget.tagset.add(tag);
           });
-          print("widget.tagset tostring" + widget.tagset.toString());
+          //print("widget.tagset tostring" + widget.tagset.toString());
           
           college = resultlist[0]["college"];
           return GestureDetector(
@@ -189,8 +189,17 @@ class ItemListView extends StatelessWidget {
   Widget _itemListView(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: (itemlist.length ~/ 2 + itemlist.length % 2),
+        itemCount: (itemlist.length ~/ 2 + itemlist.length % 2) + (itemGridList.isEmpty? 1 : 0),
         itemBuilder: (context, index) {
+          if (itemGridList.isEmpty) {
+            return Container(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text('Sorry! No results found!'),
+                ),
+                height: SizeConfig.safeBlockVertical * 10,
+              );
+          }
           List<Widget> children = [
             itemGridList[index * 2],
             SizedBox(
