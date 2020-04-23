@@ -38,6 +38,18 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
     return favorites;
   }
 
+  Future<Response> getBuyHistory()async{
+    var history;
+    history =await Database.get("/data/transactions.php", "?type=buy&status=1");
+    return history;
+  }
+
+  Future<Response> getSellHistory()async{
+    var history;
+    history =await Database.get("/data/transactions.php", "?type=sell&status=1");
+    return history;
+  }
+
   void initState() {
     super.initState();
     goTo(widget.index);
@@ -98,11 +110,53 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
       }
       break;
       case 3: {
-        await Database.get("/data/itemsPosted.php", "");
+        var historyList;
+        try{
+          Response history = await getBuyHistory();
+          if (history.body!=null)
+          {
+            print("the body is not null");
+
+            historyList = json.decode(history.body);
+            print(historyList);
+            print("decode complete");
+          }
+          else
+            print("the body is null");
+        }
+        catch(e){
+          print("fail to acquire the list");
+        }
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => TransactionHistoryScreen()),
+              builder: (context) => TransactionHistoryScreen(index:1, historyList: historyList)),
+        );
+      }
+      break;
+
+      case 4: {
+        var historyList;
+        try{
+          Response history = await getSellHistory();
+          if (history.body!=null)
+          {
+            print("the body is not null");
+
+            historyList = json.decode(history.body);
+            print(historyList);
+            print("decode complete");
+          }
+          else
+            print("the body is null");
+        }
+        catch(e){
+          print("fail to acquire the list");
+        }
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TransactionHistoryScreen(index:2, historyList: historyList)),
         );
       }
       break;

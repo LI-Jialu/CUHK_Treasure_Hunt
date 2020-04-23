@@ -185,7 +185,34 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                         }, //go to Transaction history
                         child: Container(
                           child: Text(
-                            "Transaction history",
+                            "Items Bought",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    // Transaction history
+                    children: <Widget>[
+                      Container(
+                          height: SizeConfig.safeBlockVertical * 10,
+                          width: SizeConfig.safeBlockVertical * 15,
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.black,
+                          )),
+                      FlatButton(
+                        onPressed:() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder:
+                                (context) => LoadingScreen2(index: 4,)),
+                          );
+                        }, //go to Transaction history
+                        child: Container(
+                          child: Text(
+                            "Items Sold",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
