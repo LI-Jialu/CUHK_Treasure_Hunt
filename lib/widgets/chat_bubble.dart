@@ -1,7 +1,6 @@
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:bubble/bubble.dart';
 
 class ChatBubble extends StatelessWidget {
   bool sent_by_me;
@@ -38,7 +37,26 @@ class ChatBubble extends StatelessWidget {
       children: <Widget>[
         Center(
           child: Container(
-            child: Text(time),
+            height: SizeConfig.safeBlockHorizontal*6,
+            width: SizeConfig.safeBlockVertical*10,
+            child: Container(
+              decoration: new BoxDecoration(
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.black,
+                    offset: new Offset(1, 1),
+                    blurRadius: 2,
+                  )
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Center(
+                child: Text(time.substring(11,16),
+                style: TextStyle(fontSize: 14,letterSpacing: 1.4, color: Colors.grey,
+                fontWeight: FontWeight.w800),),
+              ),
+            ),
           ),
         ),
         Container(

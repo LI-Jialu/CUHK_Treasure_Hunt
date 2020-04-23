@@ -33,7 +33,7 @@ class ChatroomScreen extends StatefulWidget {
 class _ChatroomScreenState extends State<ChatroomScreen> {
 //  Future<Response> message_info;
 
-   List<message_pack> message_pack_list = [test];
+  List<message_pack> message_pack_list = [test];
   static message_pack test = new message_pack(
       sender: "a", message: "a", time: "a");
 
@@ -128,7 +128,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 //                        message_pack newpack = new message_pack(
 //                            message: input_message, time: "a", sender: widget.user_id);
 //                        message_pack_list.add(newpack);
-                              get_message();
+                              get_message_async();
                               setState(() {
                               });
                             },

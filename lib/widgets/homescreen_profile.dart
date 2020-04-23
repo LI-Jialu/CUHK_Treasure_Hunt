@@ -20,7 +20,7 @@ class HomescreenProfile extends StatefulWidget {
 class _HomescreenProfileScreenState extends State<HomescreenProfile> {
   String username;
   String studentID;
-  String reputation;
+  String reputation = "0.0000";
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -83,7 +83,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     ), //user email
                   ),
                   Container(
-                    child: Text("reputation: $reputation/100"), //user reputation
+                    child: Text("reputation: ${reputation.substring(0,4)}/5.00"), //user reputation
                   ),
                 ],
               ),
@@ -93,6 +93,27 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   // all 4 rows
+//                  Row(
+//                    // location
+//                    children: <Widget>[
+//                      Container(
+//                          height: SizeConfig.safeBlockVertical * 10,
+//                          width: SizeConfig.safeBlockVertical * 15,
+//                          child: Icon(
+//                            Icons.location_on,
+//                            color: Colors.black,
+//                          )),
+//                      FlatButton(
+//                        onPressed: () {}, //go to location
+//                        child: Container(
+//                          child: Text(
+//                            "Location",
+//                            style: TextStyle(fontSize: 24),
+//                          ),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
                   Row(
                     // Posted items
                     children: <Widget>[
@@ -171,33 +192,33 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                       ),
                     ],
                   ),
-                  Row(
-                    // Browsing History
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(
-                            Icons.history,
-                            color: Colors.black,
-                          )),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:
-                                (context) => BrowsingHistoryScreen(),),
-                          );
-                        }, //go to Browsing History
-                        child: Container(
-                          child: Text(
-                            "Browsing History",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+//                  Row(
+//                    // Browsing History
+//                    children: <Widget>[
+//                      Container(
+//                          height: SizeConfig.safeBlockVertical * 10,
+//                          width: SizeConfig.safeBlockVertical * 15,
+//                          child: Icon(
+//                            Icons.history,
+//                            color: Colors.black,
+//                          )),
+//                      FlatButton(
+//                        onPressed: () {
+//                          Navigator.push(
+//                            context,
+//                            MaterialPageRoute(builder:
+//                                (context) => BrowsingHistoryScreen(),),
+//                          );
+//                        }, //go to Browsing History
+//                        child: Container(
+//                          child: Text(
+//                            "Browsing History",
+//                            style: TextStyle(fontSize: 24),
+//                          ),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
                   SizedBox(
                     height: SizeConfig.safeBlockVertical * 1,
                   ),
