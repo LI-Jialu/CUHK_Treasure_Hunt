@@ -34,7 +34,10 @@ class PostScreenState extends State<PostScreen> {
     SizeConfig().init(context);
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: AppBar(),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text("Post an item"),
+        ),
         body: SafeArea(
           child: ListView(
             //separatorBuilder: (BuildContext context, int index) => const Divider(),

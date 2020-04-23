@@ -53,22 +53,19 @@ class _HomescreenExploreState extends State<HomescreenExplore> {
     return Column(
       children: <Widget>[
         Container(
-          child: Center(
-            child: Text(
-              "TOLO Dynamic",
-              style: khomescreen_title_textstyle,
-            ),
-          ),
           height: SizeConfig.safeBlockVertical * 10,
-        ),
-        Container(
-          height: SizeConfig.safeBlockVertical * 10,
-          width: SizeConfig.safeBlockHorizontal * 80,
+          width: SizeConfig.safeBlockHorizontal * 90,
+          padding: EdgeInsets.symmetric(vertical: SizeConfig.safeBlockVertical*1),
           child: TextField(
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
               maxLines: 1,
-              decoration: InputDecoration(hintText: 'Search'),
+              decoration: InputDecoration(hintText: 'Search',
+                border: new OutlineInputBorder(
+                  borderRadius: new BorderRadius.circular(20.0),
+                  borderSide: new BorderSide(
+                  ),
+                ),),
               onChanged: (value) {
                 String searchinput = value;
                 print(searchinput);

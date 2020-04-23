@@ -52,20 +52,20 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
                 //TODO: to be tested
                 return Column(
                   children: <Widget>[
-                    Container(
-                      height: SizeConfig.safeBlockVertical * 10,
-                      width: SizeConfig.safeBlockHorizontal * 80,
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.done,
-                        maxLines: 1,
-                        decoration: InputDecoration(hintText: 'Search'),
-                        onChanged: (value) {
-                          search_keyword = value;
-                          print(search_keyword);
-                        },
-                      ),
-                    ),
+//                    Container(
+//                      height: SizeConfig.safeBlockVertical * 10,
+//                      width: SizeConfig.safeBlockHorizontal * 80,
+//                      child: TextField(
+//                        keyboardType: TextInputType.text,
+//                        textInputAction: TextInputAction.done,
+//                        maxLines: 1,
+//                        decoration: InputDecoration(hintText: 'Search'),
+//                        onChanged: (value) {
+//                          search_keyword = value;
+//                          print(search_keyword);
+//                        },
+//                      ),
+//                    ),
                     Expanded(
                       child: Container(
                         child: Center(child: Text("No contact yet")),
@@ -78,20 +78,20 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
               {
                 return Column(
                   children: <Widget>[
-                    Container(
-                      height: SizeConfig.safeBlockVertical * 10,
-                      width: SizeConfig.safeBlockHorizontal * 80,
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.done,
-                        maxLines: 1,
-                        decoration: InputDecoration(hintText: 'Search'),
-                        onChanged: (value) {
-                          search_keyword = value;
-                          print(search_keyword);
-                        },
-                      ),
-                    ),
+//                    Container(
+//                      height: SizeConfig.safeBlockVertical * 10,
+//                      width: SizeConfig.safeBlockHorizontal * 80,
+//                      child: TextField(
+//                        keyboardType: TextInputType.text,
+//                        textInputAction: TextInputAction.done,
+//                        maxLines: 1,
+//                        decoration: InputDecoration(hintText: 'Search'),
+//                        onChanged: (value) {
+//                          search_keyword = value;
+//                          print(search_keyword);
+//                        },
+//                      ),
+//                    ),
                     Expanded(
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,

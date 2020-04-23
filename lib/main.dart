@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       //for users to make theme choices later and to make the theme more uniform
       theme: ThemeData(
         primaryColor: Color(0xFF3E8373),
+        scaffoldBackgroundColor: Color(0xFFF1F1F1),
 //        fontFamily: 'Georgia',
         textTheme: TextTheme(
           headline: TextStyle(color: Color(0xFF3E8373), fontSize: 24, fontWeight: FontWeight.w800),
