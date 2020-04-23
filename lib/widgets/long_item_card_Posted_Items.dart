@@ -98,12 +98,18 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
           }
 
           // push
-          Navigator.push(
+          bool result = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context)=>PostedItemDetailScreen(item: widget.item,buyers: buyers,)
             )
           );
+          if (result == null){
+            result = false;
+          }
+          if (result){
+            Navigator.pop(context);
+          }
         },
       ),
     );
