@@ -57,10 +57,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Container(
                 height: SizeConfig.safeBlockHorizontal * 25,
                 width: SizeConfig.safeBlockHorizontal * 25,
-                decoration: new BoxDecoration(
-                  color: Colors.orange,
-                  shape: BoxShape.circle,
-                ), //user icon
+                child: Image.asset('assets/images/Icon/superman.svg'),
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 1,
@@ -83,7 +80,25 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     ), //user email
                   ),
                   Container(
-                    child: Text("reputation: ${reputation.substring(0,4)}/5.00"), //user reputation
+                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
+                    child: Container(
+                      padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
+                      decoration: new BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black,
+                            offset: new Offset(1, 1),
+                            blurRadius: 3,
+                          )
+                        ],
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      height: SizeConfig.safeBlockVertical*6,
+                      width: SizeConfig.safeBlockHorizontal*40,
+                      child: Center(child: Text("Reputation: ${reputation.substring(0,4)}/5.00",
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)), //user reputation
+                    ),
                   ),
                 ],
               ),
@@ -92,137 +107,138 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    // Posted items
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(
-                            Icons.shopping_basket,
-                            color: Colors.black,
-                          )),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index:1)),
-                          );
-                        }, //go to posted items
-                        child: Container(
+
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:
+                            (context) => LoadingScreen2(index:1)),
+                      );
+                    }, //go to posted items
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                            height: SizeConfig.safeBlockVertical * 10,
+                            width: SizeConfig.safeBlockVertical * 15,
+                            child: Icon(
+                              Icons.shopping_basket,
+                              color: Colors.black,
+                            )),
+                        Container(
                           child: Text(
                             "Posted items",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Row(
-                    // Favourites
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(Icons.favorite_border)),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoadingScreen2(index: 2,)),
-                          );
-                        }, //go to Favourites
-                        child: Container(
+
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoadingScreen2(index: 2,)),
+                      );
+                    }, //go to Favourites
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                            height: SizeConfig.safeBlockVertical * 10,
+                            width: SizeConfig.safeBlockVertical * 15,
+                            child: Icon(Icons.favorite_border)),
+                        Container(
                           child: Text(
                             "Favourites",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Row(
-                    // Posted items
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(
-                            Icons.shopping_basket,
-                            color: Colors.black,
-                          )),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index:5)),
-                          );
-                        }, //go to posted items
-                        child: Container(
-                          child: Text(
-                            "Transactions",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    // Transaction history
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(
-                            Icons.shopping_basket,
-                            color: Colors.black,
-                          )),
-                      FlatButton(
-                        onPressed:() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index: 6,)),
-                          );
-                        }, //go to Transaction history
-                        child: Container(
+
+                  FlatButton(
+                    onPressed:() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:
+                            (context) => LoadingScreen2(index: 6,)),
+                      );
+                    }, //go to Transaction history
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                            height: SizeConfig.safeBlockVertical * 10,
+                            width: SizeConfig.safeBlockVertical * 15,
+                            child: Icon(
+                              Icons.shopping_basket,
+                              color: Colors.black,
+                            )),
+                        Container(
                           child: Text(
                             "Buy Requests",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Row(
-                    // Transaction history
-                    children: <Widget>[
-                      Container(
-                          height: SizeConfig.safeBlockVertical * 10,
-                          width: SizeConfig.safeBlockVertical * 15,
-                          child: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.black,
-                          )),
-                      FlatButton(
-                        onPressed:() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index: 3,)),
-                          );
-                        }, //go to Transaction history
-                        child: Container(
+
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:
+                            (context) => LoadingScreen2(index:5)),
+                      );
+                    }, //go to posted items
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                            height: SizeConfig.safeBlockVertical * 10,
+                            width: SizeConfig.safeBlockVertical * 15,
+                            child: Icon(
+                              Icons.shopping_basket,
+                              color: Colors.black,
+                            )),
+                        Container(
+                          child: Text(
+                            "Transactions",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  FlatButton(
+                    onPressed:() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:
+                            (context) => LoadingScreen2(index: 3,)),
+                      );
+                    }, //go to Transaction history
+                    child: Row(
+
+                      children: <Widget>[
+                        Container(
+                            height: SizeConfig.safeBlockVertical * 10,
+                            width: SizeConfig.safeBlockVertical * 15,
+                            child: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.black,
+                            )),
+                        Container(
                           child: Text(
                             "Transaction History",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: SizeConfig.safeBlockVertical * 1,
@@ -238,16 +254,16 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                         );
                       }, //Lot out
                       child: Container(
-                        height: SizeConfig.safeBlockVertical * 5,
-                        width: SizeConfig.safeBlockVertical * 25,
+                        width: SizeConfig.safeBlockHorizontal*80,
+                        height: SizeConfig.safeBlockVertical*6,
                         child: Center(
                           child: Text(
                             "Log Out",
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(fontSize: 24, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        color: Colors.red[200],
+                        color: Colors.red,
                       ),
                     ),
                   ),
