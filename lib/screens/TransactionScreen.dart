@@ -2,6 +2,7 @@
   Screen for showing transactions in progress
  */
 
+import 'package:cuhk_treasure_hunt/screens/ManageTransactionScreen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/LongItemCardTransaction.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,7 +59,7 @@ class TransactionScreenState extends State<TransactionScreen>{
                         index = 1;
                       });
                     }:null,
-                    child: Text("buy")
+                    child: Text("Buy")
                 ),
               ],
             ),
@@ -77,8 +78,21 @@ class TransactionScreenState extends State<TransactionScreen>{
                         transactionItem: widget.transactionS[i],
                         isSell: true,
                       ),
-                      onTap: (){
-                        print("tapped");
+                      onTap: ()async{
+                        bool result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ManageTransactionScreen(
+                            transactionItem: widget.transactionS[i],
+                            isSell: true,
+                            )
+                          )
+                        );
+                        if (result == null){
+                          result = false;
+                        }
+                        if (result){
+                          Navigator.pop(context);
+                        }
                       },
                     );
                   },
@@ -94,8 +108,18 @@ class TransactionScreenState extends State<TransactionScreen>{
                         transactionItem: widget.transactionB[i],
                         isSell: false,
                       ),
-                      onTap: (){
-                        print("tapped");
+                      onTap: ()async {
+                        bool result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ManageTransactionScreen(
+                              transactionItem: widget.transactionB[i],
+                              isSell: false,
+                            )
+                            )
+                        );
+                        if (result){
+                          Navigator.pop(context);
+                        }
                       },
                     );
                   },
