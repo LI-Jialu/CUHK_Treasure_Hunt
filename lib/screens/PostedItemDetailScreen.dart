@@ -54,6 +54,19 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
     return result;
   }
 
+  Future<bool> showMessageDialog(String type, bool result)async{
+    await showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+              title: Text("$type"),
+              content: Text("${result?"Success":"Fail"}")
+          );
+        }
+    );
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -173,28 +186,8 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
               splashColor: Colors.blueAccent,
               onPressed: buyerSelected?() async{
                 bool result = await createTransaction();
-                if (result){
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context){
-                      return AlertDialog(
-                        title: Text("Make a choice"),
-                        content: Text("Create Transaction Success")
-                      );
-                    }
-                  );
-                }
-                else {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return AlertDialog(
-                            title: Text("Make a choice"),
-                            content: Text("Fail To Create Transaction")
-                        );
-                      }
-                  );
-                }
+                result = await showMessageDialog("Create Transaction", result);
+                Navigator.pop(context,result);
               }:null,
               child: Text(
                 "Create Transaction",
@@ -211,28 +204,8 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
               splashColor: Colors.blueAccent,
               onPressed: () async{
                 bool result = await deleteItem();
-                if (result){
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context){
-                      return AlertDialog(
-                        title: Text("Make a choice"),
-                        content: Text("Delete Item Success")
-                      );
-                    }
-                  );
-                }
-                else {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return AlertDialog(
-                            title: Text("Make a choice"),
-                            content: Text("Fail To Delete Item")
-                        );
-                      }
-                  );
-                }
+                result = await showMessageDialog("Delete Item", result);
+                Navigator.pop(context,result);
               },
               child: Text(
                 "Delete",
