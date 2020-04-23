@@ -287,7 +287,7 @@ class PostScreenState extends State<PostScreen> {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  // PostItem.uploadImage(PostItem.picture);
+                  //PostItem.uploadImage(PostItem.picture);
                 },
                 child: Text(
                   "Post",

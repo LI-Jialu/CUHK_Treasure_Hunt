@@ -1,7 +1,6 @@
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:bubble/bubble.dart';
 
 class ChatBubble extends StatelessWidget {
   bool sent_by_me;
