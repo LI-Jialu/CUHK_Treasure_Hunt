@@ -177,6 +177,7 @@ class _SearchScreenState extends State<SearchScreen> {
               //print("sort again! highest reputation!");
               //itemlist[1].reputation = "1";
               itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
+              //itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
               //print(itemlist[0].name);
             }
             else if (sorttype == "Recommended" || sorttype == "Nearest") {
@@ -185,7 +186,7 @@ class _SearchScreenState extends State<SearchScreen> {
             }
             else if (sorttype == "Newest") {
               //print("sort again! newest");
-              itemlist.sort((left, right) => int.parse(left.item_id).compareTo(int.parse(right.item_id)));
+              itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
             }
             else if (sorttype == "Highest Price") {
               //print("sort again!");

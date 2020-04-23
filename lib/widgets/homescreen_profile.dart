@@ -81,26 +81,31 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                     ), //user email
                   ),
                   Container(
-                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
-                    child: Container(
-                      padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
-                      decoration: new BoxDecoration(
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black,
-                            offset: new Offset(1, 1),
-                            blurRadius: 3,
-                          )
-                        ],
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                      height: SizeConfig.safeBlockVertical*6,
-                      width: SizeConfig.safeBlockHorizontal*40,
-                      child: Center(child: Text("Reputation: ${reputation.substring(0,4)}/5.00",
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)), //user reputation
-                    ),
+                    child: Text(
+                      "reputation: ${reputation.substring(0,4)}/5.00",
+                    ), //user email
                   ),
+//                  Container(
+//                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
+//                    child: Container(
+//                      padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal*3),
+//                      decoration: new BoxDecoration(
+//                        boxShadow: [
+//                          new BoxShadow(
+//                            color: Colors.black,
+//                            offset: new Offset(1, 1),
+//                            blurRadius: 3,
+//                          )
+//                        ],
+//                        color: Colors.amber,
+//                        borderRadius: BorderRadius.all(Radius.circular(15)),
+//                      ),
+//                      height: SizeConfig.safeBlockVertical*6,
+//                      width: SizeConfig.safeBlockHorizontal*40,
+//                      child: Center(child: Text("Reputation: ${reputation.substring(0,4)}/5.00",
+//                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)), //user reputation
+//                    ),
+//                  ),
                 ],
               ),
               // user email and reputation

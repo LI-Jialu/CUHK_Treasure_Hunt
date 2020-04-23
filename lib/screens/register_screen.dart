@@ -298,6 +298,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 //                      widget.password = "asdasd";
 
                         // for debug purpose
+                        print(widget.student_id+
+                            widget.password+
+                            widget.username+
+                            college+
+                            year+
+                            dorm);
                         try {
                           var register_success = await User.register(
                               widget.student_id,

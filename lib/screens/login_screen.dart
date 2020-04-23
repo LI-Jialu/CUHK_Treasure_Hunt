@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     maxLines: 1,
                     decoration: InputDecoration(
-                        hintText: 'Username/Email'
+                        hintText: 'Student ID'
                     ),
                     onChanged: (value){
                       username = value;
@@ -127,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                   width: SizeConfig.safeBlockHorizontal*80,
                   height: SizeConfig.safeBlockVertical*6,
                   child: FlatButton(
-                    onPressed: ()  async {
+                    onPressed: () {
 //                      var user = await Database.get("/data/profile.php","");
 //                      print(json.decode(user.body));
                       //the login process has been moved to loading screen

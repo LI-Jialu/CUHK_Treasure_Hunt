@@ -12,8 +12,8 @@ class User {
 
   // methods
   static Future<bool> login(String studentID, String password) async {
-    if (studentID == null || password == null) {
-      return null;
+    if (studentID == null || password == null || studentID == "" || password == '') {
+      return false;
     }
 
     String path = "/data/login.php";
@@ -49,6 +49,7 @@ class User {
 
   static Future<bool> register(String studentID, String password,
       String username, String college, String year, String dorm) async {
+    year = year[5];
     String url = Database.hostname + "/data/register.php";
     String auth =
         'Basic ' + base64Encode((utf8.encode(studentID + ":" + password)));
