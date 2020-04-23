@@ -83,11 +83,6 @@ class PostScreenState extends State<PostScreen> {
                 ),
               ),
               Divider(),
-              Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.centerLeft,
-                child: Text('Pictures', style: ksmall_black_textstyle),
-              ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 5,
                 width: SizeConfig.safeBlockHorizontal * 38,

@@ -223,13 +223,13 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
         catch(e){
           print("fail to acquire the list");
         }
-        Navigator.pushReplacement(
+        /*Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => BuyRequestScreen(
 
               )),
-        );
+        );*/
       }
       break;
 
