@@ -56,30 +56,61 @@ class PostItem {
   static Widget decideImageView() {
     if (kIsWeb){
       if (webImageName == null){
-        return Text("You havn't uploaded any pictures.");
-      }
+        return Column(
+          children: <Widget>[Container(
+          decoration: new BoxDecoration(
+            border: new Border.all(color: Colors.grey, width: 0.5),
+          ),
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: Image.asset("assets/images/plus.png"),
+          ),
+          height: SizeConfig.safeBlockHorizontal * 30,
+          width: SizeConfig.safeBlockHorizontal * 30,
+        )]
+        );      
+        }
       else {
         print(Database.hostname+"/data/images/"+webImageName);
         return Column(
-          children: <Widget> [
-            Image.network(
-              Database.hostname+"/data/images/"+webImageName,
-              fit: BoxFit.cover,
-              width: SizeConfig.safeBlockHorizontal * 30,
-              height: SizeConfig.safeBlockHorizontal * 30
-            ),
-          ]
+          children: <Widget>[SizedBox(
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: Image.asset("assets/images/plus.png"),
+          ),
+          height: SizeConfig.safeBlockHorizontal * 30,
+          width: SizeConfig.safeBlockHorizontal * 30,
+        )]
         );//return Text("$webImageName chosen");
       }
     }
     else
     {
       if (picture == null) {
-        return Text("You havn't selected any pictures.");
+        return Column(
+          children: <Widget>[Container(
+          decoration: new BoxDecoration(
+            border: new Border.all(color: Colors.grey, width: 0.5),
+          ),
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: Image.asset("assets/images/plus.png"),
+          ),
+          height: SizeConfig.safeBlockHorizontal * 30,
+          width: SizeConfig.safeBlockHorizontal * 30,
+        )]
+        );      
       } else {
-        return Image.file(picture,
-            width: SizeConfig.safeBlockHorizontal * 30,
-            height: SizeConfig.safeBlockHorizontal * 30);
+        return Column(
+          children: <Widget>[SizedBox(
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: Image.file(picture),
+          ),
+          width: SizeConfig.safeBlockHorizontal * 30,
+          height: SizeConfig.safeBlockHorizontal * 30,
+        )]
+        );
       }
     }
   }
