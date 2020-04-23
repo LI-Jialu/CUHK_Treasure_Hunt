@@ -9,7 +9,8 @@ class LongItemCard extends StatefulWidget {
   bool isFavorite = false;
   String item_id;
   String favourite_id;
-  LongItemCard({this.name,this.price,this.favourite_id,this.item_id,this.isFavorite});
+  String image;
+  LongItemCard({this.name,this.price,this.favourite_id,this.item_id,this.isFavorite, this.image});
 
 
   @override
@@ -33,7 +34,7 @@ class _LongItemCardState extends State<LongItemCard> {
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 20,
-            color: Colors.amber,
+            child: Image.network(Database.hostname+"/data/images/"+widget.image, height: SizeConfig.safeBlockVertical * 13,width: SizeConfig.safeBlockHorizontal * 20),
           ),
           Expanded(
             child: Padding(

@@ -33,6 +33,7 @@ class _PostedItemsScreenState extends State<PostedItemsScreen> {
                   itemName: widget.itemList[index]['name'],
                   itemPrice: widget.itemList[index]['price'],
                   itemPostTime: widget.itemList[index]['create_time'],
+                  image: widget.itemList[index]['image'],
                 );
               }),
         ),
