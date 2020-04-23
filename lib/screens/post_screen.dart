@@ -10,6 +10,7 @@ String name;
 String price;
 String quantity;
 String description;
+var basename = PostItem.picture.path.split('/').last;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
 class PostScreen extends StatefulWidget {
