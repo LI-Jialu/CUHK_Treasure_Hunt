@@ -20,6 +20,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
 class PostItem {
   static var picture;
+  static String webImageName;
 
   // alert pickup image from web or gallery
   static Future<File> showChoiceDialog(BuildContext context) {
@@ -41,8 +42,8 @@ class PostItem {
                 Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
                   child: Text("Web upload"),
-                  onTap: () {
-                    //file = uploadImageWeb();
+                  onTap: () async {
+                    await uploadImageWeb();
                     Navigator.of(context).pop(); // dismiss dialog
                   },
                 ),
@@ -53,12 +54,28 @@ class PostItem {
   }
 
   static Widget decideImageView() {
-    if (picture == null) {
-      return Text("You havn't selected any pictures.");
-    } else {
-      return Image.file(picture,
-          width: SizeConfig.safeBlockHorizontal * 30,
-          height: SizeConfig.safeBlockHorizontal * 30);
+    if (kIsWeb){
+      if (webImageName == null){
+        return Text("You havn't uploaded any pictures.");
+      }
+      else {
+        print(Database.hostname+"/data/images/"+webImageName);
+        return Image.network(
+            Database.hostname+"/data/images/"+webImageName,
+            width: SizeConfig.safeBlockHorizontal * 30,
+            height: SizeConfig.safeBlockHorizontal * 30);
+        //return Text("$webImageName chosen");
+      }
+    }
+    else
+    {
+      if (picture == null) {
+        return Text("You havn't selected any pictures.");
+      } else {
+        return Image.file(picture,
+            width: SizeConfig.safeBlockHorizontal * 30,
+            height: SizeConfig.safeBlockHorizontal * 30);
+      }
     }
   }
 
@@ -142,8 +159,9 @@ class PostItem {
             //add current time to file name to avoid duplicate
             DateFormat dateFormat = DateFormat("yyyy-MM-dd-HH:mm:ss");
             List<String> s = files[0].name.split(".");
-            uploadWeb(s[0] + dateFormat.format(DateTime.now()) + "." + s[1],
-                reader.result);
+            webImageName = s[0] + dateFormat.format(DateTime.now()) + "." + s[1];
+            uploadWeb(webImageName, reader.result);
+
           });
         } else {
           print("more than 1 image selected.");
@@ -158,7 +176,7 @@ class PostItem {
     // called inside uploadImageWeb, do not call this directly
 
     try {
-      //print(name);
+      print(name);
       await http.post(Database.hostname + "/data/uploadImage.php",
           body: {"image": base64Encode(bytes), "name": name}).then((value) {
         if (value.statusCode == 200) {

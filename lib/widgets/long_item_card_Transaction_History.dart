@@ -3,16 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
 class LongItemCardTransactionHistory extends StatefulWidget {
+  int index;
+  String price;
+  String name;
+  String time;
+  String seller;
+  String buyer;
+  LongItemCardTransactionHistory({this.index, this.price,this.name,this.time, this.seller, this.buyer});
   @override
   _LongItemCardTransactionHistoryState createState() => _LongItemCardTransactionHistoryState();
 }
 
 class _LongItemCardTransactionHistoryState extends State<LongItemCardTransactionHistory> {
-
-  bool isBuy = false;  //to implement the backend to check if it is buy or sell
-
+  String showName;
   @override
   Widget build(BuildContext context) {
+    if (widget.index==1)  {
+      showName = "Seller: "+widget.seller;
+    }else {
+      showName = "Seller: "+widget.buyer;
+    }
+
     return Container(
       height: SizeConfig.safeBlockVertical * 15,
       width: SizeConfig.screenWidth,
@@ -33,10 +44,13 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text("Item Name"),
+                    child: Text(widget.name),
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text("\$"+widget.price),
+                  ),
+                  Container(
+                    child: Text("$showName"),
                   ),
                 ],
               ),
@@ -45,30 +59,9 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 15,
-            child: GestureDetector(
-              onTap: () {},
-              child: isBuy
-                  ? Container(
-                  color: Colors.green,
-                  child: Center(
-                  child: Text(
-                    "Buy",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+              child: Center(
+                child: Text(widget.time),
               )
-                  : Container(
-                  color: Colors.red,
-                  child: Center(
-                  child: Text(
-                    "Sell",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
           ),
         ],
       ),

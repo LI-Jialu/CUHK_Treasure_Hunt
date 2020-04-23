@@ -45,6 +45,15 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
     return result;
   }
 
+  Future<bool> deleteItem() async {
+    print('item_id ' + widget.item['item_id']);
+    bool result = await Database.post(
+      "/data/manageItems.php",
+      {'action':'delete', 'item_id':'${widget.item['item_id']}'}
+    );
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -189,6 +198,44 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
               }:null,
               child: Text(
                 "Create Transaction",
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ),
+            Divider(),
+            FlatButton(
+              color: Colors.amber,
+              textColor: Colors.white,
+              disabledColor: Colors.grey,
+              disabledTextColor: Colors.black,
+              padding: EdgeInsets.all(8.0),
+              splashColor: Colors.blueAccent,
+              onPressed: () async{
+                bool result = await deleteItem();
+                if (result){
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text("Make a choice"),
+                        content: Text("Delete Item Success")
+                      );
+                    }
+                  );
+                }
+                else {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                            title: Text("Make a choice"),
+                            content: Text("Fail To Delete Item")
+                        );
+                      }
+                  );
+                }
+              },
+              child: Text(
+                "Delete",
                 style: TextStyle(fontSize: 20.0),
               ),
             )
