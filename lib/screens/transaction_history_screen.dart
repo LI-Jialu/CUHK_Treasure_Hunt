@@ -1,14 +1,15 @@
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/long_item_card_Transaction_History.dart';
+import 'package:cuhk_treasure_hunt/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
-  int index;
-  var historyList;
-  TransactionHistoryScreen({this.index, this.historyList});
+  var historyList1;
+  var historyList2;
+  TransactionHistoryScreen({this.historyList1, this.historyList2});
 
   @override
   _TransactionHistoryScreenState createState() =>
@@ -16,50 +17,35 @@ class TransactionHistoryScreen extends StatefulWidget {
 }
 
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
-  String name;
-  @override
-  Widget build(BuildContext context) {
-    if (widget.index == 1) {
-      name = "Items Bought";
+    PageController _pageController;
+    @override
+    void initState() {
+      super.initState();
+      _pageController = PageController();
     }
-    else {
-      name = "Items Sold";
+    @override
+    void dispose() {
+      _pageController.dispose();
+      super.dispose();
     }
-    if (widget.historyList.length != 0) {
-      return Scaffold(
-
-        appBar: AppBar(title: Text('$name'),),
-        body: SafeArea(
-          child: ListView.builder(
-              itemCount: widget.historyList.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return LongItemCardTransactionHistory(
-                  index: widget.index,
-                  price: widget.historyList[index]['price'],
-                  name: widget.historyList[index]['name'],
-                  time: widget.historyList[index]['create_time'],
-                  seller: widget.historyList[index]['seller'],
-                  buyer: widget.historyList[index]['buyer'],
-                  image: widget.historyList[index]['image'],
-                );
-              }),
-        ),
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+          home: Scaffold(
+            body: PageView(
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                TransactionListView(index: 1,historyList: widget.historyList1),
+                TransactionListView(index: 2,historyList: widget.historyList2),
+              ],
+            )
+          )
       );
     }
-    else
-    {
-      print("the list is empty");
-      return Scaffold(
-        appBar: AppBar(title: Text('$name'),),
-        body: SafeArea(
-          child:Center(
-            child: Container(
-              child: Text("No $name", ),
-            ),
-          ),
-        ),
-      );
-    }
-  }
 }
+
+
+
+
+

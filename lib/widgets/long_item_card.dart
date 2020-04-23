@@ -87,8 +87,8 @@ class _LongItemCardState extends State<LongItemCard> {
                         try{
                           print(widget.item_id);
                           await Database.post("/data/manageFavourites.php",
-                              {"action":"insert","item_id":"$widget.item_id",
-                                "favourite_id":"$widget.favourite_id"});
+                              {"action":"insert","item_id":"${widget.item_id}",
+                                "favourite_id":"${widget.favourite_id}"});
                         }
                         catch(e){
                           print("fail to add to favourites");
@@ -99,8 +99,8 @@ class _LongItemCardState extends State<LongItemCard> {
                       {
                         try{
                           await Database.post("/data/manageFavourites.php",
-                              {"action":"delete","item_id":widget.item_id,
-                                "favourite_id":widget.favourite_id});
+                              {"action":"delete","item_id":"${widget.item_id}",
+                                "favourite_id":"${widget.favourite_id}"});
                         }
                         catch(e){
                           print("fail to delete from the favorites");

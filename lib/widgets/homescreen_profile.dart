@@ -177,7 +177,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           height: SizeConfig.safeBlockVertical * 10,
                           width: SizeConfig.safeBlockVertical * 15,
                           child: Icon(
-                            Icons.shopping_cart,
+                            Icons.shopping_basket,
                             color: Colors.black,
                           )),
                       FlatButton(
@@ -185,12 +185,12 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index: 3,)),
+                                (context) => LoadingScreen2(index: 6,)),
                           );
                         }, //go to Transaction history
                         child: Container(
                           child: Text(
-                            "Items Bought",
+                            "Buy Requests",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -212,12 +212,12 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
-                                (context) => LoadingScreen2(index: 4,)),
+                                (context) => LoadingScreen2(index: 3,)),
                           );
                         }, //go to Transaction history
                         child: Container(
                           child: Text(
-                            "Items Sold",
+                            "Transaction History",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
@@ -9,7 +10,6 @@ import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import '../utilities/constants.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
-import 'package:cuhk_treasure_hunt/database/database.dart';
 
 class DetailScreen extends StatefulWidget {
   final Item item;
@@ -269,7 +269,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text("Buy"),
-                            content: Text("Failed to send buy request!")
+                            content: Text("Successfully send buy request!")
                           );
                         }
                       );
@@ -280,7 +280,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text("Buy"),
-                            content: Text("Successfully send buy request!")
+                            content: Text("Failed send buy request!")
                           );
                         }
                       );

@@ -17,8 +17,7 @@ class User {
     }
 
     String path = "/data/login.php";
-    String auth =
-        'Basic ' + base64Encode((utf8.encode(studentID + ":" + password)));
+    String auth = 'Basic ' + base64Encode((utf8.encode(studentID + ":" + password)));
     String url = Database.hostname + path;
     http.Response response =
         await http.get(url, headers: {'authorization': auth});
@@ -31,13 +30,13 @@ class User {
       //print(User.loginStatus);
       User.userID = response.body;
       Database.userIDPW = response.body + ":" + password;
-      Database.basicAuth =
-          'Basic ' + base64Encode(utf8.encode(Database.userIDPW));
+      Database.basicAuth = 'Basic ' + base64Encode(utf8.encode(Database.userIDPW));
       User.studentID = studentID;
       //print(basicAuth);
 
       return true;
     } else {
+      print("fail to log in");
       return false;
     }
   }
