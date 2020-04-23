@@ -6,23 +6,56 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
+  int index;
+  var historyList;
+  TransactionHistoryScreen({this.index, this.historyList});
+
   @override
   _TransactionHistoryScreenState createState() =>
       _TransactionHistoryScreenState();
 }
 
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
+  String name;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('TransactionHistory History'),),
-      body: SafeArea(
-        child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index){
-              return LongItemCardTransactionHistory();
-            }),
-      ),
-    );
+    if (widget.index == 1) {
+      name = "Items Bought";
+    }
+    else {
+      name = "Items Sold";
+    }
+    if (widget.historyList.length != 0) {
+      return Scaffold(
+
+        appBar: AppBar(title: Text('$name'),),
+        body: SafeArea(
+          child: ListView.builder(
+              itemCount: widget.historyList.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return LongItemCardTransactionHistory(
+                  price: widget.historyList[index]['price'],
+                  name: widget.historyList[index]['name'],
+                  time: widget.historyList[index]['create_time'],
+                );
+              }),
+        ),
+      );
+    }
+    else
+    {
+      print("the list is empty");
+      return Scaffold(
+        appBar: AppBar(title: Text('Favorites'),),
+        body: SafeArea(
+          child:Center(
+            child: Container(
+              child: Text("No history", ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

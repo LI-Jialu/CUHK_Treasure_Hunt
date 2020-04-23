@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
 class LongItemCardTransactionHistory extends StatefulWidget {
+  String price;
+  String name;
+  String time;
+  LongItemCardTransactionHistory({this.name,this.price,this.time});
   @override
   _LongItemCardTransactionHistoryState createState() => _LongItemCardTransactionHistoryState();
 }
 
 class _LongItemCardTransactionHistoryState extends State<LongItemCardTransactionHistory> {
-
-  bool isBuy = false;  //to implement the backend to check if it is buy or sell
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +35,10 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text("Item Name"),
+                    child: Text(widget.name),
                   ),
                   Container(
-                    child: Text("Price"),
+                    child: Text(widget.price),
                   ),
                 ],
               ),
@@ -45,30 +47,9 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 15,
-            child: GestureDetector(
-              onTap: () {},
-              child: isBuy
-                  ? Container(
-                  color: Colors.green,
-                  child: Center(
-                  child: Text(
-                    "Buy",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+              child: Center(
+                child: Text(widget.time),
               )
-                  : Container(
-                  color: Colors.red,
-                  child: Center(
-                  child: Text(
-                    "Sell",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
           ),
         ],
       ),
