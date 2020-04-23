@@ -35,6 +35,15 @@ class _ItemGridViewState extends State<ItemGridView> {
   
   bool isFavorite = false;
 
+  void addFavourites(String item_id)async{
+    try{
+      await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
+    }
+    catch(e){
+      print("fail to add to favourites");
+    }
+  }
+
   //determine if the item is favored or not
   
   @override
@@ -112,8 +121,12 @@ class _ItemGridViewState extends State<ItemGridView> {
                     top: SizeConfig.safeBlockVertical * 22,
                     child: GestureDetector(
                         onTap: () {
-                          isFavorite = !isFavorite;
-                          setState(() {});
+                          setState(() {
+                            isFavorite = !isFavorite;
+                          });
+                          if (isFavorite) {
+                            addFavourites(widget.item.item_id);
+                          }
                         },
                         child: isFavorite
                             ? Icon(
@@ -202,6 +215,30 @@ class _ItemGridViewState extends State<ItemGridView> {
                   ),
                 ],
               ),
+<<<<<<< HEAD
+              Positioned(
+                right: SizeConfig.safeBlockHorizontal * 3,
+                top: SizeConfig.safeBlockVertical * 22,
+                child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    child: isFavorite
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.pink,
+                          )
+                        : Icon(
+                            Icons.favorite_border,
+                            color: Colors.pink,
+                          )),
+              ),
+            ],
+          ),
+=======
+>>>>>>> 0398e83edb49139fff09177b6c86658eaeab9ad9
         );
         }
       }
