@@ -57,7 +57,8 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Container(
                 height: SizeConfig.safeBlockHorizontal * 25,
                 width: SizeConfig.safeBlockHorizontal * 25,
-                child: Image.asset('assets/images/Icon/superman.svg'),
+                //child: Image.asset('assets/images/Icon/superman.svg'),
+                child: Icon(Icons.person,size: SizeConfig.safeBlockVertical*10,),
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 1,

@@ -139,7 +139,7 @@ class _BuyRequestScreenState extends State<BuyRequestScreen> {
       body: SafeArea(
         child: Container(
           child: ListView.builder(
-              scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.vertical,
               itemCount: widget.buyRequests.length,
               itemBuilder: (context, index){
                 return Column(
