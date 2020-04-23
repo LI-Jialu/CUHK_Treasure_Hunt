@@ -76,7 +76,7 @@ class PostItem {
           children: <Widget>[SizedBox(
           child: FittedBox(
             fit: BoxFit.cover,
-            child: Image.asset("assets/images/plus.png"),
+            child: Image.network(Database.hostname+"/data/images/"+webImageName),
           ),
           height: SizeConfig.safeBlockHorizontal * 30,
           width: SizeConfig.safeBlockHorizontal * 30,
