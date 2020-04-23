@@ -2,6 +2,7 @@ import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 
@@ -247,10 +248,16 @@ class PostScreenState extends State<PostScreen> {
                 disabledTextColor: Colors.black,
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
-                onPressed: () {
-                  PostItem.uploadImage(PostItem.picture);
-                  PostItem.postItem(
-                      "insert", name, price, quantity, description, basename);
+                onPressed: () async{
+                  if (kIsWeb){ // flutter web
+
+                  }
+                  else { // mobile
+                    String imageName = await PostItem.uploadImage(PostItem.picture);
+                    String id = await PostItem.postItem(
+                        "insert", name, price, quantity, description,imageName);
+                    PostItem.postTags(id, tags);
+                  }
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen()),
