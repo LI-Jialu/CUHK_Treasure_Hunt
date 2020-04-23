@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -100,8 +102,13 @@ class PostScreenState extends State<PostScreen> {
                     disabledTextColor: Colors.grey,
                     padding: EdgeInsets.all(8.0),
                     borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                    onPressed: () {
-                      PostItem.showChoiceDialog(context);
+                    onPressed: () async{
+                      await PostItem.showChoiceDialog(context);
+                      Timer(Duration(seconds: 5), () {
+                        setState(() {
+
+                        });
+                      });
                     },
                     child: Text("Select pictures")),
               ),
@@ -250,7 +257,10 @@ class PostScreenState extends State<PostScreen> {
                 splashColor: Colors.blueAccent,
                 onPressed: () async{
                   if (kIsWeb){ // flutter web
-
+                    String id = await PostItem.postItem(
+                        "insert", name, price, quantity, description,PostItem.webImageName);
+                    PostItem.postTags(id, tags);
+                    //Todo:Remove PostItem.webImageName?
                   }
                   else { // mobile
                     String imageName = await PostItem.uploadImage(PostItem.picture);
