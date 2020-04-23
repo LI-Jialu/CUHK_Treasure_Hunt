@@ -34,7 +34,7 @@ class _DetailScreenState extends State<DetailScreen> {
     itemdetails = await Database.get("/data/", "");
   }
   */
-  void addFavoutites(String item_id)async{
+  void addFavourites(String item_id)async{
     try{
       await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
     }
@@ -42,6 +42,16 @@ class _DetailScreenState extends State<DetailScreen> {
       print("fail to add to favourites");
     }
   }
+
+//  void cancelFavourites(String item_id)async{
+//    try{
+//      await Database.post('/data/manageFavourites.php', {"action":"delete","item_id":widget.item_id,
+//        "favourite_id":widget.favourite_id});
+//    }
+//    catch(e){
+//      print("fail to cancel favotite");
+//    }
+//  }
 //  void isFavourites(String item_id)async{
 //    try{
 //      await Database.get('', query)
@@ -200,7 +210,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       }
                     else
                       {
-                        addFavoutites(widget.item.item_id);
+                        addFavourites(widget.item.item_id);
                       }
                     itemLiked = !itemLiked;
 
