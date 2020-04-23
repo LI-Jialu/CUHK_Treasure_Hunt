@@ -1,12 +1,9 @@
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/favorite_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/loading_screen_2.dart';
 import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/posted_item_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/transaction_history_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -27,18 +24,6 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    Future<Response> get_favotite()async{
-      var favorites;
-      favorites =await Database.get("/data/favourites.php", "");
-      return favorites;
-    }
-
-    Future<Response> get_items()async{
-      var items;
-      items =await Database.get("/data/itemsPosted.php", "");
-      return items;
-    }
 
     Future<Response> get_user()async{
       var user;
@@ -140,29 +125,11 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                             color: Colors.black,
                           )),
                       FlatButton(
-                        onPressed: () async{
-                          var item_list;
-                          try{
-                            Response items = await get_items();
-                            if (items.body!=null)
-                            {
-                              print("the body is not null");
-
-                              item_list = json.decode(items.body);
-                              print(json.decode(items.body),);
-                              print("decode complete");
-                            }
-                            else
-                              print("the body is null");
-                          }
-                          catch(e){
-                            print("fail to acquire the list");
-                          }
-                          //FavoriteScreen(favorite_list: favorite_list,)),
+                        onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
-                                (context) => PostedItemsScreen(itemList: item_list,)),
+                                (context) => LoadingScreen2(index:1)),
                           );
                         }, //go to posted items
                         child: Container(
@@ -181,29 +148,12 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           height: SizeConfig.safeBlockVertical * 10,
                           width: SizeConfig.safeBlockVertical * 15,
                           child: Icon(Icons.favorite_border)),
-                      GestureDetector(
-                        onTap: () async{
-                          var favorite_list;
-                          try{
-                            Response favorites = await get_favotite();
-                            if (favorites.body!=null)
-                              {
-                                print("the body is not null");
-
-                                favorite_list = json.decode(favorites.body);
-                                print(json.decode(favorites.body),);
-                                print("decode complete");
-                              }
-                            else
-                              print("the body is null");
-                          }
-                          catch(e){
-                            print("fail to acquire the list");
-                          }
+                      FlatButton(
+                        onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => FavoriteScreen(favorite_list: favorite_list,)),
+                                builder: (context) => LoadingScreen2(index: 2,)),
                           );
                         }, //go to Favourites
                         child: Container(
@@ -230,7 +180,7 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder:
-                                (context) => TransactionHistoryScreen(),),
+                                (context) => LoadingScreen2(index: 3,)),
                           );
                         }, //go to Transaction history
                         child: Container(

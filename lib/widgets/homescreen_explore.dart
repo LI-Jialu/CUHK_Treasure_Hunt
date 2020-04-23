@@ -126,70 +126,64 @@ class _ExploreBodyState extends State<ExploreBody> {
 
   @override
   Widget build(BuildContext context) {
-    
     SizeConfig().init(context);
-    
+
     return FutureBuilder<Response>(
-      future: _recommendresults,
-      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
-        List<Widget> firstpage = [
-          ItemGridView(Item("Loading...")),
-          SizedBox(
-            width: SizeConfig.safeBlockHorizontal * 10,
-          ),
-          ItemGridView(Item("Loading...")),
-        ];
-        List<Item> secondpage = [Item("Loading..."), Item("Loading...")];
-        if (snapshot.hasData) {
-          var resultlist = json.decode(snapshot.data.body);
-          firstpage[0] = ItemGridView(Item.fromJson(resultlist[0]));
-          firstpage[2] = ItemGridView(Item.fromJson(resultlist[1]));
-          secondpage = [];
-          resultlist.forEach((resultmap) {
-            secondpage.add(Item.fromJson(resultmap));
-          });
-        }
-        else return Center(
+        future: _recommendresults,
+        builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+          List<Widget> firstpage = [
+            ItemGridView(Item("Loading...")),
+            SizedBox(
+              width: SizeConfig.safeBlockHorizontal * 10,
+            ),
+            ItemGridView(Item("Loading...")),
+          ];
+          List<Item> secondpage = [Item("Loading..."), Item("Loading...")];
+          if (snapshot.hasData) {
+            var resultlist = json.decode(snapshot.data.body);
+            firstpage[0] = ItemGridView(Item.fromJson(resultlist[0]));
+            firstpage[2] = ItemGridView(Item.fromJson(resultlist[1]));
+            secondpage = [];
+            resultlist.forEach((resultmap) {
+              secondpage.add(Item.fromJson(resultmap));
+            });
+          } else
+            return Center(
               child: Container(
-                width: SizeConfig.safeBlockHorizontal*30,
-                height: SizeConfig.safeBlockVertical*30,
+                width: SizeConfig.safeBlockHorizontal * 30,
+                height: SizeConfig.safeBlockVertical * 30,
                 child: SpinKitWave(
                   color: Colors.teal,
                   size: 100.0,
                 ),
               ),
             );
-      return Expanded(
-        child: PageView(
-      controller: _controller,
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: SizeConfig.safeBlockVertical * 25,
-              width: SizeConfig.safeBlockHorizontal * 90,
-              color: Colors.amber,
-            ),
-            SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: firstpage,
-            ),
-          ],
-        ),
+          return Expanded(
+              child: PageView(
+            controller: _controller,
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/Banner/poster.jpg',
+                    height: SizeConfig.safeBlockVertical * 25,
+                    width: SizeConfig.safeBlockHorizontal * 90,
+                  ),
+                  SizedBox(
+                    height: SizeConfig.safeBlockVertical * 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: firstpage,
+                  ),
+                ],
+              ),
 //        ItemListView(secondpage, Item.tags),
-        ItemListView(secondpage),
-      ],
-    )
-    );
-    }
-    );
-
-    
+              ItemListView(secondpage),
+            ],
+          ));
+        });
   }
 }
-

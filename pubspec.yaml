@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.16.1
   shared_preferences: "^0.4.2"
   bubble: ^1.1.9+1
-
+  flutter_svg: ^0.17.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,7 +50,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
+    - assets/images/Banner/poster.jpg
+    - assets/images/Icon/batman.svg
+    - assets/images/Icon/clown.svg
+    - assets/images/Icon/lego.svg
+    - assets/images/Icon/marvel.svg
+    - assets/images/Icon/plumber.svg
+    - assets/images/Icon/rapper.svg
+    - assets/images/Icon/robot.svg
+    - assets/images/Icon/superman.svg
+    - assets/images/Icon/wrestler.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
