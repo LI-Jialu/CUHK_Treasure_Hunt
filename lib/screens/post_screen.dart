@@ -82,16 +82,16 @@ class PostScreenState extends State<PostScreen> {
                   ),
                 ),
               ),
-              Divider(),
-              SizedBox(
-                height: SizeConfig.safeBlockVertical * 5,
-                width: SizeConfig.safeBlockHorizontal * 38,
+              Row(
+              children: <Widget>[SizedBox(
+                height: SizeConfig.safeBlockHorizontal * 35,
+                width: SizeConfig.safeBlockHorizontal * 35,
                 child: OutlineButton(
                     color: Colors.amber,
                     textColor: Colors.black,
                     disabledTextColor: Colors.grey,
                     padding: EdgeInsets.all(8.0),
-                    borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                    borderSide: BorderSide(color: Colors.transparent, width: 0),
                     onPressed: () async{
                       await PostItem.showChoiceDialog(context);
                       Timer(Duration(seconds: 5), () {
@@ -100,7 +100,8 @@ class PostScreenState extends State<PostScreen> {
                         });
                       });
                     },
-                    child: Text("Select pictures")),
+                    child: PostItem.decideImageView(),),
+              ),]
               ),
 //              Row(
 //                mainAxisAlignment: MainAxisAlignment.center,
@@ -110,8 +111,7 @@ class PostScreenState extends State<PostScreen> {
 //                  PostItem.decideImageView(),
 //                ],
 //              ),
-              SizedBox(height: SizeConfig.safeBlockVertical * 2),
-              PostItem.decideImageView(),
+              
               SizedBox(height: SizeConfig.safeBlockVertical * 2),
               
               Divider(),

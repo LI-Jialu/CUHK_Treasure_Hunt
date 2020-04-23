@@ -60,6 +60,7 @@ flutter:
     - assets/images/Icon/robot.svg
     - assets/images/Icon/superman.svg
     - assets/images/Icon/wrestler.svg
+    - assets/images/plus.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
