@@ -24,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String year = "year 1";
   String college = "SH";
   String dorm = "--";
+  String icon = "null";
 
   // alert pickup image from web or gallery
   Future<html.File> showChoiceDialog(BuildContext context) {
@@ -34,29 +35,93 @@ class _RegisterScreenState extends State<RegisterScreen> {
               title: Text("Choose your icon"),
               content: Container(
                   width: SizeConfig.safeBlockHorizontal * 40,
+                  height: SizeConfig.safeBlockVertical * 40,
                   child: GridView.count(
                     crossAxisCount: 3,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 8.0,
                     children: <Widget>[
-                      SvgPicture.asset(
-                        'assets/images/Icon/batman.svg',
-                        width: SizeConfig.safeBlockHorizontal * 20,
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/batman.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/batman.svg";
+                          Navigator.of(context).pop();
+                        },
                       ),
-                      SvgPicture.asset(
-                        'assets/images/Icon/clown.svg',
-                        width: SizeConfig.safeBlockHorizontal * 20,
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/clown.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/clown.svg";
+                          Navigator.of(context).pop();
+                        },
                       ),
-                      SvgPicture.asset(
-                        'assets/images/Icon/lego.svg',
-                        width: SizeConfig.safeBlockHorizontal * 20,
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/lego.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/lego.svg";
+                          Navigator.of(context).pop();
+                        },
                       ),
-                      SvgPicture.asset('assets/images/Icon/marvel.svg'),
-                      SvgPicture.asset('assets/images/Icon/plumber.svg'),
-                      SvgPicture.asset('assets/images/Icon/rapper.svg'),
-                      SvgPicture.asset('assets/images/Icon/robot.svg'),
-                      SvgPicture.asset('assets/images/Icon/superman.svg'),
-                      SvgPicture.asset('assets/images/Icon/wrestler.svg'),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/marvel.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/marvel.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/plumber.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/plumber.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/rapper.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/rapper.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/robot.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/robot.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/superman.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/superman.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          'assets/images/Icon/wrestler.svg',
+                        ),
+                        onTap: () async {
+                          icon = "assets/images/Icon/wrestler.svg";
+                          Navigator.of(context).pop();
+                        },
+                      ),
                     ],
                   )));
         });
