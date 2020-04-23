@@ -3,12 +3,11 @@ import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 
 String titleInput;
-String boughtPriceInput;
 String sellingPriceInput;
 String descriptionInput;
-String locationInput;
 String quantity;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
@@ -291,7 +290,12 @@ class PostScreenState extends State<PostScreen> {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  // PostItem.uploadImage(PostItem.picture);
+                  PostItem.uploadImage(PostItem.picture);
+                  //PostItem.postItem(user, titleInput, posterID, sellingPriceInput, quantity, tags),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
                 },
                 child: Text(
                   "Post",
