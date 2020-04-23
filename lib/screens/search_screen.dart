@@ -199,7 +199,7 @@ class _SearchScreenState extends State<SearchScreen> {
             //print("snapshot.data list" + snapshot.data.toString());
             childrenofcolumn.add(
               Expanded(
-                child: ItemListView(itemlist),
+                child: /*ItemListView(itemlist, widget.tags),*/ItemListView(itemlist),
               )
             );
           }
