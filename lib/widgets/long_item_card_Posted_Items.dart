@@ -56,7 +56,7 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
                       child: Text(widget.itemName),
                     ),
                     Container(
-                      child: Text(widget.itemPrice),
+                      child: Text("\$"+widget.itemPrice),
                     ),
                   ],
                 ),
