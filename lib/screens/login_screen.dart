@@ -132,10 +132,6 @@ class LoginScreen extends StatelessWidget {
 //                      print(json.decode(user.body));
                       //the login process has been moved to loading screen
 
-                      Timer(Duration(seconds: 3), () async{
-                        var response = await Database.post("/data/postTags.php", {'item_id':'4','tags':"0,1,2,4,5"});
-                      });
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoadingScreen(

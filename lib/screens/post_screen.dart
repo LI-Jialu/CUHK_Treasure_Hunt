@@ -12,8 +12,7 @@ String locationInput;
 String quantity;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
-class PostScreen extends StatefulWidget{
-
+class PostScreen extends StatefulWidget {
   const PostScreen({Key key}) : super(key: key);
 
   @override
@@ -24,7 +23,6 @@ class PostScreen extends StatefulWidget{
 }
 
 class PostScreenState extends State<PostScreen> {
-
   List<int> tags = [];
 
   @override
@@ -33,8 +31,7 @@ class PostScreenState extends State<PostScreen> {
     SizeConfig().init(context);
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-        ),
+        appBar: AppBar(),
         body: SafeArea(
           child: ListView(
             //separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -104,8 +101,7 @@ class PostScreenState extends State<PostScreen> {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       maxLines: 1,
-                      decoration: InputDecoration(
-                          hintText: 'Price for 1 item'),
+                      decoration: InputDecoration(hintText: 'Price for 1 item'),
                       onChanged: (value) {
                         sellingPriceInput = value;
                         print(sellingPriceInput);
@@ -116,14 +112,14 @@ class PostScreenState extends State<PostScreen> {
               ),
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.centerLeft,
                 child: Text('Pictures', style: ksmall_black_textstyle),
               ),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 5,
                 width: SizeConfig.safeBlockHorizontal * 38,
                 child: OutlineButton(
-                    color: Colors.white,
+                    color: Colors.amber,
                     textColor: Colors.black,
                     disabledTextColor: Colors.grey,
                     padding: EdgeInsets.all(8.0),
@@ -133,6 +129,14 @@ class PostScreenState extends State<PostScreen> {
                     },
                     child: Text("Select pictures")),
               ),
+//              Row(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: <Widget>[
+//                  PostItem.decideImageView(),
+//                  PostItem.decideImageView(),
+//                  PostItem.decideImageView(),
+//                ],
+//              ),
               PostItem.decideImageView(),
               Divider(),
               Container(
@@ -143,7 +147,7 @@ class PostScreenState extends State<PostScreen> {
               Container(
                 child: Container(
                   height: SizeConfig.safeBlockVertical * 20,
-                  width: SizeConfig.safeBlockHorizontal   * 80,
+                  width: SizeConfig.safeBlockHorizontal * 80,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 0.5),
                   ),
@@ -196,8 +200,8 @@ class PostScreenState extends State<PostScreen> {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       maxLines: 1,
-                      decoration: InputDecoration(
-                          hintText: 'Number of items to sell'),
+                      decoration:
+                          InputDecoration(hintText: 'Number of items to sell'),
                       onChanged: (value) {
                         quantity = value;
                         print(quantity);
@@ -244,38 +248,38 @@ class PostScreenState extends State<PostScreen> {
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
                 child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Item.tags.length,
-                    itemBuilder: (BuildContext context, int index){
-                      bool selected = tags.indexOf(index) != -1;
-                      return Container(
-                        height: SizeConfig.safeBlockVertical * 5,
-                        width: SizeConfig.safeBlockHorizontal * 38,
-                        color: !selected? Colors.white:Colors.grey[300],
-                        child: OutlineButton(
-                            textColor: Colors.black,
-                            padding: EdgeInsets.all(8.0),
-                            borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                            onPressed: () {
-                              if (!selected){
-                                setState(() {
-                                  tags.add(index);
-                                });
-                                print(tags);
-                              }
-                              else {
-                                setState(() {
-                                  tags.remove(index);
-                                });
-                                print(tags);
-                              }
-                            },
-                            child: Text("${Item.tags[index]}")),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index){
-                      return VerticalDivider();
-                    },
+                  scrollDirection: Axis.horizontal,
+                  itemCount: Item.tags.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    bool selected = tags.indexOf(index) != -1;
+                    return Container(
+                      height: SizeConfig.safeBlockVertical * 5,
+                      width: SizeConfig.safeBlockHorizontal * 38,
+                      color: !selected ? Colors.white : Colors.grey[300],
+                      child: OutlineButton(
+                          textColor: Colors.black,
+                          padding: EdgeInsets.all(8.0),
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 0.5),
+                          onPressed: () {
+                            if (!selected) {
+                              setState(() {
+                                tags.add(index);
+                              });
+                              print(tags);
+                            } else {
+                              setState(() {
+                                tags.remove(index);
+                              });
+                              print(tags);
+                            }
+                          },
+                          child: Text("${Item.tags[index]}")),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return VerticalDivider();
+                  },
                 ),
               ),
               Divider(),
@@ -287,7 +291,7 @@ class PostScreenState extends State<PostScreen> {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  // PostItem.uploadImage(PostItem.picture);
+                  //PostItem.uploadImage(PostItem.picture);
                 },
                 child: Text(
                   "Post",

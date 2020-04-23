@@ -15,6 +15,7 @@ import 'User.dart';
 import 'package:async/async.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
 class PostItem {
   static var picture;
@@ -23,7 +24,7 @@ class PostItem {
   static Future<File> showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Make a choice"),
             content: SingleChildScrollView(
@@ -54,7 +55,9 @@ class PostItem {
     if (picture == null) {
       return Text("You havn't selected any pictures.");
     } else {
-      return Image.file(picture);
+      return Image.file(picture,
+          width: SizeConfig.safeBlockHorizontal * 30,
+          height: SizeConfig.safeBlockHorizontal * 30);
     }
   }
 

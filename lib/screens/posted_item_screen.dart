@@ -27,6 +27,7 @@ class _PostedItemsScreenState extends State<PostedItemsScreen> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return LongItemCardPostedItems(
+                  item: widget.itemList[index],
                   itemID: widget.itemList[index]['item_id'],
                   itemPosterID: widget.itemList[index]['poster_id'],
                   itemName: widget.itemList[index]['name'],

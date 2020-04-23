@@ -5,8 +5,10 @@ import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:http/http.dart' as http;
 
 class User {
+
   static bool loginStatus = false;
   static String studentID = "";
+  static String userID = "";
 
   // methods
   static Future<bool> login(String studentID, String password) async {
@@ -27,6 +29,7 @@ class User {
     if (response.body != "-1") {
       loginStatus = true;
       //print(User.loginStatus);
+      User.userID = response.body;
       Database.userIDPW = response.body + ":" + password;
       Database.basicAuth =
           'Basic ' + base64Encode(utf8.encode(Database.userIDPW));
@@ -55,7 +58,7 @@ class User {
       "username": username,
       "college": college,
       "year": year,
-      "dorm": dorm
+      "dorm": dorm,
     };
     http.Response response =
         await http.post(url, headers: {'authorization': auth}, body: query);

@@ -10,7 +10,7 @@ class Item{
   static List<String> tags = ['free','other','stationery','clothing','book',
     'electric appliance','food','daily use','medical use','cosmetics'];
 
-
+  List<String> taglist = [];
   String item_id = "-1";
   String poster_id = "1";
   String name = "default_name";
