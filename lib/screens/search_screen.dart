@@ -175,7 +175,7 @@ class _SearchScreenState extends State<SearchScreen> {
             }
             childrenofcolumn.add(
               Expanded(
-                child: ItemListView(itemlist, widget.tags),
+                child: /*ItemListView(itemlist, widget.tags),*/ItemListView(itemlist),
               )
             );
           }

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
+import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -33,6 +34,24 @@ class _DetailScreenState extends State<DetailScreen> {
     itemdetails = await Database.get("/data/", "");
   }
   */
+  void addFavoutites(String item_id)async{
+    try{
+      await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
+    }
+    catch(e){
+      print("fail to add to favourites");
+    }
+  }
+//  void isFavourites(String item_id)async{
+//    try{
+//      await Database.get('', query)
+//    }catch(e){
+//
+//    }
+//  }
+
+  bool itemLiked = false;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -173,24 +192,53 @@ class _DetailScreenState extends State<DetailScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 0.5),
-                  ),
-                  height: SizeConfig.safeBlockVertical*5,
-                  width: SizeConfig.safeBlockHorizontal*40,
-                  child: Center(
-                    child: Text('Like', style: ksmall_black_textstyle,),
+                GestureDetector(
+                  onTap: (){
+                    if (itemLiked==true)
+                      {
+
+                      }
+                    else
+                      {
+                        addFavoutites(widget.item.item_id);
+                      }
+                    itemLiked = !itemLiked;
+
+                    setState(() {
+//                      print(widget.item.item_id);
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      color: itemLiked?Colors.pinkAccent:Colors.white,
+                    ),
+                    height: SizeConfig.safeBlockVertical*5,
+                    width: SizeConfig.safeBlockHorizontal*40,
+                    child: Center(
+                      child: Text('Like', style: itemLiked?TextStyle(color: Colors.white):ksmall_black_textstyle,),
+                    ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 0.5),
-                  ),
-                  height: SizeConfig.safeBlockVertical*5,
-                  width: SizeConfig.safeBlockHorizontal*40,
-                  child: Center(
-                    child: Text('Contact', style: ksmall_black_textstyle,),
+                GestureDetector(
+                  onTap:(){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChatroomScreen(
+                        contact_name:widget.userinfo['username'],
+                        user_id: widget.userinfo['user_id'],)),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      color: Colors.teal,
+                    ),
+                    height: SizeConfig.safeBlockVertical*5,
+                    width: SizeConfig.safeBlockHorizontal*40,
+                    child: Center(
+                      child: Text('Contact', style: TextStyle(color: Colors.white),),
+                    ),
                   ),
                 ),
               ],

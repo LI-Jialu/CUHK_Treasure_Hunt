@@ -235,7 +235,7 @@ class _BubbleListState extends State<BubbleList> {
                   height: SizeConfig.safeBlockVertical * 10,
                   child: TextField(
                     controller: _inputtextController,
-                    maxLines: 3,
+                    maxLines: 1,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.send,
                     onSubmitted: (term) {
