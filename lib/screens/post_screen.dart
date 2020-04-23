@@ -123,8 +123,10 @@ class PostScreenState extends State<PostScreen> {
 //                  PostItem.decideImageView(),
 //                ],
 //              ),
+              SizedBox(height: SizeConfig.safeBlockVertical * 2),
               PostItem.decideImageView(),
-
+              SizedBox(height: SizeConfig.safeBlockVertical * 2),
+              
               Divider(),
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
