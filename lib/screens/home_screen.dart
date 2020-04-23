@@ -39,7 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ]; //the list of children widgets that will be rendered based on the choice
 
   final List<Widget> _childrenAppbar = [
-    null,
+  AppBar(
+  title: Text("Home"),
+  automaticallyImplyLeading: false,
+  elevation: 0,
+  ),
     null,
     AppBar(
       title: Text("Chat"),
@@ -82,46 +86,50 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: klogin_button_color,
+        type: BottomNavigationBarType.fixed,
+        elevation: 100,
         items: [
           new BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: _selectedIndex == 0
-                  ? klogin_button_color
-                  : knonactive_button_color,
+//              color: _selectedIndex == 0
+//                  ? klogin_button_color
+//                  : knonactive_button_color,
             ),
             title: Text('Explore'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
-              color: _selectedIndex == 1
-                  ? klogin_button_color
-                  : knonactive_button_color,
+//              color: _selectedIndex == 1
+//                  ? klogin_button_color
+//                  : knonactive_button_color,
             ),
             title: Text('Add'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(
               Icons.chat,
-              color: _selectedIndex == 2
-                  ? klogin_button_color
-                  : knonactive_button_color,
+//              color: _selectedIndex == 2
+//                  ? klogin_button_color
+//                  : knonactive_button_color,
             ),
             title: Text('Chat'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: _selectedIndex == 3
-                  ? klogin_button_color
-                  : knonactive_button_color,
+//              color: _selectedIndex == 3
+//                  ? klogin_button_color
+//                  : knonactive_button_color,
             ),
             title: Text('Me'),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: klogin_button_color,
+        selectedItemColor: Colors.amberAccent,
+        unselectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

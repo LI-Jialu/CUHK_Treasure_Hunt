@@ -127,7 +127,7 @@ class ChatBubble extends StatelessWidget {
             color: sent_by_me?Colors.teal:Colors.white,
             nip: sent_by_me?BubbleNip.rightBottom:BubbleNip.leftBottom,
             child: Text(message,
-              textAlign: sent_by_me?TextAlign.left:TextAlign.right,
+              textAlign: TextAlign.left,
             style: TextStyle(
               color: sent_by_me?Colors.white:Colors.black,
               fontSize: 16

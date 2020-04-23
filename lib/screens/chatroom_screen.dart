@@ -81,13 +81,17 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
             valueListenable: _messageStatus,
               builder: (BuildContext context, dynamic value, Widget child){
               if (value == null) return Expanded(
-                child: Center(
-                  child: Container(
-                    width: SizeConfig.safeBlockHorizontal*30,
-                    height: SizeConfig.safeBlockVertical*30,
-                    child: SpinKitWave(
-                      color: Colors.teal,
-                      size: 100.0,
+                child: Container(
+                  color: Colors.amber,
+                  child: Center(
+                    child: Container(
+                      color: Colors.amber,
+                      width: SizeConfig.safeBlockHorizontal*30,
+                      height: SizeConfig.safeBlockVertical*30,
+                      child: SpinKitWave(
+                        color: Colors.white,
+                        size: 100.0,
+                      ),
                     ),
                   ),
                 ),
@@ -127,8 +131,20 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
           ),
           //lower part(keyboard)
           Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFFF1F1F1),
+              width: 2)
+//              boxShadow: [
+//                BoxShadow(
+//                  color: Colors.black,
+//                  blurRadius: 2.0,
+//                  spreadRadius: 0.0,
+//                  offset: Offset(2.0, 2.0),
+//                ),
+//              ],
+            ),
 
-            height: SizeConfig.safeBlockVertical * 9,
+            height: SizeConfig.safeBlockVertical * 8,
             width: SizeConfig.screenWidth,
             child: Row(
               children: <Widget>[
