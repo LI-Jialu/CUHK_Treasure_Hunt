@@ -63,6 +63,12 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
     return response;
   }
 
+  Future<Response> getBuyRequests()async{
+    var response;
+    response = await Database.get("/data/buyRequests.php", "");
+    return response;
+  }
+
   void initState() {
     super.initState();
     goTo(widget.index);
@@ -202,6 +208,35 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
               builder: (context) => TransactionScreen(
                 transactionS: transactionS,
                 transactionB: transactionB,
+              )),
+        );
+      }
+      break;
+
+      case 6: {
+        var buyRequests;
+        try{
+          Response response = await getBuyRequests();
+          if (response.body != null)
+          {
+            print("the body is not null");
+
+            buyRequests = json.decode(response.body);
+            print(buyRequests);
+
+            print("decode complete");
+          }
+          else
+            print("the body is null");
+        }
+        catch(e){
+          print("fail to acquire the list");
+        }
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BuyRequestScreen(
+
               )),
         );
       }
