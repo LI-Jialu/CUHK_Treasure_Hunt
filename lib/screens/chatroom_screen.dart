@@ -33,7 +33,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
     super.initState();
       get_message_async();
       //  print(message_info_decoded[0]['message']);
-    _messageStatus = ValueNotifier<dynamic>(message_info_decoded);
+    _messageStatus.value = message_info_decoded;
     _everyFiveSecond = Timer.periodic(Duration(seconds: 5), (Timer t){
       get_message_async();
       _messageStatus.value = message_info_decoded;
@@ -74,7 +74,18 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
           ValueListenableBuilder(
             valueListenable: _messageStatus,
               builder: (BuildContext context, dynamic value, Widget child){
-              if (value == null) return Text('loading...');
+              if (value == null) return Expanded(
+                child: Center(
+                  child: Container(
+                    width: SizeConfig.safeBlockHorizontal*30,
+                    height: SizeConfig.safeBlockVertical*30,
+                    child: SpinKitWave(
+                      color: Colors.teal,
+                      size: 100.0,
+                    ),
+                  ),
+                ),
+              );
               else return Expanded(
                 child: Stack(
                   children: <Widget>[
@@ -87,7 +98,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                           itemBuilder: (context, index) {
                             bool sent_by_me;
                             if (widget.user_id !=
-                                value[index]['sender_id']) {
+                                value[index]['receiver_id']) {
                               sent_by_me = true;
                             }
                             else {
