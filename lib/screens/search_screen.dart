@@ -29,37 +29,52 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   String sorttype = 'Recommended';
+  List<String> tags;
   final List<String> _sorttypename = [
     'Newest',
     'Recommended',
     'Nearest',
     'Highest reputation',
   ];
-  Future<Response> _searchresults;
-  Future<Response> getSearchResults() async {
-    print("try getting search results!");
+  Future<List<Item>> _itemlist;
+  Future<List<Item>> getSearchResults() async {
+    //print("try getting search results!");
     Response searchresults;
     searchresults =
         await Database.get("/data/search.php?search=" + widget.searchinput, "");
-    print("search results got!");
-    print(searchresults.body);
-    return searchresults;
+    //print("search results got!");
+    //print(searchresults.body);
+    List<Item> itemlist = [];
+    var resultlist = json.decode(searchresults.body);
+    for (int i = 0; i < resultlist.length; i++) {
+      var resultmap = resultlist[i];
+      Item newItem = Item.fromJson(resultmap);
+      Response tagsinfo = await Database.get("/data/tags.php?item_id=" + newItem.item_id, "");
+      var taglist = json.decode(tagsinfo.body);
+      taglist.forEach((tag){
+        newItem.taglist.add(tag);
+      });
+      itemlist.add(newItem);
+      //print("itemlist added! " + itemlist.toString());
+    }
+    //print("call getsearchresults itemlist " + itemlist.toString());
+    return itemlist;
   }
 
   @override
   @mustCallSuper
   void didChangeDependencies() {
     super.didChangeDependencies();
-    this._searchresults = getSearchResults();
+    this._itemlist = getSearchResults();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    return FutureBuilder<Response>(
-      future: _searchresults,
-      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+    tags = widget.tags;
+    return FutureBuilder<List<Item>>(
+      future: _itemlist,
+      builder: (BuildContext context, AsyncSnapshot<List<Item>> snapshot) {
         List<Widget> childrenofcolumn = <Widget>[
           Container(
             child: Align(
@@ -123,6 +138,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         context,
                         MaterialPageRoute(builder: (context) => FilterScreen(searchscreen: widget)),
                       );
+                      setState((){
+                        tags = widget.tags;
+                      });
                     }),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -132,10 +150,7 @@ class _SearchScreenState extends State<SearchScreen> {
           // Expanded(child: ItemListView(),)
         ];
         if (snapshot.hasData) {
-          var resultlist = json.decode(snapshot.data.body);
-          print(resultlist.runtimeType);
-          print(resultlist is List<dynamic>);
-          if (resultlist.isEmpty) {
+          /*if (resultlist.isEmpty) {
             childrenofcolumn.add(
               Container(
                 child: Align(
@@ -145,37 +160,46 @@ class _SearchScreenState extends State<SearchScreen> {
                 height: SizeConfig.safeBlockVertical * 10,
               ),
             );
-          } else {
-            print(resultlist[0].runtimeType);
+          } else */
+          {
+            //print(resultlist[0].runtimeType);
             List<Item> itemlist = [];
-            resultlist.forEach((resultmap) {
-              itemlist.add(Item.fromJson(resultmap));
+            snapshot.data.forEach((item) {
+              bool hastag = true;
+              //print("current selected tags " + tags.toString());
+              item.taglist.forEach((tag){
+                //print("try whether contains tag " + tag);
+                if (!tags.contains(tag)) hastag = false;
+              });
+              if (hastag) itemlist.add(item);
             });
             if (sorttype == "Highest reputation") {
-              print("sort again! highest reputation!");
+              //print("sort again! highest reputation!");
               //itemlist[1].reputation = "1";
               itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
-              print(itemlist[0].name);
+              //print(itemlist[0].name);
             }
             else if (sorttype == "Recommended" || sorttype == "Nearest") {
-              print("sort again! recommended");
+              //print("sort again! recommended");
               itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
             }
             else if (sorttype == "Newest") {
-              print("sort again! newest");
+              //print("sort again! newest");
               itemlist.sort((left, right) => int.parse(left.item_id).compareTo(int.parse(right.item_id)));
             }
             else if (sorttype == "Highest Price") {
-              print("sort again!");
+              //print("sort again!");
               itemlist.sort((left, right) => double.parse(right.price).compareTo(double.parse(left.price)));
             }
             else if (sorttype == "Lowest Price") {
-              print("sort again!");
+              //print("sort again!");
               itemlist.sort((left, right) => double.parse(left.price).compareTo(double.parse(right.price)));
             }
+            //print("tag list now!!!" + tags.toString());
+            //print("snapshot.data list" + snapshot.data.toString());
             childrenofcolumn.add(
               Expanded(
-                child: ItemListView(itemlist, widget.tags),
+                child: ItemListView(itemlist),
               )
             );
           }
