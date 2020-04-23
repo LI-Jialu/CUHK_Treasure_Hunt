@@ -78,6 +78,10 @@ class _ItemGridViewState extends State<ItemGridView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: new BorderRadius.all(Radius.circular(20)),
+                          ),
                           child: FittedBox(
                             fit: BoxFit.cover,
                               child: Image.network(widget.item.image)),
@@ -153,6 +157,10 @@ class _ItemGridViewState extends State<ItemGridView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: new BorderRadius.all(Radius.circular(20)),
+                          ),
                           child: FittedBox(
                             fit: BoxFit.cover,
                               child: Image.network(widget.item.image)),
