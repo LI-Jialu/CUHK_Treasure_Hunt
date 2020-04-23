@@ -35,9 +35,12 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return LongItemCardTransactionHistory(
+                  index: widget.index,
                   price: widget.historyList[index]['price'],
                   name: widget.historyList[index]['name'],
                   time: widget.historyList[index]['create_time'],
+                  seller: widget.historyList[index]['seller'],
+                  buyer: widget.historyList[index]['buyer'],
                 );
               }),
         ),
