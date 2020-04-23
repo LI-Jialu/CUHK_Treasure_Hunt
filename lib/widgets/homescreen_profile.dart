@@ -92,28 +92,6 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // all 4 rows
-//                  Row(
-//                    // location
-//                    children: <Widget>[
-//                      Container(
-//                          height: SizeConfig.safeBlockVertical * 10,
-//                          width: SizeConfig.safeBlockVertical * 15,
-//                          child: Icon(
-//                            Icons.location_on,
-//                            color: Colors.black,
-//                          )),
-//                      FlatButton(
-//                        onPressed: () {}, //go to location
-//                        child: Container(
-//                          child: Text(
-//                            "Location",
-//                            style: TextStyle(fontSize: 24),
-//                          ),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
                   Row(
                     // Posted items
                     children: <Widget>[
@@ -159,6 +137,33 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                         child: Container(
                           child: Text(
                             "Favourites",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    // Posted items
+                    children: <Widget>[
+                      Container(
+                          height: SizeConfig.safeBlockVertical * 10,
+                          width: SizeConfig.safeBlockVertical * 15,
+                          child: Icon(
+                            Icons.shopping_basket,
+                            color: Colors.black,
+                          )),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder:
+                                (context) => LoadingScreen2(index:5)),
+                          );
+                        }, //go to posted items
+                        child: Container(
+                          child: Text(
+                            "Transactions",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -219,33 +224,6 @@ class _HomescreenProfileScreenState extends State<HomescreenProfile> {
                       ),
                     ],
                   ),
-//                  Row(
-//                    // Browsing History
-//                    children: <Widget>[
-//                      Container(
-//                          height: SizeConfig.safeBlockVertical * 10,
-//                          width: SizeConfig.safeBlockVertical * 15,
-//                          child: Icon(
-//                            Icons.history,
-//                            color: Colors.black,
-//                          )),
-//                      FlatButton(
-//                        onPressed: () {
-//                          Navigator.push(
-//                            context,
-//                            MaterialPageRoute(builder:
-//                                (context) => BrowsingHistoryScreen(),),
-//                          );
-//                        }, //go to Browsing History
-//                        child: Container(
-//                          child: Text(
-//                            "Browsing History",
-//                            style: TextStyle(fontSize: 24),
-//                          ),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
                   SizedBox(
                     height: SizeConfig.safeBlockVertical * 1,
                   ),

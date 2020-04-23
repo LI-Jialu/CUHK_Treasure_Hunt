@@ -22,7 +22,7 @@
     }
     
      
-    $sql = "SELECT u1.username AS seller, u2.username AS buyer, i.name,t.price, t.quantity, t.create_time FROM transactions t JOIN items i USING (item_id) JOIN users u1 ON t.seller_id = u1.user_id JOIN users u2 ON t.buyer_id = u2.user_id WHERE t.{$id} = {$user_id} AND {$condition} ORDER BY t.create_time DESC";
+    $sql = "SELECT u1.username AS seller, u2.username AS buyer, i.name,t.price, t.quantity, t.create_time,i.image FROM transactions t JOIN items i USING (item_id) JOIN users u1 ON t.seller_id = u1.user_id JOIN users u2 ON t.buyer_id = u2.user_id WHERE t.{$id} = {$user_id} AND {$condition} ORDER BY t.create_time DESC";
     
     require_once("echo.php");
 

@@ -1,28 +1,27 @@
+import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
-class LongItemCardTransactionHistory extends StatefulWidget {
-  int index;
-  String price;
-  String name;
-  String time;
-  String seller;
-  String buyer;
-  LongItemCardTransactionHistory({this.index, this.price,this.name,this.time, this.seller, this.buyer});
+
+class LongItemCardTransaction extends StatefulWidget {
+
+  var transactionItem;
+  bool isSell;
+
+  LongItemCardTransaction({this.transactionItem,this.isSell});
   @override
-  _LongItemCardTransactionHistoryState createState() => _LongItemCardTransactionHistoryState();
+  _LongItemCardTransactionState createState() => _LongItemCardTransactionState();
 }
 
-class _LongItemCardTransactionHistoryState extends State<LongItemCardTransactionHistory> {
+class _LongItemCardTransactionState extends State<LongItemCardTransaction> {
+
   String showName;
+
   @override
+
   Widget build(BuildContext context) {
-    if (widget.index==1)  {
-      showName = "Seller: "+widget.seller;
-    }else {
-      showName = "Buyer: "+widget.buyer;
-    }
+    showName = widget.isSell? "Buyer: ${widget.transactionItem['buyer']}":
+        "Seller: ${widget.transactionItem['seller']}";
 
     return Container(
       height: SizeConfig.safeBlockVertical * 15,
@@ -35,7 +34,7 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 20,
-            color: Colors.amber,
+            child: Image.network(Database.hostname+"/data/images/"+widget.transactionItem['image']),
           ),
           Expanded(
             child: Padding(
@@ -44,10 +43,10 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    child: Text(widget.name),
+                    child: Text(widget.transactionItem['name']),
                   ),
                   Container(
-                    child: Text("\$"+widget.price),
+                    child: Text("\$"+widget.transactionItem['price']),
                   ),
                   Container(
                     child: Text("$showName"),
@@ -57,10 +56,10 @@ class _LongItemCardTransactionHistoryState extends State<LongItemCardTransaction
             ),
           ),
           Container(
-            height: SizeConfig.safeBlockVertical * 13,
-            width: SizeConfig.safeBlockHorizontal * 15,
+              height: SizeConfig.safeBlockVertical * 13,
+              width: SizeConfig.safeBlockHorizontal * 15,
               child: Center(
-                child: Text(widget.time),
+                child: Text(widget.transactionItem['create_time']),
               )
           ),
         ],
