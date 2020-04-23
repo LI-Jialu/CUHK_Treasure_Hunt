@@ -247,16 +247,13 @@ class PostScreenState extends State<PostScreen> {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-<<<<<<< HEAD
                   PostItem.uploadImage(PostItem.picture);
-                  //PostItem.postItem(user, titleInput, posterID, sellingPriceInput, quantity, tags),
+                  PostItem.postItem(
+                      "insert", name, price, quantity, description);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
-=======
-                  //PostItem.uploadImage(PostItem.picture);
->>>>>>> d2b192e26c9a188932642cc0bfb29fa8e0525056
                 },
                 child: Text(
                   "Post",

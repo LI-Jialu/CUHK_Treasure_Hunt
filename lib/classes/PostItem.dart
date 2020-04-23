@@ -63,7 +63,7 @@ class PostItem {
 
   // methods
   static void postItem(String insert, String name, String price,
-      String quantity, List<String> tags, String description) async {
+      String quantity, String description) async {
     var result = await Database.post('/data/manageItems.php', {
       "action": "$insert",
       "name": "$name",
