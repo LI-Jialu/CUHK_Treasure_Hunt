@@ -9,6 +9,7 @@ String name;
 String price;
 String quantity;
 String description;
+var basename = PostItem.picture.path.split('/').last;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
 class PostScreen extends StatefulWidget {
@@ -249,7 +250,7 @@ class PostScreenState extends State<PostScreen> {
                 onPressed: () {
                   PostItem.uploadImage(PostItem.picture);
                   PostItem.postItem(
-                      "insert", name, price, quantity, description);
+                      "insert", name, price, quantity, description, basename);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen()),
