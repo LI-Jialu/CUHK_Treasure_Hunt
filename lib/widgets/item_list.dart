@@ -14,10 +14,10 @@ class ItemGridView extends StatefulWidget {
   Set<String> tagset = new Set();
   Future<List<Response>> _posterandtags;
   Future<List<Response>> getPosterAndTags() async {
-    //print("try getting poster and tags info!");
+    print("try getting poster and tags info!");
     Response posterinfo;
     posterinfo = await Database.get("/data/checkProfile.php?check_id=" + item.poster_id, "");
-    //print(posterinfo.body);
+    print(posterinfo.body);
     Response tagsinfo;
     tagsinfo = await Database.get("/data/tags.php?item_id=" + item.item_id, "");
     //print(tagsinfo.body);

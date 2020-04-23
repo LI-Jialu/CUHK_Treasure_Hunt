@@ -62,8 +62,18 @@ class PostItem {
   }
 
   // methods
-  static void postItem(User user, String name, String posterID, double price,
-      int quantity, List<String> tags) {}
+  static void postItem(String insert, String name, String price,
+      String quantity, String description, String basename) async {
+    var result = await Database.post('/data/manageItems.php', {
+      "action": "$insert",
+      "name": "$name",
+      "price": "$price",
+      "quantity": "$quantity",
+      "description": "$description",
+      "basename": "$basename"
+    });
+    print(result);
+  }
 
   static void uploadImage(File imageFile) async {
     // upload image to server give a File.

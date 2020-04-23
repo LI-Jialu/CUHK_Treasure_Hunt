@@ -3,13 +3,13 @@ import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 
-String titleInput;
-String boughtPriceInput;
-String sellingPriceInput;
-String descriptionInput;
-String locationInput;
+String name;
+String price;
 String quantity;
+String description;
+var basename = PostItem.picture.path.split('/').last;
 
 //TODO: here returns a scaffold which is not a body. It needs to be modified either way(Steve)
 class PostScreen extends StatefulWidget {
@@ -55,37 +55,12 @@ class PostScreenState extends State<PostScreen> {
                   maxLines: 1,
                   decoration: InputDecoration(hintText: 'Title of your item'),
                   onChanged: (value) {
-                    titleInput = value;
-                    print(titleInput);
+                    name = value;
+                    print(name);
                   },
                 ),
               ),
               Divider(),
-//              Row(
-//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                children: <Widget>[
-//                  Container(
-//                    height: SizeConfig.safeBlockVertical * 5,
-//                    alignment: Alignment.centerLeft,
-//                    child: Text('Bought price', style: ksmall_black_textstyle),
-//                  ),
-//                  Container(
-//                    height: SizeConfig.safeBlockVertical * 5,
-//                    width: SizeConfig.safeBlockHorizontal * 50,
-//                    child: TextField(
-//                      keyboardType: TextInputType.text,
-//                      textInputAction: TextInputAction.done,
-//                      maxLines: 1,
-//                      decoration:
-//                          InputDecoration(hintText: 'The price you bought it.'),
-//                      onChanged: (value) {
-//                        boughtPriceInput = value;
-//                        print(boughtPriceInput);
-//                      },
-//                    ),
-//                  ),
-//                ],
-//              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -103,8 +78,8 @@ class PostScreenState extends State<PostScreen> {
                       maxLines: 1,
                       decoration: InputDecoration(hintText: 'Price for 1 item'),
                       onChanged: (value) {
-                        sellingPriceInput = value;
-                        print(sellingPriceInput);
+                        price = value;
+                        print(price);
                       },
                     ),
                   ),
@@ -138,6 +113,7 @@ class PostScreenState extends State<PostScreen> {
 //                ],
 //              ),
               PostItem.decideImageView(),
+
               Divider(),
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
@@ -159,32 +135,13 @@ class PostScreenState extends State<PostScreen> {
                         hintText: 'Detailed information',
                         border: InputBorder.none),
                     onChanged: (value) {
-                      descriptionInput = value;
-                      print(descriptionInput);
+                      description = value;
+                      print(description);
                     },
                   ),
                 ),
               ),
               Divider(),
-//              Container(
-//                height: SizeConfig.safeBlockVertical * 5,
-//                alignment: Alignment.bottomLeft,
-//                child: Text('Location', style: ksmall_black_textstyle),
-//              ),
-//              Container(
-//                height: SizeConfig.safeBlockVertical * 5,
-//                width: SizeConfig.safeBlockHorizontal * 80,
-//                child: TextField(
-//                  keyboardType: TextInputType.text,
-//                  textInputAction: TextInputAction.done,
-//                  maxLines: 1,
-//                  decoration: InputDecoration(hintText: 'Delivering location'),
-//                  onChanged: (value) {
-//                    locationInput = value;
-//                    print(locationInput);
-//                  },
-//                ),
-//              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -291,7 +248,13 @@ class PostScreenState extends State<PostScreen> {
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  //PostItem.uploadImage(PostItem.picture);
+                  PostItem.uploadImage(PostItem.picture);
+                  PostItem.postItem(
+                      "insert", name, price, quantity, description, basename);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
                 },
                 child: Text(
                   "Post",
