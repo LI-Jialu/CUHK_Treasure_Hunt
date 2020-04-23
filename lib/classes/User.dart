@@ -55,7 +55,7 @@ class User {
       "username": username,
       "college": college,
       "year": year,
-      "dorm": dorm
+      "dorm": dorm,
     };
     http.Response response =
         await http.post(url, headers: {'authorization': auth}, body: query);

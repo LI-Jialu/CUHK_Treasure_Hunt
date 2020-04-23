@@ -7,6 +7,7 @@ import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:flutter_svg/flutter_svg.dart';
 
 // this screen is for the new user to customise the avatar, college and other infos
 class RegisterScreen extends StatefulWidget {
@@ -30,11 +31,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Choose your icon"),
-            content: GestureDetector(
-              child: Image.asset('assets / images / batman.svg'),
-            ),
-          );
+              title: Text("Choose your icon"),
+              content: Container(
+                  width: SizeConfig.safeBlockHorizontal * 40,
+                  child: GridView.count(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 8.0,
+                    children: <Widget>[
+                      SvgPicture.asset(
+                        'assets/images/Icon/batman.svg',
+                        width: SizeConfig.safeBlockHorizontal * 20,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/Icon/clown.svg',
+                        width: SizeConfig.safeBlockHorizontal * 20,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/Icon/lego.svg',
+                        width: SizeConfig.safeBlockHorizontal * 20,
+                      ),
+                      SvgPicture.asset('assets/images/Icon/marvel.svg'),
+                      SvgPicture.asset('assets/images/Icon/plumber.svg'),
+                      SvgPicture.asset('assets/images/Icon/rapper.svg'),
+                      SvgPicture.asset('assets/images/Icon/robot.svg'),
+                      SvgPicture.asset('assets/images/Icon/superman.svg'),
+                      SvgPicture.asset('assets/images/Icon/wrestler.svg'),
+                    ],
+                  )));
         });
   }
 
