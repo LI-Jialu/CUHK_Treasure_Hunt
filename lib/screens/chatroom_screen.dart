@@ -144,7 +144,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 //              ],
             ),
 
-            height: SizeConfig.safeBlockVertical * 8,
+            height: SizeConfig.safeBlockVertical * 14,
             width: SizeConfig.screenWidth,
             child: Row(
               children: <Widget>[
@@ -155,9 +155,12 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 //                ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: SizeConfig.safeBlockHorizontal*4,
-                    vertical: SizeConfig.safeBlockVertical*1.3),
-                    height: SizeConfig.safeBlockVertical * 10,
+                    padding:EdgeInsets.only(bottom: SizeConfig.safeBlockVertical*7,
+                    top:SizeConfig.safeBlockVertical*1, right: SizeConfig.safeBlockHorizontal*4,
+                    left: SizeConfig.safeBlockHorizontal*4),
+//                    padding: EdgeInsets.symmetric(horizontal: SizeConfig.safeBlockHorizontal*4,
+//                    vertical: SizeConfig.safeBlockVertical*1.3),
+                    height: SizeConfig.safeBlockVertical * 14,
                     child: TextField(
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                       controller: _inputtextController,
@@ -181,16 +184,21 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: (){
-                    if (input_message!=null)
-                      {
-                        send_message(widget.user_id, input_message);
-                        _inputtextController.clear();
-                      }
-                  },
-                  iconSize:  SizeConfig.safeBlockVertical * 5,
-                  icon: Icon(Icons.send, color: Colors.teal,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: (){
+                        if (input_message!=null)
+                          {
+                            send_message(widget.user_id, input_message);
+                            _inputtextController.clear();
+                          }
+                      },
+                      iconSize:  SizeConfig.safeBlockVertical * 5,
+                      icon: Icon(Icons.send, color: Colors.teal,),
+                    ),
+                  ],
                 ),
               ],
             ),

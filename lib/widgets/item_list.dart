@@ -223,30 +223,6 @@ class _ItemGridViewState extends State<ItemGridView> {
                   ),
                 ],
               ),
-<<<<<<< HEAD
-              Positioned(
-                right: SizeConfig.safeBlockHorizontal * 3,
-                top: SizeConfig.safeBlockVertical * 22,
-                child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                    },
-                    child: isFavorite
-                        ? Icon(
-                            Icons.favorite,
-                            color: Colors.pink,
-                          )
-                        : Icon(
-                            Icons.favorite_border,
-                            color: Colors.pink,
-                          )),
-              ),
-            ],
-          ),
-=======
->>>>>>> 0398e83edb49139fff09177b6c86658eaeab9ad9
         );
         }
       }

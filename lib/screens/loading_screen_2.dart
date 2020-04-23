@@ -13,6 +13,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
+import 'package:cuhk_treasure_hunt/screens/BuyRequestScreen.dart';
 
 import 'favorite_screen.dart';
 
@@ -223,11 +224,11 @@ class _LoadingScreen2State extends State<LoadingScreen2> {
         catch(e){
           print("fail to acquire the list");
         }
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => BuyRequestScreen(
-
+                buyRequests:buyRequests
               )),
         );
       }
