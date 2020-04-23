@@ -30,8 +30,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     }
     @override
     Widget build(BuildContext context) {
-      return MaterialApp(
-          home: Scaffold(
+      return Scaffold(
             body: PageView(
               controller: _pageController,
               scrollDirection: Axis.horizontal,
@@ -40,7 +39,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                 TransactionListView(index: 2,historyList: widget.historyList2),
               ],
             )
-          )
       );
     }
 }

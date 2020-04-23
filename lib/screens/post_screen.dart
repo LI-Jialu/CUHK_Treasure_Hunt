@@ -43,23 +43,20 @@ class PostScreenState extends State<PostScreen> {
             //separatorBuilder: (BuildContext context, int index) => const Divider(),
             //padding: const EdgeInsets.all(8),
             padding: EdgeInsets.only(
-                left: SizeConfig.safeBlockHorizontal * 10,
-                right: SizeConfig.safeBlockHorizontal * 10),
+                left: SizeConfig.safeBlockHorizontal * 5,
+                right: SizeConfig.safeBlockHorizontal * 5),
             scrollDirection: Axis.vertical,
             children: <Widget>[
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.bottomLeft,
-                child: Text('Title', style: ksmall_black_textstyle),
-              ),
-              Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                width: SizeConfig.safeBlockHorizontal * 80,
+                width: SizeConfig.safeBlockHorizontal * 90,
                 child: TextField(
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   maxLines: 1,
-                  decoration: InputDecoration(hintText: 'Title of your item'),
+                  decoration: InputDecoration(
+                    hintText: 'Title',
+                    border: InputBorder.none),
                   onChanged: (value) {
                     name = value;
                     print(name);
@@ -67,35 +64,25 @@ class PostScreenState extends State<PostScreen> {
                 ),
               ),
               Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    alignment: Alignment.centerLeft,
-                    child: Text('Selling price', style: ksmall_black_textstyle),
-                  ),
-                  Container(
-                    height: SizeConfig.safeBlockVertical * 5,
-                    width: SizeConfig.safeBlockHorizontal * 50,
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      maxLines: 1,
-                      decoration: InputDecoration(hintText: 'Price for 1 item'),
-                      onChanged: (value) {
-                        price = value;
-                        print(price);
-                      },
-                    ),
-                  ),
-                ],
-              ),
               Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.centerLeft,
-                child: Text('Pictures', style: ksmall_black_textstyle),
+                child: Container(
+                  height: SizeConfig.safeBlockVertical * 20,
+                  width: SizeConfig.safeBlockHorizontal * 80,
+                  child: TextField(
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    maxLines: 10,
+                    decoration: InputDecoration(
+                        hintText: 'Detailed information',
+                        border: InputBorder.none),
+                    onChanged: (value) {
+                      description = value;
+                      print(description);
+                    },
+                  ),
+                ),
               ),
+              Divider(),
               SizedBox(
                 height: SizeConfig.safeBlockVertical * 5,
                 width: SizeConfig.safeBlockHorizontal * 38,
@@ -123,34 +110,34 @@ class PostScreenState extends State<PostScreen> {
 //                  PostItem.decideImageView(),
 //                ],
 //              ),
+              SizedBox(height: SizeConfig.safeBlockVertical * 2),
               PostItem.decideImageView(),
-
+              SizedBox(height: SizeConfig.safeBlockVertical * 2),
+              
               Divider(),
-              Container(
-                height: SizeConfig.safeBlockVertical * 5,
-                alignment: Alignment.centerLeft,
-                child: Text('Description', style: ksmall_black_textstyle),
-              ),
-              Container(
-                child: Container(
-                  height: SizeConfig.safeBlockVertical * 20,
-                  width: SizeConfig.safeBlockHorizontal * 80,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 0.5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    height: SizeConfig.safeBlockVertical * 5,
+                    alignment: Alignment.centerLeft,
+                    child: Text('Selling price', style: ksmall_black_textstyle),
                   ),
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    maxLines: 10,
-                    decoration: InputDecoration(
-                        hintText: 'Detailed information',
-                        border: InputBorder.none),
-                    onChanged: (value) {
-                      description = value;
-                      print(description);
-                    },
+                  Container(
+                    height: SizeConfig.safeBlockVertical * 5,
+                    width: SizeConfig.safeBlockHorizontal * 50,
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      maxLines: 1,
+                      decoration: InputDecoration(hintText: 'Price for 1 item'),
+                      onChanged: (value) {
+                        price = value;
+                        print(price);
+                      },
+                    ),
                   ),
-                ),
+                ],
               ),
               Divider(),
               Row(
@@ -220,7 +207,24 @@ class PostScreenState extends State<PostScreen> {
                   itemCount: Item.tags.length,
                   itemBuilder: (BuildContext context, int index) {
                     bool selected = tags.indexOf(index) != -1;
-                    return Container(
+                    return FilterChip(
+                      label: Text(Item.tags[index]),
+                      selected: selected,
+                      onSelected: (bool value) {
+                        if (value) {
+                              setState(() {
+                                tags.add(index);
+                              });
+                              print(tags);
+                            } else {
+                              setState(() {
+                                tags.remove(index);
+                              });
+                              print(tags);
+                            }
+                      }
+                    );
+                    /*return Container(
                       height: SizeConfig.safeBlockVertical * 5,
                       width: SizeConfig.safeBlockHorizontal * 38,
                       color: !selected ? Colors.white : Colors.grey[300],
@@ -243,7 +247,7 @@ class PostScreenState extends State<PostScreen> {
                             }
                           },
                           child: Text("${Item.tags[index]}")),
-                    );
+                    );*/
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return VerticalDivider();

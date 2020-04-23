@@ -35,7 +35,7 @@ class _TransactionListState extends State<TransactionListView> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return LongItemCardTransactionHistory(
-                  index: index,
+                  index: widget.index,
                   price: widget.historyList[index]['price'],
                   name: widget.historyList[index]['name'],
                   time: widget.historyList[index]['create_time'],

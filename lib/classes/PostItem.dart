@@ -60,11 +60,16 @@ class PostItem {
       }
       else {
         print(Database.hostname+"/data/images/"+webImageName);
-        return Image.network(
-            Database.hostname+"/data/images/"+webImageName,
-            width: SizeConfig.safeBlockHorizontal * 30,
-            height: SizeConfig.safeBlockHorizontal * 30);
-        //return Text("$webImageName chosen");
+        return Column(
+          children: <Widget> [
+            Image.network(
+              Database.hostname+"/data/images/"+webImageName,
+              fit: BoxFit.cover,
+              width: SizeConfig.safeBlockHorizontal * 30,
+              height: SizeConfig.safeBlockHorizontal * 30
+            ),
+          ]
+        );//return Text("$webImageName chosen");
       }
     }
     else
