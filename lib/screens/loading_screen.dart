@@ -8,7 +8,6 @@ import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/classes/UserProfile.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:http/http.dart' as http;
