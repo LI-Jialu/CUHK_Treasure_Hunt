@@ -1,8 +1,15 @@
-// define PostItem class
+/*
+Module to define PostItem class
+
+Module Name: PostItem
+Programmer: Hon Tik TSE, Jialu Li
+Version: 1.0 (10 May 2020)
+
+Contains static fields and methods to post an item.
+*/
 
 import 'dart:async';
 import 'dart:convert';
-//import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -12,46 +19,17 @@ import 'dart:typed_data';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'User.dart';
-import 'package:async/async.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
 class PostItem {
+
+  // fields
   static var picture;
   static String webImageName;
 
-  // alert pickup image from web or gallery
-  static Future<File> showChoiceDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Make a choice"),
-            content: SingleChildScrollView(
-                child: ListBody(
-              children: <Widget>[
-                GestureDetector(
-                  child: Text("Gallery"),
-                  onTap: () async {
-                    picture = await pickImage();
-                    Navigator.of(context).pop(); // dismiss dialog
-                  },
-                ),
-                Padding(padding: EdgeInsets.all(8.0)),
-                GestureDetector(
-                  child: Text("Web upload"),
-                  onTap: () async {
-                    await uploadImageWeb();
-                    Navigator.of(context).pop(); // dismiss dialog
-                  },
-                ),
-              ],
-            )),
-          );
-        });
-  }
+
 
   static Widget decideImageView() {
     if (kIsWeb){
@@ -116,6 +94,39 @@ class PostItem {
   }
 
   // methods
+
+  // alert pickup image from web or gallery
+  static Future<File> showChoiceDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Make a choice"),
+            content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    GestureDetector(
+                      child: Text("Gallery"),
+                      onTap: () async {
+                        picture = await pickImage();
+                        Navigator.of(context).pop(); // dismiss dialog
+                      },
+                    ),
+                    Padding(padding: EdgeInsets.all(8.0)),
+                    GestureDetector(
+                      child: Text("Web upload"),
+                      onTap: () async {
+                        await uploadImageWeb();
+                        Navigator.of(context).pop(); // dismiss dialog
+                      },
+                    ),
+                  ],
+                )),
+          );
+        });
+  }
+
+  // post an item
   static Future<String> postItem(String insert, String name, String price,
       String quantity, String description,String imageName) async {
     Map query = {
@@ -137,6 +148,7 @@ class PostItem {
     }
   }
 
+  // post tags of an item
   static void postTags(String itemID, List<int> tags)async{
     String tagsString = tags.join(",");
     var response = await Database.post(
@@ -146,6 +158,7 @@ class PostItem {
     print(response);
   }
 
+  // upload image to server in android/iOS
   static Future<String> uploadImage(File imageFile) async {
     // upload image to server give a File.
     print("start uploading");
@@ -163,6 +176,7 @@ class PostItem {
     return basename;
   }
 
+  // pick image in android/iOS
   static Future<File> pickImage() async {
     // pick an image from phone gallery.
     // DO NOT USE THIS FOR WEB. for web, use uploadImageWeb below
@@ -177,6 +191,7 @@ class PostItem {
     }
   }
 
+  // upload image in web
   static void uploadImageWeb() {
     // just calling this is okay
 
@@ -191,8 +206,8 @@ class PostItem {
           reader.readAsArrayBuffer(files[0]);
           reader.onLoadEnd.listen((event) {
             print(files[0].name);
-            //print(reader.result);
-            //add current time to file name to avoid duplicate
+
+            //add current time to file name to avoid duplicate names
             DateFormat dateFormat = DateFormat("yyyy-MM-dd-HH:mm:ss");
             List<String> s = files[0].name.split(".");
             webImageName = s[0] + dateFormat.format(DateTime.now()) + "." + s[1];
@@ -208,6 +223,7 @@ class PostItem {
     }
   }
 
+  // support function used by uploadImageWeb
   static void uploadWeb(String name, Uint8List bytes) async {
     // called inside uploadImageWeb, do not call this directly
 

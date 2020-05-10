@@ -1,5 +1,5 @@
 /*
-Module for user authentication, html Basic Authentication is used
+Module for user authentication, http Basic Authentication is used
 
 Module Name: UserAuthentication
 Programmer: Hon Tik TSE
