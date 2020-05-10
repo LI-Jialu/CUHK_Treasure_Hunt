@@ -1,6 +1,18 @@
+/*
+Module to retrieve the messages between the user logged in and another user
+
+Module Name: Messages
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   contact_id: user_id of the user with whom the conversation is to be viewed
+
+Output Parameters:
+   messages in json format
+*/
 <?php
   
-    // return the messages between the user and another user
     // messages are sorted in recency, i.e. the more recent the message, the smaller the index in the array
     
     require_once('connectDB.php');

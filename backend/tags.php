@@ -1,3 +1,16 @@
+/*
+Module to retrieve the tags of an item
+
+Module Name: Tags
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   item_id: item_id of the item of which you want to know the tags
+
+Output Parameters:
+   array of tags in json format. e.g. ["free","stationery"]
+*/
 <?php
 
     // sample: Database.get("/data/tags.php","?item_id=4");

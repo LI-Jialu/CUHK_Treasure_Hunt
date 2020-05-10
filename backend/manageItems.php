@@ -1,3 +1,22 @@
+/*
+Module to post/update/delete an item
+
+Module Name: ManageItems
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   action: insert/update/delete
+   item_id: for update, delete only
+   name: for insert, update only
+   price: for insert, update only
+   quantity: for insert, update only
+   description: for insert, update only, do not pass null.
+   image: name for the image, can be null if no image uploaded
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
   
     require_once('connectDB.php');

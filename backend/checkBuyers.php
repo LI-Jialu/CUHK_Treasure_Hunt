@@ -1,3 +1,16 @@
+/*
+ Module to find the buyers of an item given the item_id.
+ 
+ Module Name: CheckBuyers
+ Programmer: Hon Tik TSE
+ Version: 1.0 (10 May 2020)
+ 
+ Input Parameters:
+    item_id
+ 
+ Output Parameters:
+    array of buyers in json format
+ */
 <?php
     require_once('connectDB.php');
     

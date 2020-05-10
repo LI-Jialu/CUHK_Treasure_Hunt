@@ -1,3 +1,18 @@
+/*
+Module to create, update or delete buy requests.
+
+Module Name: ManageBuyRequests
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   action: insert, delete or update
+   item_id: the item_id of the item on which you want to make/update/delete buy request
+   quantity: the quantity you would like to buy
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
   
     require_once("connectDB.php");

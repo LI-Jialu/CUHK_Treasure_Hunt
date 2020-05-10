@@ -1,3 +1,18 @@
+/*
+Module to send a verification email to a user during user registration. Package PHPMailer is used.
+
+Module Name: VerificationMail
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   username: username entered during user registration
+   sid: studen ID entered during user registrion
+   code: 6-digit verification code generated inside the app.
+
+Output Parameters: (string, not json encoded)
+   success/error message
+*/
 <?php
     
 // Import PHPMailer classes into the global namespace
@@ -11,8 +26,6 @@ require 'vendor/autoload.php';
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-
-    
 try {
     
     // Get username, student ID and verification code
@@ -26,13 +39,14 @@ try {
     }
     
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Enable verbose debug output
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'treasurehunt.cuhk@gmail.com';                     // SMTP username
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;
+    $mail->isSMTP();                              // Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';        // Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                       // Enable SMTP authentication
+    
+    $mail->Username   = 'treasurehunt.cuhk@gmail.com';             // SMTP username
     $mail->Password   = '';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
     $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients

@@ -1,3 +1,17 @@
+/*
+Module for user authentication, http Basic Authentication is used
+
+Module Name: UserAuthentication
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters: (processed and encoded in the app)
+   user_id
+   password
+
+Output Parameters:
+   fail (if authentication fails. connection will also be closed)
+*/
 <?php
 
     $user_id = $_SERVER['PHP_AUTH_USER'];

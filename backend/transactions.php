@@ -1,5 +1,17 @@
-// need to test correctness
+/*
+Module to retrieve the transactions the user logged in is involved in.
 
+Module Name:
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   type: 'buy'/'sell'. If 'buy' is passed, transactions in which the user logged in will is the buyer will be returned. Similar for 'sell'.
+   status: '1'/'0'. If 1 is passed, completed transactions will be returned. If 0 is passed, transactions that are still in progress will be returned.
+
+Output Parameters:
+   array of transactions in json format.
+*/
 <?php
 
     require_once("connectDB.php");

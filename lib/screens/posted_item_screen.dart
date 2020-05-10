@@ -1,9 +1,14 @@
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+/*
+ Module for posted item page and composed of LongItemCardPostedItems module
+
+ Module Name: PostedItemsScreen
+ Programmer: Tang Yiu Kai
+ Version: 1.0(10 May 2020)
+
+ */
+
 import 'package:cuhk_treasure_hunt/widgets/long_item_card_Posted_Items.dart';
 import 'package:flutter/material.dart';
-
-import '../utilities/constants.dart';
 
 class PostedItemsScreen extends StatefulWidget {
   var itemList;
@@ -17,7 +22,6 @@ class _PostedItemsScreenState extends State<PostedItemsScreen> {
   @override
   Widget build(BuildContext context) {
     if (widget.itemList.length != 0) {
-      print("Successfully passed the favorite data");
       print(widget.itemList);
       return Scaffold(
         appBar: AppBar(title: Text('Posted Items'),),

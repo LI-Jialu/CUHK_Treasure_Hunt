@@ -1,7 +1,20 @@
+/*
+Module to update the reputation of both the buyer and seller upon completion of a transaction.
+
+Module Name: UpdateReputation
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   None
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
 
-
     // called from manageTransactions.php
+    
     function updateRep($id, $rating,$con){
         
         // get reputation now

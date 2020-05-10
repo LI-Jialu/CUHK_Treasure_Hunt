@@ -1,15 +1,24 @@
-// Define Item class
+/*
+Module to define Item class
 
-import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
+Module Name: Item
+Programmer: Hon Tik TSE, Chenyu HAN
+Version: 1.0 (10 May 2020)
+
+Contains fields and constructors related to items.
+*/
 
 class Item{
 
+  // fields
+
+  // image path of the images in the server
   static String imagePath = "http://ec2-3-80-187-207.compute-1.amazonaws.com/data/images/";
+  // list of all tags
   static List<String> tags = ['free','other','stationery','clothing','book',
     'electric appliance','food','daily use','medical use','cosmetics'];
 
+  // instance fields
   List<String> taglist = [];
   String item_id = "-1";
   String poster_id = "1";
@@ -20,7 +29,11 @@ class Item{
   String image = imagePath + "noImageUploaded.png";
   String description = "";
   String reputation = "0";
+
+  // Constructor
   Item(this.name);
+
+  // decode json encoded item array received from server to an Item object.
   Item.fromJson(Map<String, dynamic> json) {
     item_id = json["item_id"];
     poster_id = json["poster_id"];
@@ -31,11 +44,6 @@ class Item{
     image = imagePath + json["image"];
     description = json["description"];
     reputation = json["reputation"];
-  }
-
-  // methods
-  void updateBuyers(String type, String ID){
-
   }
 
 
