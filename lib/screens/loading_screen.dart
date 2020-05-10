@@ -1,3 +1,11 @@
+/*
+Module to render the processing icon to indicate the users to wait
+
+Module Name: Loading spinner
+Programmer: Steve Tang
+This Module renders a spinner icon
+*/
+
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +31,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void logIn () async{
 
     //await User.login('0000000003', 'admin4');
-
     bool result = await User.login(widget.username, widget.password);
     if (result) {
       Navigator.pushReplacement(

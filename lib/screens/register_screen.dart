@@ -1,3 +1,12 @@
+/*
+Module to render the registering screen for additional information input
+
+Module Name: register screen
+Programmer: Steve Tang
+This Module takes user inputs to complete additional information registration
+*/
+
+
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';

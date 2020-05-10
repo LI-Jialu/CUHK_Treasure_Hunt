@@ -1,3 +1,11 @@
+/*
+Module to render the favorite screen to store the list of favorite items
+
+Module Name: favorite screen
+Programmer: Steve Tang
+This Module takes in the favorite items from the database and render them on the screen
+*/
+
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/widgets/long_item_card.dart';
 

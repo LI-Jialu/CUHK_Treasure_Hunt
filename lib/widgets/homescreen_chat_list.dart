@@ -1,3 +1,12 @@
+/*
+Module to render the list of chats on the screen
+
+Module Name: Chat List
+Programmer: Steve Tang
+This Module takes in last 100 messages with all other contacts
+*/
+
+
 import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +33,14 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
   var result;
   Future<Response> contact_list;
 
+  // acquire the chat list from database
   void get_contact_list() {
     contact_list = Database.get('/data/contactList.php', '');
 //    result = json.decode(contact_list.body);
 //    print(contact_list.body);
   }
 
+  // get chat list once the screen is initialized
   @override
   void initState() {
     super.initState();
@@ -38,6 +49,7 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
 
   @override
   Widget build(BuildContext context) {
+    // wait until the contact list data is ready
     return FutureBuilder(
       future: contact_list,
       builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -65,6 +77,7 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
 //                        },
 //                      ),
 //                    ),
+                  // if there are no chat history yet
                     Expanded(
                       child: Container(
                         child: Center(child: Text("No contact yet")),
@@ -166,6 +179,8 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
       },
     );
   }
+
+  // these two widgets are for rendering the background of slider functions
   Widget slideRightBackground() {
     return Container(
       color: Colors.green,
@@ -227,7 +242,7 @@ class _HomeScreenChatState extends State<HomeScreenChat> {
 
 
 
-
+// this widget is for rendering the contact card displayed
 class ContactCard extends StatefulWidget {
   String name;
   String message;
