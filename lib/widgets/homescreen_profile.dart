@@ -1,3 +1,23 @@
+/*
+ module for home screen interface and redirecting to loading screen page
+
+ module name: HomescreenProfile
+ Programmer: Tang Yiu Kai
+ Version: 1.0(10 May 2020)
+
+ Procedure Invocation:
+    void set_user()
+    LoadingScreen2 (index)
+
+ Input Parameters:
+    index are integer 1,2,3...
+
+ OutPut Parameter:
+ */
+
+
+
+
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';

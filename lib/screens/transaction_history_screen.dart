@@ -1,3 +1,14 @@
+/*
+ Module for transaction history page,
+ there is two pages, scroll horizontally, and composed of TransactionListView module
+
+ Module Name: TransactionHistoryScreen
+ Programmer: Tang Yiu Kai
+ Version: 1.0(10 May 2020)
+
+ */
+
+
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/long_item_card_Transaction_History.dart';

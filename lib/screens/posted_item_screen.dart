@@ -1,3 +1,12 @@
+/*
+ Module for posted item page and composed of LongItemCardPostedItems module
+
+ Module Name: PostedItemsScreen
+ Programmer: Tang Yiu Kai
+ Version: 1.0(10 May 2020)
+
+ */
+
 import 'package:cuhk_treasure_hunt/widgets/long_item_card_Posted_Items.dart';
 import 'package:flutter/material.dart';
 
