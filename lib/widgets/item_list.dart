@@ -1,6 +1,5 @@
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/detail_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -234,6 +233,7 @@ class _ItemGridViewState extends State<ItemGridView> {
 class ItemListView extends StatelessWidget {
   final List<Item> itemlist;
   List<ItemGridView> itemGridList;
+
   ItemListView(this.itemlist){
     itemGridList = [];
     itemlist.forEach((item) {

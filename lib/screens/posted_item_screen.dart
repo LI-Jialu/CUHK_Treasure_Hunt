@@ -11,7 +11,7 @@ import 'package:cuhk_treasure_hunt/widgets/long_item_card_Posted_Items.dart';
 import 'package:flutter/material.dart';
 
 class PostedItemsScreen extends StatefulWidget {
-  var itemList;
+  final itemList;
   PostedItemsScreen({this.itemList});
   @override
   _PostedItemsScreenState createState() =>

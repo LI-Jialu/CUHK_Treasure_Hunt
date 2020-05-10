@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import '../utilities/constants.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
 
 class DetailScreen extends StatefulWidget {
   final Item item;

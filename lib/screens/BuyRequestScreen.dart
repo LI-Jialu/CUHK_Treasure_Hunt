@@ -6,14 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'dart:async';
-import 'dart:convert';
-
 
 class BuyRequestScreen extends StatefulWidget {
 
-  var buyRequests;
+  final buyRequests;
   BuyRequestScreen({this.buyRequests});
   @override
   _BuyRequestScreenState createState() => _BuyRequestScreenState();
@@ -26,11 +22,11 @@ class _BuyRequestScreenState extends State<BuyRequestScreen> {
       child: Card(
         child: ListTile(
           leading: Icon(Icons.watch_later),
-          title: Text(widget.buyRequests[index]['name'],
-        ),
-          subtitle: Text(widget.buyRequests[index]['price'],
+          title: Text(widget.buyRequests[index]['name'] != null?widget.buyRequests[index]['name']:"Deleted by Poster"),
+          subtitle: Text(widget.buyRequests[index]['price'] != null?widget.buyRequests[index]['price']:"Deleted",
       ),
-          trailing: Text("Quantity: "+widget.buyRequests[index]['quantity']),
+          trailing: Text("Quantity: "+widget.buyRequests[index]['quantity']!=null?widget.buyRequests[index]['quantity']:
+          "Deleted"),
         ),),
     );
 //    return Container(

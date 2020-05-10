@@ -15,8 +15,8 @@ import 'package:flutter/material.dart';
 
 class TransactionScreen extends StatefulWidget{
 
-  var transactionS; // transactions where the user logged in is the seller
-  var transactionB; // transactions where the user logged in is the buyer
+  final transactionS; // transactions where the user logged in is the seller
+  final transactionB; // transactions where the user logged in is the buyer
 
   // constructor
   TransactionScreen({this.transactionS,this.transactionB});

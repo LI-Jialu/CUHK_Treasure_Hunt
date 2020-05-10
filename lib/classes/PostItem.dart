@@ -220,6 +220,7 @@ class PostItem {
       });
     } on Exception catch (e) {
       print("Fail to upload image.");
+      print(e);
     }
   }
 

@@ -1,20 +1,12 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:cuhk_treasure_hunt/classes/User.dart';
-import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
-import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import 'package:http/http.dart' as http;
-
 class LoadingScreen extends StatefulWidget {
-  String username;
-  String password;
+  final String username;
+  final String password;
   LoadingScreen({this.username, this.password});
 
   @override

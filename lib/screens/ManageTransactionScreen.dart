@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
 
 class ManageTransactionScreen extends StatefulWidget{
 
-  var transactionItem; // transaction item managed
-  var isSell; // true if user logged in is seller
+  final transactionItem; // transaction item managed
+  final isSell; // true if user logged in is seller
 
   ManageTransactionScreen({this.transactionItem,this.isSell});
 

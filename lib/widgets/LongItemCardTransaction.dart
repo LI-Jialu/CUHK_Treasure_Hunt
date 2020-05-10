@@ -14,8 +14,8 @@ import 'package:flutter/material.dart';
 class LongItemCardTransaction extends StatefulWidget {
 
   // variable for storing transaction item
-  var transactionItem;
-  bool isSell; // true if the user logged in is the seller
+  final transactionItem;
+  final bool isSell; // true if the user logged in is the seller
 
   // constructor
   LongItemCardTransaction({this.transactionItem,this.isSell});

@@ -3,7 +3,7 @@ import 'package:cuhk_treasure_hunt/widgets/long_item_card.dart';
 
 class FavoriteScreen extends StatefulWidget {
 
-  var favorite_list;
+  final favorite_list;
   FavoriteScreen({this.favorite_list});
   @override
   _FavoriteScreenState createState() => _FavoriteScreenState();

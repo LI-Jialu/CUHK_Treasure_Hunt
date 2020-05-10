@@ -1,15 +1,9 @@
-import 'package:cuhk_treasure_hunt/screens/loading_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/register_screen.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
-import 'dart:async';
-
-
 
 class SignupScreen extends StatefulWidget {
   @override

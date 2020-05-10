@@ -14,17 +14,17 @@ import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/PostedItemDetailScreen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 import 'package:http/http.dart';
 
 class LongItemCardPostedItems extends StatefulWidget {
-  var item;
-  String itemID;
-  String itemPosterID;
-  String itemName;
-  String itemPrice;
-  String itemPostTime;
-  String image;
+  final item;
+  final String itemID;
+  final String itemPosterID;
+  final String itemName;
+  final String itemPrice;
+  final String itemPostTime;
+  final String image;
+
   LongItemCardPostedItems({this.item,this.itemID, this.itemPosterID, this.itemName, this.itemPrice, this.itemPostTime, this.image});
   @override
   _LongItemCardPostedItemsState createState() => _LongItemCardPostedItemsState();
@@ -105,6 +105,7 @@ class _LongItemCardPostedItemsState extends State<LongItemCardPostedItems> {
 
           } on Exception catch (e) {
               print("fail to acquire buyers");
+              print(e);
           }
 
           // push

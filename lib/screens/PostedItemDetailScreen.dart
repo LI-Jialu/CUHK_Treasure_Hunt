@@ -19,8 +19,8 @@ import 'chatroom_screen.dart';
 
 class PostedItemDetailScreen extends StatefulWidget{
 
-  var item; // the item of which the details are shown
-  var buyers; // buyers of this item
+  final item; // the item of which the details are shown
+  final buyers; // buyers of this item
 
   // constructor
   PostedItemDetailScreen({this.item, this.buyers});
