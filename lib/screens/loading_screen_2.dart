@@ -1,3 +1,13 @@
+/*
+ Module for requesting data from server,
+ then data is used in redirected page
+
+ Module Name: LoadingScreen2
+ Programmer: Tang Yiu Kai
+ Version: 1.0(10 May 2020)
+
+ */
+
 import 'dart:convert';
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
