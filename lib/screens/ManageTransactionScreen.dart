@@ -1,7 +1,14 @@
 /*
-  For managing transactions.
-  Options: Complete, Delete
- */
+Module to define the widget for showing posted item details, selecting buyers and creating transactions.
+
+Module Name:
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Accessed when a transaction item in TransactionScreen is tapped.
+For managing transactions.
+Options: Complete, Delete
+*/
 
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -11,8 +18,8 @@ import 'package:flutter/material.dart';
 
 class ManageTransactionScreen extends StatefulWidget{
 
-  var transactionItem;
-  var isSell;
+  var transactionItem; // transaction item managed
+  var isSell; // true if user logged in is seller
 
   ManageTransactionScreen({this.transactionItem,this.isSell});
 
@@ -24,9 +31,11 @@ class ManageTransactionScreen extends StatefulWidget{
 
 class ManageTransactionScreenState extends State<ManageTransactionScreen>{
 
-  String rating = "";
-  bool canComplete = true;
+  String rating = ""; // rating of the other user involved in this transaction
+  bool canComplete = true; // whether the user can complete transaction
+  // (user can only complete if user has never completed before.
 
+  // methods
   Future<bool> completeTransaction()async{
     bool result = await Database.post(
         "/data/manageTransactions.php",
@@ -66,12 +75,15 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
     return true;
   }
 
+  // build widget
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     print(widget.transactionItem);
     EdgeInsets padding = EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5);
 
+    // status is 1 if user has completed transaction before.
+    // user can only complete transaction once.
     if (widget.isSell){
       if (widget.transactionItem['status_s'] == '1'){
         canComplete = false;
@@ -83,7 +95,6 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
       }
     }
 
-
     return Scaffold(
       appBar: AppBar(title: Text("Manage Transaction"),),
       body: SafeArea(
@@ -91,32 +102,32 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
           padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*2, right: SizeConfig.safeBlockHorizontal*2),
           child: ListView(
             children: <Widget>[
-              Container(
+              Container( // image of item
                 height: SizeConfig.safeBlockVertical*50,
                 width: SizeConfig.safeBlockHorizontal*100,
                 child:
                 Image.network(Database.hostname+"/data/images/"+widget.transactionItem['image'], height: SizeConfig.safeBlockVertical * 50, width: SizeConfig.safeBlockVertical * 100),
               ),
-              Container(
+              Container( // name of item
                 height: SizeConfig.safeBlockVertical*5,
                 padding: padding,
                 alignment: Alignment.bottomLeft,
                 child: Text(widget.transactionItem['name'], style: kmiddle_black_textstyle),
               ),
-              Container(
+              Container( // price of item
                 height: SizeConfig.safeBlockVertical*5,
                 padding: padding,
                 alignment: Alignment.bottomLeft,
                 child: Text("\$" + widget.transactionItem['price'], style: kmiddle_red_textstyle),
               ),
-              Container(
+              Container( // quantity of item
                 height: SizeConfig.safeBlockVertical*5,
                 padding: padding,
                 alignment: Alignment.bottomLeft,
                 child: Text("Quantity: ${widget.transactionItem['quantity']}", style: kmiddle_black_textstyle),
               ),
               Divider(),
-              Row(
+              Row( // seller of item
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
@@ -125,7 +136,7 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                     alignment: Alignment.centerLeft,
                     child: Text('Seller: ${widget.transactionItem['seller']}', style: ksmall_black_textstyle),
                   ),
-                  Container(
+                  Container( // status of seller (whether seller has completed transaction)
                     padding: padding,
                     height: SizeConfig.safeBlockVertical*5,
                     alignment: Alignment.centerLeft,
@@ -134,7 +145,7 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                   ),
                 ],
               ),
-              Row(
+              Row( // buyer of item
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
@@ -143,7 +154,7 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                     alignment: Alignment.centerLeft,
                     child: Text('Buyer: ${widget.transactionItem['buyer']}', style: ksmall_black_textstyle),
                   ),
-                  Container(
+                  Container( // status of buyer
                     padding: padding,
                     height: SizeConfig.safeBlockVertical*5,
                     alignment: Alignment.centerLeft,
@@ -152,18 +163,18 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                   ),
                 ],
               ),
-              Row(
+              Row( // rating
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
                     height: SizeConfig.safeBlockVertical * 5,
                     alignment: Alignment.bottomLeft,
-                    child: Text('Title', style: ksmall_black_textstyle),
+                    child: Text('Rating', style: ksmall_black_textstyle),
                   ),
                   Container(
                     height: SizeConfig.safeBlockVertical * 5,
                     width: SizeConfig.safeBlockHorizontal * 50,
-                    child: TextField(
+                    child: TextField( // for entering the rating of the other user involved in this transaction
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       maxLines: 1,
@@ -178,7 +189,7 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                 ],
               ),
               Divider(height: SizeConfig.safeBlockVertical*5,),
-              FlatButton(
+              FlatButton( // complete transaction button
                 color: Colors.amber,
                 textColor: Colors.white,
                 disabledColor: Colors.grey,
@@ -196,7 +207,7 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                 ),
               ),
               Divider(),
-              FlatButton(
+              FlatButton( // cancel transaction button
                 color: Colors.amber,
                 textColor: Colors.white,
                 disabledColor: Colors.grey,

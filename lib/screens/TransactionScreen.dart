@@ -1,18 +1,24 @@
 /*
-  Screen for showing transactions in progress
- */
+Module to define the widget for showing all transactions in progress
+
+Module Name: TransactionScreen
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Accessed from profile screen (HomescreenProfile).
+*/
 
 import 'package:cuhk_treasure_hunt/screens/ManageTransactionScreen.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/widgets/LongItemCardTransaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TransactionScreen extends StatefulWidget{
 
-  var transactionS;
-  var transactionB;
+  var transactionS; // transactions where the user logged in is the seller
+  var transactionB; // transactions where the user logged in is the buyer
 
+  // constructor
   TransactionScreen({this.transactionS,this.transactionB});
 
   @override
@@ -24,7 +30,7 @@ class TransactionScreen extends StatefulWidget{
 
 class TransactionScreenState extends State<TransactionScreen>{
 
-  int index = 0;
+  int index = 0; // index 0: show transactions where user logged in is seller; index 1: buyer
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class TransactionScreenState extends State<TransactionScreen>{
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                OutlineButton(
+                OutlineButton( // button for changing index to 0
                     color: Colors.amber,
                     textColor: Colors.black,
                     disabledTextColor: Colors.grey,
@@ -48,7 +54,7 @@ class TransactionScreenState extends State<TransactionScreen>{
                       });
                     },
                     child: Text("Sell")),
-                OutlineButton(
+                OutlineButton( // button for changing index to 1
                     color: Colors.amber,
                     textColor: Colors.black,
                     disabledTextColor: Colors.grey,
@@ -67,7 +73,7 @@ class TransactionScreenState extends State<TransactionScreen>{
             IndexedStack(
               index: index,
               children: <Widget>[
-                ListView.builder(
+                ListView.builder( // show each sell transaction of all transactions in progress
                   itemCount: widget.transactionS.length,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -78,7 +84,7 @@ class TransactionScreenState extends State<TransactionScreen>{
                         transactionItem: widget.transactionS[i],
                         isSell: true,
                       ),
-                      onTap: ()async{
+                      onTap: ()async{ // go to ManageTransactionScreen when tapped
                         bool result = await Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => ManageTransactionScreen(
@@ -97,7 +103,7 @@ class TransactionScreenState extends State<TransactionScreen>{
                     );
                   },
                 ),
-                ListView.builder(
+                ListView.builder( // show each buy transaction of all transactions in progress
                   itemCount: widget.transactionB.length,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -108,7 +114,7 @@ class TransactionScreenState extends State<TransactionScreen>{
                         transactionItem: widget.transactionB[i],
                         isSell: false,
                       ),
-                      onTap: ()async {
+                      onTap: ()async { // go to ManageTransactionScreen when tapped
                         bool result = await Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => ManageTransactionScreen(
