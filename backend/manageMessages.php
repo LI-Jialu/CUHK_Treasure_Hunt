@@ -1,3 +1,17 @@
+/*
+Module to send message to another user
+
+Module Name: ManageMessages
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   receiver_id: the user_id of the user to whom you want to send a message
+   message: the message body (should not exceed 200 characters)
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
 require_once('connectDB.php');
 require_once('userAuthentication.php');

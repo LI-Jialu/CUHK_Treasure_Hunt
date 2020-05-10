@@ -1,3 +1,18 @@
+/*
+Module to update the profile of the user logged in.
+
+Module Name: UpdateProfile
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters: (must be passed even if no change)
+   college: new/existing college
+   year: new/existing year
+   dorm: new/existing dorm
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
   
     // don't allow changeing username

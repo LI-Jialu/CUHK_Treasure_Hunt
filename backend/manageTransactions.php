@@ -1,3 +1,26 @@
+/*
+Module to create/update/delete a transaction
+
+Module Name: ManageTransactions
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   insert parameters
+       seller_id: user_id of the seller if the item involved in the transaction
+       buyer_id: user_id of the buyer
+       item_id: item_id of the item involved
+       price: price of the item
+       quanitity: quantity of the item sold
+   update/delete parameters
+       transaction_id: for update/delete only. the transaction_id of the transaction
+       type: 'b'/'s', depending on whether the user logged in is the buyer or the seller
+   update parameters
+       rating: the rating of the other user involved in this transaction rated by the user logged in
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
   
     require_once('connectDB.php');
@@ -24,7 +47,7 @@
     if ($action == 'insert'){
         // called when user creates a transaction
         $sql = "INSERT INTO transactions VALUES (DEFAULT, 0, 0, {$seller_id}, {$buyer_id}, DEFAULT, DEFAULT,{$item_id}, {$price}, {$quantity}, DEFAULT);";
-//        echo $sql;
+
         require_once('query.php');
     }
     else if ($action == 'update'){
@@ -43,6 +66,7 @@
         $result = $con->query($sql);
         
         if ($result->fetch_assoc()['sum'] == 2){ // transaction complete
+            // update reputation of both users
             require_once('updateReputation.php');
         }
         
@@ -58,7 +82,7 @@
         require_once('query.php');
         
         // send message to inform the other user of the deletion
-        //...
+        // to be implemented as an improvement in user experience
     }
     
 ?>

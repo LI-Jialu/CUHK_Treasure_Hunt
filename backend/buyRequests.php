@@ -1,3 +1,16 @@
+/*
+ Module to find the buy requests made by the user logged in.
+ 
+ Module Name: BuyRequests
+ Programmer: Hon Tik TSE
+ Version: 1.0 (10 May 2020)
+ 
+ Input Parameters:
+    None
+ 
+ Output Parameters:
+    array of buyRequests in json format
+ */
 <?php
 
     require_once("connectDB.php");

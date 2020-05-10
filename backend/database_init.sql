@@ -1,7 +1,24 @@
+/*
+ Module to initialize the MySQL database
+ 
+ Module Name: DatabaseInit
+ Programmer: Hon Tik TSE
+ Version: 1.0 (10 May 2020)
+ 
+ Input Parameters:
+    None
+ 
+ Output Parameters:
+    None
+ */
+ 
+-- Delete database if database exists
 DROP DATABASE IF EXISTS treasure_hunt;
+-- Create database
 CREATE DATABASE treasure_hunt;
 USE treasure_hunt;
 
+-- Table colleges: store all the colleges in CUHK
 CREATE TABLE colleges (
 	college_id tinyint unsigned NOT NULL AUTO_INCREMENT,
     college char(2) NOT NULL,
@@ -18,6 +35,7 @@ INSERT INTO colleges VALUES (DEFAULT, "WS");
 INSERT INTO colleges VALUES (DEFAULT, "YS");
 INSERT INTO colleges VALUES (DEFAULT, "--");
 
+-- Table users: store users of the application
 CREATE TABLE users (
 	user_id mediumint unsigned NOT NULL AUTO_INCREMENT,
     username varchar(20) NOT NULL,
@@ -36,6 +54,7 @@ INSERT INTO users VALUES (DEFAULT, "admin3", '0000000002','admin3',6,2,'--',DEFA
 INSERT INTO users VALUES (DEFAULT, "admin4", '0000000003','admin4',6,2,'--',DEFAULT);
 INSERT INTO users VALUES (DEFAULT, "admin5", '0000000004','admin5',6,2,'--',DEFAULT);
 
+-- Table items: store all the items posted by users
 CREATE TABLE items (
 	item_id int unsigned NOT NULL AUTO_INCREMENT,
     poster_id mediumint unsigned NOT NULL,
@@ -59,6 +78,7 @@ INSERT INTO items VALUES (DEFAULT, 4, 'Used Lipstick', 100.0, 1, 'gross, oh i me
 INSERT INTO items VALUES (DEFAULT, 5, 'Fingernail', 105.0, 1, 'if you wanna curse me, u know',DEFAULT,DEFAULT);
 INSERT INTO items VALUES (DEFAULT, 5, 'Hair', 3.0, 1, 'good thing to have for cursing me',DEFAULT,DEFAULT);
 
+-- Table transactions: store transactions created by users
 CREATE TABLE transactions (
 	transaction_id int unsigned NOT NULL AUTO_INCREMENT,
     status_s tinyint NOT NULL DEFAULT 0,
@@ -79,6 +99,7 @@ CREATE TABLE transactions (
 INSERT INTO transactions VALUES(DEFAULT, DEFAULT, DEFAULT, 1, 2, DEFAULT, DEFAULT, 1, 2.2, 1, DEFAULT);
 INSERT INTO transactions VALUES(DEFAULT, DEFAULT, DEFAULT, 1, 2, DEFAULT, DEFAULT, 1, 2.2, 1, DEFAULT);
 
+-- Table favourites: store favourite items by each user
 CREATE TABLE favourites ( -- create surrogate key to allow set null
 	favourite_id int unsigned NOT NULL AUTO_INCREMENT,
 	item_id int unsigned,
@@ -97,6 +118,7 @@ INSERT INTO favourites VALUES (DEFAULT, 8, 2);
 INSERT INTO favourites VALUES (DEFAULT, 7, 3);
 INSERT INTO favourites VALUES (DEFAULT, 8, 3);
 
+-- Table messages: store messages sent between users
 CREATE TABLE messages (
 	message_id bigint unsigned NOT NULL AUTO_INCREMENT,
     sender_id mediumint unsigned NOT NULL,
@@ -114,6 +136,7 @@ INSERT INTO messages VALUES (DEFAULT,3,1,'i wanna buy ur vaccine too',DEFAULT);
 INSERT INTO messages VALUES (DEFAULT,1,3,'too? how do u know???? wtf?',DEFAULT);
 INSERT INTO messages VALUES (DEFAULT,1,2,'then piss off',DEFAULT);
 
+-- Table buy_requests: store buy requests made by users
 CREATE TABLE buy_requests ( -- create surrogate key to allow set null
 	buy_request_id int unsigned NOT NULL AUTO_INCREMENT,
 	item_id int unsigned,
@@ -125,6 +148,7 @@ CREATE TABLE buy_requests ( -- create surrogate key to allow set null
 );
 INSERT INTO buy_requests VALUES (DEFAULT, 1, 2, 1);
 
+-- Table tags: store all possible tags of items
 CREATE TABLE tags (
 	tag_id tinyint unsigned NOT NULL AUTO_INCREMENT,
     tag varchar(30) NOT NULL,
@@ -141,6 +165,7 @@ INSERT INTO tags VALUES (DEFAULT, 'daily use');
 INSERT INTO tags VALUES (DEFAULT, 'medical use');
 INSERT INTO tags VALUES (DEFAULT, 'cosmetics');
 
+-- Table item_tags: store the tags for each item
 CREATE TABLE item_tags (
 	item_id int unsigned NOT NULL,
     tag_id tinyint unsigned NOT NULL,

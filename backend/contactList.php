@@ -1,14 +1,17 @@
-<?php
+/*
+Module to retrieve the contact list of the user logged in.
 
-    // return the contact list of a user (userA)
-    // return as array of associative arrays, with each element as another user that userA has chats with
-    // the array is sorted in recency, the first user in the array is the most reccent person that engages in a chat with userA
-    /*
-     keys:
-        user_id     : user id
-        username    : username
-        message     : latest message between userA and this user
-    */
+Module Name: ContactList
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   None
+
+Output Parameters:
+   array of contacts sorted by recency in json format. A user who has a more recent chat with the user logged in will be placed nearer to the front in the array.
+*/
+<?php
     
     require_once('connectDB.php');
     require_once('userAuthentication.php');

@@ -1,3 +1,16 @@
+/*
+Module to retrieve the favourite items of the user logged in.
+
+Module Name: Favourites
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   None
+
+Output Parameters:
+   array of favourites in json format
+*/
 <?php
 
     require_once("connectDB.php");

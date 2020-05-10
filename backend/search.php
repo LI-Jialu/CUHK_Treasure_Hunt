@@ -1,13 +1,23 @@
+/*
+Module to search for items based on a search string
+
+Module Name: Search
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   search: the search string, can contain zero or more characters
+
+Output Parameters:
+   items matching the search string in json format.
+*/
 <?php
     
-    // the complete url for the image: Item.imagePath + item['image']
-    // flutter can easily render an image based on the url
+    // search string is separated into several phrases by space. All items containing any of these phrases will be returned, sorted by recency.
     
     require_once('connectDB.php');
-    //require_once('userAuthentication.php');
     
     $search = $_GET['search'];
-    //$filter = $_GET['filter'];
 
     $search_p = str_replace(' ', '|', $search);
     

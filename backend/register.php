@@ -1,3 +1,20 @@
+/*
+Module for user registration
+
+Module Name: Register
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   student_id, password: Processed and encoded in the app
+   username
+   college
+   year
+   dorm
+
+Output Parameters: (string, not json encoded)
+   success/fail
+*/
 <?php
 
     require_once("connectDB.php");

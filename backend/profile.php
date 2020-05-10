@@ -1,3 +1,16 @@
+/*
+Module to retrieve the profile of the user logged in
+
+Module Name: Profile
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   None
+
+Output Parameters:
+   Profile of the user in json format
+*/
 <?php
     
     require_once('connectDB.php');

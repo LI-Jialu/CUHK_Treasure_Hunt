@@ -1,3 +1,18 @@
+/*
+Module to login
+
+Module Name: Login
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters: (Processed and Encoded in the app)
+   student_id
+   password
+
+Output Parameters: (string, not json encoded)
+   user_id, if successful login.
+   -1, if unsuccessful login.
+*/
 <?php
     require_once("connectDB.php");
 

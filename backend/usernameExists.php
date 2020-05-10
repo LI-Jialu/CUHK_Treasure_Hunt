@@ -1,3 +1,16 @@
+/*
+Module to find out whether the username already exists, used during registration.
+
+Module Name: UsernameExists
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Input Parameters:
+   username: the username to be tested
+
+Output Parameters: (string, not json encoded)
+   exist/not exist
+*/
 <?php
   
     require_once("connectDB.php");
