@@ -1,3 +1,11 @@
+/*
+Module to render a screen for users to log in
+
+Module Name: Log in screen
+Programmer: Steve Tang
+This Module takes in account email and password to log into application
+*/
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
@@ -45,6 +53,7 @@ class LoginScreen extends StatelessWidget {
                   height: SizeConfig.safeBlockVertical*10,
 
                 ),
+                // to render the avatar of the user
                 CircleAvatar(
                   radius: SizeConfig.safeBlockVertical*10,
                   backgroundImage:
@@ -152,6 +161,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 
+// to render the password input box with interactive buttons
 class PasswordType extends StatefulWidget {
   @override
   _PasswordTypeState createState() => _PasswordTypeState();
