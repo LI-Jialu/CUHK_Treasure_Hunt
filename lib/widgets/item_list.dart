@@ -1,3 +1,15 @@
+/*
+Item List Module
+
+Module Name: Item List
+Programmer: Hon Tik TSE, Chenyu HAN, Zizhou TANG
+Version: 1.0 (10 May 2020)
+
+This Module includes 2 widgets, the ItemListView and ItemGridView.
+ItemGridView is the widget to show a square card of item
+ItemListView is the list of ItemGridView
+*/
+
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/detail_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
@@ -9,6 +21,7 @@ import 'dart:async';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:http/http.dart';
 
+// ItemGridView Class
 class ItemGridView extends StatefulWidget {
   final Item item;
   Set<String> tagset = new Set();
@@ -30,11 +43,12 @@ class ItemGridView extends StatefulWidget {
   _ItemGridViewState createState() => _ItemGridViewState();
 }
 
-
+// state of ItemGridView
 class _ItemGridViewState extends State<ItemGridView> {
   
   bool isFavorite = false;
 
+  // function of add favourites, for the add favourite botton
   void addFavourites(String item_id)async{
     try{
       await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
@@ -51,22 +65,19 @@ class _ItemGridViewState extends State<ItemGridView> {
     
     SizeConfig().init(context);
 
+    // college information needs to be retrived from backend server, which requires time
     return FutureBuilder<List<Response>>(
       future: widget._posterandtags,
       builder: (BuildContext context, AsyncSnapshot<List<Response>> snapshot) {
         String college = "Loading...";
+        // if college information has been retrived, the card can be tapped.
         if (snapshot.hasData) {
           var resultlist = json.decode(snapshot.data[0].body);
           var taglist = json.decode(snapshot.data[1].body);
-          //print("targetlist runtimetype " + taglist.runtimeType.toString());
-          //print("is targetlist a list?" + (taglist is List<String>).toString());
-          //print("targetlist tostring" + taglist.toString());
-          //print("targetlist content type " + taglist[0].runtimeType.toString());
           widget.tagset = new Set();
           taglist.forEach((tag) {
             widget.tagset.add(tag);
           });
-          //print("widget.tagset tostring" + widget.tagset.toString());
           
           college = resultlist[0]["college"];
           return GestureDetector(
@@ -144,7 +155,7 @@ class _ItemGridViewState extends State<ItemGridView> {
                   ),
                 ],
               ),
-        ),
+            ),
               SizedBox(height: SizeConfig.safeBlockVertical*2,),
             ],
           ),

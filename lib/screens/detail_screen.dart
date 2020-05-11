@@ -1,3 +1,12 @@
+/*
+Item Detail Screen Module
+
+Module Name: Detail Screen
+Programmer: Hon Tik TSE, Chenyu HAN, Zizhou TANG
+Version: 1.0 (10 May 2020)
+
+The widget to show detail of item
+*/
 
 import 'dart:async';
 
@@ -11,6 +20,7 @@ import '../utilities/constants.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+// The screen widget class
 class DetailScreen extends StatefulWidget {
   final Item item;
   final Map<String, dynamic> userinfo;
@@ -20,6 +30,7 @@ class DetailScreen extends StatefulWidget {
   _DetailScreenState createState() => _DetailScreenState();
 }
 
+// The screen state
 class _DetailScreenState extends State<DetailScreen> {
   PageController _controller = PageController(
     initialPage: 0,
@@ -35,6 +46,8 @@ class _DetailScreenState extends State<DetailScreen> {
   }
   */
 
+  // Functions to communicate with backend
+  // send buy item request to backend
   Future<bool> buyItem() async {
     bool result = await Database.post(
       "/data/manageBuyRequests.php",
@@ -43,6 +56,7 @@ class _DetailScreenState extends State<DetailScreen> {
     return result;
   }
 
+  // send add favourite request to backend
   void addFavourites(String item_id)async{
     try{
       await Database.post('/data/manageFavourites.php', {"action":"insert","item_id": item_id,"favourite_id":"0"});
@@ -77,52 +91,59 @@ class _DetailScreenState extends State<DetailScreen> {
     super.dispose();
   }
   @override
+
+  // widgetbuilder
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     List<String> taglist = widget.tagset.toList();
     return Scaffold(
+      // screen title
       appBar: AppBar(
         title: Text("Details"),
       ),
       body: Column(
         children: <Widget>[
+          // main body. info of item
           Expanded(
             child: ListView(
               scrollDirection: Axis.vertical,
               children: <Widget>[
+                // scrollable picture gallery (currently support only 1 picture)
                 Container(
                   height: SizeConfig.safeBlockVertical*50,
                   width: SizeConfig.safeBlockHorizontal*100,
-                  child: PageView(
+                  child: PageView(  
                     controller: _controller,
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       Container(
                         child: Image.network(widget.item.image, height: SizeConfig.safeBlockVertical * 50, width: SizeConfig.safeBlockVertical * 100),
                       ),
-                      Container(color: Colors.pink),
-                      Container(color: Colors.purple),
                     ],
                   ),
                 ),
+                // item name
                 Container(
                   height: SizeConfig.safeBlockVertical*5,
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   alignment: Alignment.bottomLeft,
                   child: Text(widget.item.name, style: kmiddle_black_textstyle),
                 ),
+                // price of item
                 Container(
                   height: SizeConfig.safeBlockVertical*5,
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   alignment: Alignment.topLeft,
                   child: Text("\$" + widget.item.price, style: kmiddle_red_textstyle),
                 ),
+                // item's poster's info
                 Container(
                   height: SizeConfig.safeBlockVertical*10,
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   alignment: Alignment.center,
                   child: Row(
                     children: <Widget>[
+                      // poster's profile photo
                       Container(
                         height: SizeConfig.safeBlockVertical*8,
                         width: SizeConfig.safeBlockVertical*8,
@@ -132,6 +153,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           Image.network(Item.imagePath+"IMAG09752020-04-21-22:55:52.jpg", height: SizeConfig.safeBlockVertical * 8).image,
                         ),
                       ),
+                      // poster's name and college
                       Container(
                         padding:EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*3, right: SizeConfig.safeBlockHorizontal*5),
                         child: Column(
@@ -154,6 +176,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ],
                   ),
                 ),
+                // item's tags
                 Container(
                   height: SizeConfig.safeBlockVertical*10,
                   child: ListView.builder(
@@ -179,12 +202,14 @@ class _DetailScreenState extends State<DetailScreen> {
                     }
                   ),
                 ),
+                // "More descriptions"
                 Container(
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5),
                   height: SizeConfig.safeBlockVertical*5,
                   alignment: Alignment.centerLeft,
                   child: Text('More descriptions', style: ksmall_black_textstyle),
                 ),
+                // detailed descriptions
                 Container(
                   padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5, bottom: SizeConfig.safeBlockHorizontal*5),
                   child: Container(
@@ -198,6 +223,7 @@ class _DetailScreenState extends State<DetailScreen> {
               ],
             ),
           ),
+          // bottoms below
           Container(
             decoration: BoxDecoration(
               border: Border(
@@ -211,6 +237,7 @@ class _DetailScreenState extends State<DetailScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                // favourite bottom
                 GestureDetector(
                   onTap: (){
                     if (itemLiked==true)
@@ -239,6 +266,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                   ),
                 ),
+                // contact bottom
                 GestureDetector(
                   onTap:(){
                     Navigator.push(
@@ -260,6 +288,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                   ),
                 ),
+                // buy item bottom
                 GestureDetector(
                   onTap: () async{
                     bool result = await buyItem();

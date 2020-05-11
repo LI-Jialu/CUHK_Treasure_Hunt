@@ -1,3 +1,13 @@
+/*
+Search Screen Module
+
+Module Name: Search Screen
+Programmer: Hon Tik TSE, Chenyu HAN, Jialu LI, Zizhou TANG
+Version: 1.0 (10 May 2020)
+
+The widget of search screen
+*/
+
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +22,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
 
+// search screen class
 class SearchScreen extends StatefulWidget {
   List<String> tags = [];
   SearchScreen({Key key, @required this.searchinput}) : super(key: key) {
@@ -26,7 +37,7 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-
+// class state
 class _SearchScreenState extends State<SearchScreen> {
   String sorttype = 'Recommended';
   List<String> tags;
@@ -36,14 +47,14 @@ class _SearchScreenState extends State<SearchScreen> {
     'Nearest',
     'Highest reputation',
   ];
+
   Future<List<Item>> _itemlist;
+
+  // function to get search result in form of list
   Future<List<Item>> getSearchResults() async {
-    //print("try getting search results!");
     Response searchresults;
     searchresults =
         await Database.get("/data/search.php?search=" + widget.searchinput, "");
-    //print("search results got!");
-    //print(searchresults.body);
     List<Item> itemlist = [];
     var resultlist = json.decode(searchresults.body);
     for (int i = 0; i < resultlist.length; i++) {
@@ -55,9 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
         newItem.taglist.add(tag);
       });
       itemlist.add(newItem);
-      //print("itemlist added! " + itemlist.toString());
     }
-    //print("call getsearchresults itemlist " + itemlist.toString());
     return itemlist;
   }
 
@@ -68,10 +77,12 @@ class _SearchScreenState extends State<SearchScreen> {
     this._itemlist = getSearchResults();
   }
 
+  // state builder
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     tags = widget.tags;
+    // to get search result requires time, thus widget to return is built in the future
     return FutureBuilder<List<Item>>(
       future: _itemlist,
       builder: (BuildContext context, AsyncSnapshot<List<Item>> snapshot) {
@@ -86,10 +97,12 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             height: SizeConfig.safeBlockVertical * 10,
           ),
+          // sort method and filter
           Container(
             padding: EdgeInsets.only(bottom: SizeConfig.safeBlockVertical * 1),
             child: Row(
               children: <Widget>[
+                // sort method
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 0.5),
@@ -119,6 +132,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
+                // filter button
                 GestureDetector(
                     child: Container(
                       decoration: BoxDecoration(
@@ -146,65 +160,42 @@ class _SearchScreenState extends State<SearchScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
           ),
-          // Expanded(child: Container(color: Colors.amber,),)
-          // Expanded(child: ItemListView(),)
         ];
+        // if item list has gotten, show item list
         if (snapshot.hasData) {
-          /*if (resultlist.isEmpty) {
-            childrenofcolumn.add(
-              Container(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Sorry! No results found!'),
-                ),
-                height: SizeConfig.safeBlockVertical * 10,
-              ),
-            );
-          } else */
           {
-            //print(resultlist[0].runtimeType);
             List<Item> itemlist = [];
             snapshot.data.forEach((item) {
               bool hastag = true;
-              //print("current selected tags " + tags.toString());
               item.taglist.forEach((tag){
-                //print("try whether contains tag " + tag);
                 if (!tags.contains(tag)) hastag = false;
               });
               if (hastag) itemlist.add(item);
             });
             if (sorttype == "Highest reputation") {
-              //print("sort again! highest reputation!");
-              //itemlist[1].reputation = "1";
               itemlist.sort((left, right) => double.parse(left.reputation).compareTo(double.parse(right.reputation)));
-              //itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
-              //print(itemlist[0].name);
             }
             else if (sorttype == "Recommended" || sorttype == "Nearest") {
-              //print("sort again! recommended");
               itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
             }
             else if (sorttype == "Newest") {
-              //print("sort again! newest");
               itemlist.sort((left, right) => int.parse(right.item_id).compareTo(int.parse(left.item_id)));
             }
             else if (sorttype == "Highest Price") {
-              //print("sort again!");
               itemlist.sort((left, right) => double.parse(right.price).compareTo(double.parse(left.price)));
             }
             else if (sorttype == "Lowest Price") {
-              //print("sort again!");
               itemlist.sort((left, right) => double.parse(left.price).compareTo(double.parse(right.price)));
             }
-            //print("tag list now!!!" + tags.toString());
-            //print("snapshot.data list" + snapshot.data.toString());
             childrenofcolumn.add(
               Expanded(
                 child: /*ItemListView(itemlist, widget.tags),*/ItemListView(itemlist),
               )
             );
           }
-        } else if (snapshot.hasError) {
+        } 
+        // otherwise show error or loading message
+        else if (snapshot.hasError) {
           childrenofcolumn.add(
             Container(
               child: Align(

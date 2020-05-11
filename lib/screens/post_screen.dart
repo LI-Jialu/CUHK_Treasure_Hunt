@@ -1,3 +1,13 @@
+/*
+Post Item Screen Module
+
+Module Name: Post Screen
+Programmer: Hon Tik TSE, Chenyu HAN, Jialu LI, Zizhou TANG
+Version: 1.0 (10 May 2020)
+
+The widget of post item screen
+*/
+
 import 'dart:async';
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
@@ -34,6 +44,7 @@ class PostScreenState extends State<PostScreen> {
     SizeConfig().init(context);
     return Scaffold(
         resizeToAvoidBottomPadding: false,
+        // screen title
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Post an item"),
@@ -47,6 +58,7 @@ class PostScreenState extends State<PostScreen> {
                 right: SizeConfig.safeBlockHorizontal * 5),
             scrollDirection: Axis.vertical,
             children: <Widget>[
+              // TextField to enter item title
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
                 width: SizeConfig.safeBlockHorizontal * 90,
@@ -64,6 +76,7 @@ class PostScreenState extends State<PostScreen> {
                 ),
               ),
               Divider(),
+              // TextField to enter item detail information
               Container(
                 child: Container(
                   height: SizeConfig.safeBlockVertical * 20,
@@ -82,6 +95,7 @@ class PostScreenState extends State<PostScreen> {
                   ),
                 ),
               ),
+              // add image bottom
               Row(
               children: <Widget>[SizedBox(
                 height: SizeConfig.safeBlockHorizontal * 35,
@@ -100,6 +114,7 @@ class PostScreenState extends State<PostScreen> {
                         });
                       });
                     },
+                    // if an image is chosen, this bottom shows the image, otherwise it appears to be a plus sign
                     child: PostItem.decideImageView(),),
               ),]
               ),
@@ -115,6 +130,7 @@ class PostScreenState extends State<PostScreen> {
               SizedBox(height: SizeConfig.safeBlockVertical * 2),
               
               Divider(),
+              // other information of item to post
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -166,6 +182,7 @@ class PostScreenState extends State<PostScreen> {
                 ],
               ),
               Divider(),
+              // "Choose tags"
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
                 alignment: Alignment.centerLeft,
@@ -200,6 +217,8 @@ class PostScreenState extends State<PostScreen> {
 //                  ),
 //                ],
 //              ),
+
+              // tag selector
               Container(
                 height: SizeConfig.safeBlockVertical * 5,
                 child: ListView.separated(
@@ -255,6 +274,7 @@ class PostScreenState extends State<PostScreen> {
                 ),
               ),
               Divider(),
+              // post bottom
               FlatButton(
                 color: Colors.amber,
                 textColor: Colors.white,

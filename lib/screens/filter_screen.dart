@@ -1,3 +1,13 @@
+/*
+Filter Screen Module
+
+Module Name: Detail Screen
+Programmer: Chenyu HAN
+Version: 1.0 (10 May 2020)
+
+The filter page after tap
+*/
+
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
@@ -7,6 +17,7 @@ import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 
 import '../utilities/constants.dart';
 
+// filter screen class
 class FilterScreen extends StatefulWidget {
   double minprice = 0.0;
   double minnew = 0.0;
@@ -17,11 +28,13 @@ class FilterScreen extends StatefulWidget {
   _FilterScreenState createState() => _FilterScreenState();
 }
 
+// class builder
 class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     List<Widget> tagChips = [];
+    // use a forloop to add tags
     Item.tags.forEach((tagstring) {
       tagChips.add(
         FilterChip(
