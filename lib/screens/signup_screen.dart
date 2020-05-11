@@ -1,15 +1,17 @@
-import 'package:cuhk_treasure_hunt/screens/loading_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
+/*
+Module for users to sign up their accounts
+
+Module Name: Sign up screen
+Programmer: Steve Tang
+This Module takes in user information to complete user registration
+*/
+
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/register_screen.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
-import 'dart:async';
-
-
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -17,10 +19,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  String student_id;
-  String password;
-  String veri_code; //6-digit numbers from the email
-  String username;
+  String student_id;  //student id
+  String password;    //password to log in the account
+  String veri_code;   //6-digit numbers from the email
+  String username;    //String for user name
   String button_hint = "Send Code";
   bool status = false;  // code sent status
   bool send_button_status = true;
@@ -37,6 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
   var _sidController = TextEditingController();
   var _passwordController = TextEditingController();
   var _vericodeController = TextEditingController();
+
 
   _fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
     currentFocus.unfocus();
@@ -70,6 +73,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(
                   height: SizeConfig.safeBlockVertical*10,
                 ),
+                  //render the username input
                   Container(child:
                   Text("Username")
                     ,),
@@ -123,6 +127,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ],
                   ),
+                  //  render email input box
                   Container(
                     child: Text("CUHK Email"),
                   ),
@@ -202,7 +207,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
 
-
+                  // render the verification window
                   Container(
                     child: Text("Verification Code"),
                   ),

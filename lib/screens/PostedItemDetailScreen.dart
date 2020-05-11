@@ -1,24 +1,28 @@
+/*
+Module to define the widget for showing posted item details, selecting buyers and creating transactions,
+  and deleting item.
+
+Module Name:
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+Accessed when an item in posted_item_screen is clicked.
+This Screen shows the details of the item, and the buyers
+User can Select a buyer and proceed to create transaction.
+*/
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
 import 'chatroom_screen.dart';
-
-/*
-  Accessed when an item in posted_item_screen is clicked.
-  This Screen shows the details of the item, and the buyers
-  User can Select a buyer and proceed to create transaction.
- */
-
 
 class PostedItemDetailScreen extends StatefulWidget{
 
-  var item;
-  var buyers;
+  final item; // the item of which the details are shown
+  final buyers; // buyers of this item
 
+  // constructor
   PostedItemDetailScreen({this.item, this.buyers});
 
   @override
@@ -36,6 +40,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
   bool buyerSelected = false;
   String quantity = "";
 
+  // methods
   Future<bool> createTransaction()async{
     bool result = await Database.post(
       "/data/manageTransactions.php",
@@ -67,6 +72,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
     return true;
   }
 
+  // build widget
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -77,25 +83,25 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
         padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*2, right: SizeConfig.safeBlockHorizontal*2),
         child: ListView(
           children: <Widget>[
-            Container(
+            Container( // image of item
               height: SizeConfig.safeBlockVertical*50,
               width: SizeConfig.safeBlockHorizontal*100,
               child:
                   Image.network(Database.hostname+"/data/images/"+widget.item['image'], height: SizeConfig.safeBlockVertical * 50, width: SizeConfig.safeBlockVertical * 100),
               ),
-            Container(
+            Container( // name of item
               height: SizeConfig.safeBlockVertical*5,
               padding: padding,
               alignment: Alignment.bottomLeft,
               child: Text(widget.item['name'], style: kmiddle_black_textstyle),
             ),
-            Container(
+            Container( // price of item
               height: SizeConfig.safeBlockVertical*5,
               padding: padding,
               alignment: Alignment.bottomLeft,
               child: Text("\$" + widget.item['price'], style: kmiddle_red_textstyle),
             ),
-            Container(
+            Container( // quantity of item
               height: SizeConfig.safeBlockVertical*5,
               padding: padding,
               alignment: Alignment.bottomLeft,
@@ -107,7 +113,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
               alignment: Alignment.centerLeft,
               child: Text('More descriptions', style: ksmall_black_textstyle),
             ),
-            Container(
+            Container( // description of item
               padding: EdgeInsets.only(left: SizeConfig.safeBlockHorizontal*5, right: SizeConfig.safeBlockHorizontal*5, bottom: SizeConfig.safeBlockHorizontal*5),
               child: Container(
                 decoration: BoxDecoration(
@@ -117,7 +123,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
                 child: Text(widget.item['description'], style: ksmall_black_textstyle),
               ),
             ),
-            Container(
+            Container( // button for showing buyers
               padding: padding,
               child: OutlineButton(
                 child: buyerSelected? Text("$selectedName selected"):Text("Select a buyer"),
@@ -129,10 +135,10 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
                 },
               ),
             ),
-            AnimatedContainer(
+            AnimatedContainer( // list of buyers
               duration: Duration(milliseconds: 500),
               height: showBuyers? 100:0,
-              child: ListView.builder(
+              child: ListView.builder( // construct a list of buyers
                 itemCount: widget.buyers.length,
                 itemBuilder: (BuildContext context, int index){
                   var buyer = widget.buyers[index];
@@ -149,9 +155,9 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
                           Center(
                             child: Text("Quantity: ${buyer['quantity']}"),
                           ),
-                          IconButton(
+                          IconButton( // chat button
                             icon: Icon(Icons.mail),
-                            onPressed: (){
+                            onPressed: (){ // go to chatroom when pressed
                               print("go to chat");
                               Navigator.push(
                                 context,
@@ -163,7 +169,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: (){ // select this buyer when pressed
                         setState(() {
                           showBuyers = false;
                           buyerSelected = true;
@@ -177,7 +183,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
                 }),
             ),
             Divider(),
-            FlatButton(
+            FlatButton( // create transaction button
               color: Colors.amber,
               textColor: Colors.white,
               disabledColor: Colors.grey,
@@ -195,7 +201,7 @@ class PostedItemDetailScreenState extends State<PostedItemDetailScreen>{
               ),
             ),
             Divider(),
-            FlatButton(
+            FlatButton( // delete item button
               color: Colors.amber,
               textColor: Colors.white,
               disabledColor: Colors.grey,

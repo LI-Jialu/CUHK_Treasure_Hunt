@@ -1,3 +1,11 @@
+/*
+Module to define the widget for each transaction in progress item
+
+Module Name: LongItemCardTransaction
+Programmer: Hon Tik TSE
+Version: 1.0 (10 May 2020)
+
+*/
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +13,13 @@ import 'package:flutter/material.dart';
 
 class LongItemCardTransaction extends StatefulWidget {
 
-  var transactionItem;
-  bool isSell;
+  // variable for storing transaction item
+  final transactionItem;
+  final bool isSell; // true if the user logged in is the seller
 
+  // constructor
   LongItemCardTransaction({this.transactionItem,this.isSell});
+
   @override
   _LongItemCardTransactionState createState() => _LongItemCardTransactionState();
 }
@@ -31,11 +42,13 @@ class _LongItemCardTransactionState extends State<LongItemCardTransaction> {
           vertical: SizeConfig.safeBlockVertical * 1),
       child: Row(
         children: <Widget>[
+          // image of item
           Container(
             height: SizeConfig.safeBlockVertical * 13,
             width: SizeConfig.safeBlockHorizontal * 20,
             child: Image.network(Database.hostname+"/data/images/"+widget.transactionItem['image']),
           ),
+          // information of transaction
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -55,6 +68,7 @@ class _LongItemCardTransactionState extends State<LongItemCardTransaction> {
               ),
             ),
           ),
+          // time of transaction
           Container(
               height: SizeConfig.safeBlockVertical * 13,
               width: SizeConfig.safeBlockHorizontal * 15,

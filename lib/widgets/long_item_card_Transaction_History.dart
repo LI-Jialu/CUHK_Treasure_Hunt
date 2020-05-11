@@ -11,16 +11,16 @@
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 
 class LongItemCardTransactionHistory extends StatefulWidget {
-  int index;
-  String price;
-  String name;
-  String time;
-  String seller;
-  String buyer;
-  String image;
+  final int index;
+  final String price;
+  final String name;
+  final String time;
+  final String seller;
+  final String buyer;
+  final String image;
+
   LongItemCardTransactionHistory({this.index, this.price,this.name,this.time, this.seller, this.buyer, this.image});
   @override
   _LongItemCardTransactionHistoryState createState() => _LongItemCardTransactionHistoryState();

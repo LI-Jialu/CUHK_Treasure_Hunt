@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/widgets/long_item_card.dart';
 
 class BrowsingHistoryScreen extends StatefulWidget {
   @override

@@ -1,9 +1,17 @@
+/*
+Module to render the registering screen for additional information input
+
+Module Name: register screen
+Programmer: Steve Tang
+This Module takes user inputs to complete additional information registration
+*/
+
+
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
-import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:universal_html/html.dart' as html;
@@ -11,9 +19,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // this screen is for the new user to customise the avatar, college and other infos
 class RegisterScreen extends StatefulWidget {
-  String student_id;
-  String password;
-  String username;
+  final String student_id;
+  final String password;
+  final String username;
+
   RegisterScreen({this.student_id, this.password, this.username});
   @override
   _RegisterScreenState createState() => _RegisterScreenState();

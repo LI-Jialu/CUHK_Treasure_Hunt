@@ -4,14 +4,14 @@ import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 
 class LongItemCard extends StatefulWidget {
-  String price;
-  String name;
+  final String price;
+  final String name;
   bool isFavorite = false;
-  String item_id;
-  String favourite_id;
-  String image;
-  LongItemCard({this.name,this.price,this.favourite_id,this.item_id,this.isFavorite, this.image});
+  final String item_id;
+  final String favourite_id;
+  final String image;
 
+  LongItemCard({this.name,this.price,this.favourite_id,this.item_id,this.isFavorite, this.image});
 
   @override
   _LongItemCardState createState() => _LongItemCardState();

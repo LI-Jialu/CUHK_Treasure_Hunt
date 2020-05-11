@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'long_item_card_Transaction_History.dart';
 
 
-
-
 class TransactionListView extends StatefulWidget {
-    int index;
-    var historyList;
+    final int index;
+    final historyList;
     TransactionListView({this.index, this.historyList});
   _TransactionListState createState() => _TransactionListState();
 }

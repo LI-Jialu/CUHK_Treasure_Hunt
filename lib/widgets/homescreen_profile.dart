@@ -20,7 +20,6 @@
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:cuhk_treasure_hunt/screens/browsing_history_screen.dart';
 import 'package:cuhk_treasure_hunt/screens/loading_screen_2.dart';
 import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';

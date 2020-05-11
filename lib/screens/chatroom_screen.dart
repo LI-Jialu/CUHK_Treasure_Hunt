@@ -1,17 +1,22 @@
+/*
+Module to render the chat room screen for user to view and type messages
+
+Module Name: Chat room screen
+Programmer: Steve Tang
+This Module takes in 
+*/
+
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:http/http.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cuhk_treasure_hunt/widgets/chat_bubble.dart';
-import 'dart:collection';
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 
 class ChatroomScreen extends StatefulWidget {
-  String user_id;
-  String contact_name;
+  final String user_id;
+  final String contact_name;
   ChatroomScreen({this.contact_name, this.user_id});
 
   @override

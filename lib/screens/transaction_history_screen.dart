@@ -9,17 +9,12 @@
  */
 
 
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/widgets/long_item_card_Transaction_History.dart';
 import 'package:cuhk_treasure_hunt/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 
-import '../utilities/constants.dart';
-
 class TransactionHistoryScreen extends StatefulWidget {
-  var historyList1;
-  var historyList2;
+  final historyList1;
+  final historyList2;
   TransactionHistoryScreen({this.historyList1, this.historyList2});
 
   @override

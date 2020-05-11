@@ -1,20 +1,20 @@
-import 'dart:async';
-import 'dart:convert';
+/*
+Module to render the processing icon to indicate the users to wait
+
+Module Name: Loading spinner
+Programmer: Steve Tang
+This Module renders a spinner icon
+*/
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
-import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
-import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import 'package:http/http.dart' as http;
-
 class LoadingScreen extends StatefulWidget {
-  String username;
-  String password;
+  final String username;
+  final String password;
   LoadingScreen({this.username, this.password});
 
   @override
@@ -31,7 +31,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void logIn () async{
 
     //await User.login('0000000003', 'admin4');
-
     bool result = await User.login(widget.username, widget.password);
     if (result) {
       Navigator.pushReplacement(
