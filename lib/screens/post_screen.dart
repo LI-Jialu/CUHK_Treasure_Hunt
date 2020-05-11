@@ -67,8 +67,7 @@ class PostScreenState extends State<PostScreen> {
                   textInputAction: TextInputAction.done,
                   maxLines: 1,
                   decoration: InputDecoration(
-                    hintText: 'Title',
-                    border: InputBorder.none),
+                      hintText: 'Title', border: InputBorder.none),
                   onChanged: (value) {
                     name = value;
                     print(name);
@@ -96,28 +95,27 @@ class PostScreenState extends State<PostScreen> {
                 ),
               ),
               // add image bottom
-              Row(
-              children: <Widget>[SizedBox(
-                height: SizeConfig.safeBlockHorizontal * 35,
-                width: SizeConfig.safeBlockHorizontal * 35,
-                child: OutlineButton(
+              Row(children: <Widget>[
+                SizedBox(
+                  height: SizeConfig.safeBlockHorizontal * 35,
+                  width: SizeConfig.safeBlockHorizontal * 35,
+                  child: OutlineButton(
                     color: Colors.amber,
                     textColor: Colors.black,
                     disabledTextColor: Colors.grey,
                     padding: EdgeInsets.all(8.0),
                     borderSide: BorderSide(color: Colors.transparent, width: 0),
-                    onPressed: () async{
+                    onPressed: () async {
                       await PostItem.showChoiceDialog(context);
                       Timer(Duration(seconds: 5), () {
-                        setState(() {
-
-                        });
+                        setState(() {});
                       });
                     },
                     // if an image is chosen, this bottom shows the image, otherwise it appears to be a plus sign
-                    child: PostItem.decideImageView(),),
-              ),]
-              ),
+                    child: PostItem.decideImageView(),
+                  ),
+                ),
+              ]),
 //              Row(
 //                mainAxisAlignment: MainAxisAlignment.center,
 //                children: <Widget>[
@@ -126,9 +124,9 @@ class PostScreenState extends State<PostScreen> {
 //                  PostItem.decideImageView(),
 //                ],
 //              ),
-              
+
               SizedBox(height: SizeConfig.safeBlockVertical * 2),
-              
+
               Divider(),
               // other information of item to post
               Row(
@@ -227,22 +225,21 @@ class PostScreenState extends State<PostScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     bool selected = tags.indexOf(index) != -1;
                     return FilterChip(
-                      label: Text(Item.tags[index]),
-                      selected: selected,
-                      onSelected: (bool value) {
-                        if (value) {
-                              setState(() {
-                                tags.add(index);
-                              });
-                              print(tags);
-                            } else {
-                              setState(() {
-                                tags.remove(index);
-                              });
-                              print(tags);
-                            }
-                      }
-                    );
+                        label: Text(Item.tags[index]),
+                        selected: selected,
+                        onSelected: (bool value) {
+                          if (value) {
+                            setState(() {
+                              tags.add(index);
+                            });
+                            print(tags);
+                          } else {
+                            setState(() {
+                              tags.remove(index);
+                            });
+                            print(tags);
+                          }
+                        });
                     /*return Container(
                       height: SizeConfig.safeBlockVertical * 5,
                       width: SizeConfig.safeBlockHorizontal * 38,
@@ -282,17 +279,19 @@ class PostScreenState extends State<PostScreen> {
                 disabledTextColor: Colors.black,
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
-                onPressed: () async{
-                  if (kIsWeb){ // flutter web
-                    String id = await PostItem.postItem(
-                        "insert", name, price, quantity, description,PostItem.webImageName);
+                onPressed: () async {
+                  if (kIsWeb) {
+                    // flutter web
+                    String id = await PostItem.postItem("insert", name, price,
+                        quantity, description, PostItem.webImageName);
                     PostItem.postTags(id, tags);
                     //Todo:Remove PostItem.webImageName?
-                  }
-                  else { // mobile
-                    String imageName = await PostItem.uploadImage(PostItem.picture);
-                    String id = await PostItem.postItem(
-                        "insert", name, price, quantity, description,imageName);
+                  } else {
+                    // mobile
+                    String imageName =
+                        await PostItem.uploadImage(PostItem.picture);
+                    String id = await PostItem.postItem("insert", name, price,
+                        quantity, description, imageName);
                     PostItem.postTags(id, tags);
                   }
                   Navigator.push(

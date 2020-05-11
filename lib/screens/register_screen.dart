@@ -2,10 +2,9 @@
 Module to render the registering screen for additional information input
 
 Module Name: register screen
-Programmer: Steve Tang
+Programmer: Steve Tang, Jialu LI
 This Module takes user inputs to complete additional information registration
 */
-
 
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
@@ -185,25 +184,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var _dormMC = ['--', 'NB', 'SB'];
   var _dormNA = [
     '--',
+    'ZX',
+    'ZW',
   ];
   var _dormSC = [
     '--',
+    'GS',
   ];
   var _dormSH = ['--', 'LQW', 'HT'];
   var _dormUC = [
     '--',
+    'TS',
+    'BS',
   ];
   var _dormWS = [
     '--',
+    'NB',
+    'SB',
   ];
   var _dormYS = [
     '--',
+    'EB',
+    'WB',
   ];
   var _dorm = [
     '--',
   ];
 
   @override
+  // let users choose user info from dropDown button
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -307,11 +316,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 //                      widget.password = "asdasd";
 
                         // for debug purpose
-                        print(widget.student_id+
-                            widget.password+
-                            widget.username+
-                            college+
-                            year+
+                        print(widget.student_id +
+                            widget.password +
+                            widget.username +
+                            college +
+                            year +
                             dorm);
                         try {
                           var register_success = await User.register(
@@ -338,7 +347,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           MaterialPageRoute(
                             builder: (context) => LoginScreen(
                               password: widget.password,
-                              username: widget.student_id+"@link.cuhk.edu.hk",
+                              username: widget.student_id + "@link.cuhk.edu.hk",
                             ),
                           ),
                         );
