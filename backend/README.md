@@ -1,5 +1,5 @@
-## How to use backend
-by Dixon
+## Backend Usage Guide
+by Hon Tik TSE
 
 ### Backend Files
 file|use|completed
@@ -14,12 +14,12 @@ manageItems.php | create/update/delete items | Y
 profile.php | retrieve profile | Y
 updateProfile.php | make changes to profile | Y
 register.php | register user | Y
-transactions.php | retrieve transactions/history | Y (not yet tested)
+transactions.php | retrieve transactions/history | Y 
 manageTransactions | create/update/delete transactions | Y (message left)
 updateProfile.php | updateProfile | Y
 updateReputation.php | updateReputation | Y
 usernameExists.php | check whether username exists | Y
-search.php | search for items (by name) | half way (will add other search types e.g. tags)
+search.php | search for items (by name) | Y
 verificationMail.php | send verification email | Y
 contactList.php | retrieve a user's contact list | Y
 messages.php | retrieve a user's chat history with another particular user | Y
