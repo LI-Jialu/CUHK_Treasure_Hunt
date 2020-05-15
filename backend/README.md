@@ -29,7 +29,7 @@ filter.php | filter search results using a tag (can only filter based on 1 tag a
 tags.php | return tags of an item given item_id (used in item details?) | Y
 postTags.php | post the tags of an item | Y
 
-### Important Note: The files can only be used after login cause user Authentication is required.
+### Important Note: Some of the files can only be used after login cause user Authentication is required.
 
 ### Guides to using using these files:
 1. Use the static methods get/post to call these files (except for login)
