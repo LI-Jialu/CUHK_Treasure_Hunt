@@ -8,8 +8,8 @@ This Module takes user inputs to complete additional information registration
 
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
+import 'package:cuhk_treasure_hunt/screens/LoginScreen.dart';
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';

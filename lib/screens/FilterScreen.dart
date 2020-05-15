@@ -9,9 +9,9 @@ The filter page after tap
 */
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
-import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/SearchScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 
 import '../utilities/constants.dart';
 

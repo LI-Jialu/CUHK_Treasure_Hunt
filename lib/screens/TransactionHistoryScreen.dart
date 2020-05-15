@@ -9,7 +9,7 @@
  */
 
 
-import 'package:cuhk_treasure_hunt/widgets/transaction_list.dart';
+import 'package:cuhk_treasure_hunt/widgets/TransactionList.dart';
 import 'package:flutter/material.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {

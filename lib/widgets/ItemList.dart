@@ -11,9 +11,9 @@ ItemListView is the list of ItemGridView
 */
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
-import 'package:cuhk_treasure_hunt/screens/detail_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/DetailScreen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';

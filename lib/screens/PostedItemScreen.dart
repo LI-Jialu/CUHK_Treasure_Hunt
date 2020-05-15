@@ -7,7 +7,7 @@
 
  */
 
-import 'package:cuhk_treasure_hunt/widgets/long_item_card_Posted_Items.dart';
+import 'package:cuhk_treasure_hunt/widgets/LongItemCardPostedItems.dart';
 import 'package:flutter/material.dart';
 
 class PostedItemsScreen extends StatefulWidget {

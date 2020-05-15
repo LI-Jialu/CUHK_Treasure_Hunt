@@ -9,11 +9,11 @@ The widget of search screen
 */
 
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
-import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
+import 'package:cuhk_treasure_hunt/widgets/ItemList.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/screens/filter_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/FilterScreen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/database/database.dart';

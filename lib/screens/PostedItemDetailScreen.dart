@@ -13,9 +13,9 @@ User can Select a buyer and proceed to create transaction.
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'chatroom_screen.dart';
+import 'ChatroomScreen.dart';
 
 class PostedItemDetailScreen extends StatefulWidget{
 

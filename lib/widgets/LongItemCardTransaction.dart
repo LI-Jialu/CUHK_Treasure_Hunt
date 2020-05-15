@@ -7,7 +7,7 @@ Version: 1.0 (10 May 2020)
 
 */
 import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 

@@ -6,13 +6,13 @@ Programmer: Steve Tang
 This Module takes in 
 */
 
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:cuhk_treasure_hunt/widgets/chat_bubble.dart';
+import 'package:cuhk_treasure_hunt/widgets/ChatBubble.dart';
 
 class ChatroomScreen extends StatefulWidget {
   final String user_id;
@@ -42,16 +42,16 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
   @override
   void initState() {
     super.initState();
-      get_message_async();
+      getMessageAsync();
       //  print(message_info_decoded[0]['message']);
     _messageStatus.value = message_info_decoded;
     _everyFiveSecond = Timer.periodic(Duration(seconds: 5), (Timer t){
-      get_message_async();
+      getMessageAsync();
       _messageStatus.value = message_info_decoded;
     });
   }
 
-  void get_message_async() async {
+  void getMessageAsync() async {
     var user_id = widget.user_id;
     print(user_id);
     var message_async = await Database.get("/data/messages.php", "?contact_id=$user_id");

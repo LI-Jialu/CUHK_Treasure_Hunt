@@ -12,14 +12,14 @@ import 'dart:convert';
 
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 import 'package:cuhk_treasure_hunt/screens/TransactionScreen.dart';
-import 'package:cuhk_treasure_hunt/screens/posted_item_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/transaction_history_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/PostedItemScreen.dart';
+import 'package:cuhk_treasure_hunt/screens/TransactionHistoryScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'package:cuhk_treasure_hunt/screens/BuyRequestScreen.dart';
-import 'favorite_screen.dart';
+import 'FavoriteScreen.dart';
 
 class LoadingScreen2 extends StatefulWidget {
   final int index;

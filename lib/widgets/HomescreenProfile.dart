@@ -20,9 +20,9 @@
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:cuhk_treasure_hunt/screens/loading_screen_2.dart';
-import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/screens/LoadingScreen2.dart';
+import 'package:cuhk_treasure_hunt/screens/LoginScreen.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';

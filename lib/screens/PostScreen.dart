@@ -13,10 +13,10 @@ import 'dart:async';
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
 import 'package:cuhk_treasure_hunt/classes/PostItem.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/HomeScreen.dart';
 
 String name;
 String price;

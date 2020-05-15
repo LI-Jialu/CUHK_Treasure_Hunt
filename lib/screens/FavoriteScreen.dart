@@ -7,7 +7,7 @@ This Module takes in the favorite items from the database and render them on the
 */
 
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/widgets/long_item_card.dart';
+import 'package:cuhk_treasure_hunt/widgets/LongItemCard.dart';
 
 class FavoriteScreen extends StatefulWidget {
 

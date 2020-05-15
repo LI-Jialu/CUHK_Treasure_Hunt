@@ -6,12 +6,12 @@ Programmer: Steve Tang
 This Module takes in the input of user's tab selection to navigate to corresponding pages
 */
 
-import 'package:cuhk_treasure_hunt/screens/post_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/PostScreen.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/widgets/homescreen_chat_list.dart';
-import 'package:cuhk_treasure_hunt/widgets/homescreen_explore.dart';
-import 'package:cuhk_treasure_hunt/widgets/homescreen_profile.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
+import 'package:cuhk_treasure_hunt/widgets/HomescreenChatList.dart';
+import 'package:cuhk_treasure_hunt/widgets/HomescreenExplore.dart';
+import 'package:cuhk_treasure_hunt/widgets/HomescreenProfile.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -9,7 +9,7 @@ This Module takes in the message to be sent as string and renders them in chat b
 
 
 
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble/bubble.dart';
 

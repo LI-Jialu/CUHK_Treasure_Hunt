@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
-import 'package:cuhk_treasure_hunt/screens/login_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/HomeScreen.dart';
+import 'package:cuhk_treasure_hunt/screens/LoginScreen.dart';
 
 void main() => runApp(MyApp());
 

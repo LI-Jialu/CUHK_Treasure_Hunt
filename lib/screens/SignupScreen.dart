@@ -6,11 +6,11 @@ Programmer: Steve Tang
 This Module takes in user information to complete user registration
 */
 
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:cuhk_treasure_hunt/utilities/constants.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
-import 'package:cuhk_treasure_hunt/screens/register_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/RegisterScreen.dart';
 import 'package:cuhk_treasure_hunt/classes/UserVerification.dart';
 
 class SignupScreen extends StatefulWidget {

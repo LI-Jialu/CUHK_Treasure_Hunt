@@ -7,9 +7,9 @@ This Module renders a spinner icon
 */
 
 import 'package:cuhk_treasure_hunt/classes/User.dart';
-import 'package:cuhk_treasure_hunt/screens/home_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {

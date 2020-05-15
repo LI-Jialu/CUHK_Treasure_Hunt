@@ -1,6 +1,6 @@
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'package:cuhk_treasure_hunt/screens/chatroom_screen.dart';
+import 'package:cuhk_treasure_hunt/screens/ChatroomScreen.dart';
 import 'package:cuhk_treasure_hunt/database/Database.dart';
 
 class LongItemCard extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:cuhk_treasure_hunt/classes/Item.dart';
-import 'package:cuhk_treasure_hunt/screens/search_screen.dart';
-import 'package:cuhk_treasure_hunt/utilities/size_config.dart';
-import 'package:cuhk_treasure_hunt/widgets/item_list.dart';
+import 'package:cuhk_treasure_hunt/screens/SearchScreen.dart';
+import 'package:cuhk_treasure_hunt/utilities/SizeConfig.dart';
+import 'package:cuhk_treasure_hunt/widgets/ItemList.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
