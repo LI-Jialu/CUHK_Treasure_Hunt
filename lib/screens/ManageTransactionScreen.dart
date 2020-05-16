@@ -197,6 +197,20 @@ class ManageTransactionScreenState extends State<ManageTransactionScreen>{
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.blueAccent,
                 onPressed: rating != "" && canComplete? () async {
+
+                  int r;
+                  try {
+                    r = int.parse(rating);
+                  }
+                  catch(e){
+                    print("Not int");
+                    return;
+                  }
+                  if (r < 0 || r > 5){
+                    print("Out of range");
+                    return;
+                  }
+
                   bool result = await completeTransaction();
                   result = await showMessageDialog("Complete", result);
                   Navigator.pop(context,true);

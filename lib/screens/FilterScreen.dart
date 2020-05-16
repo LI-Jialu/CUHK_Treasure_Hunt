@@ -38,16 +38,16 @@ class _FilterScreenState extends State<FilterScreen> {
       tagChips.add(
         FilterChip(
           label: Text(tagstring),
-          selected: widget.searchscreen.tags.contains(tagstring),
+          selected: !widget.searchscreen.tags.contains(tagstring),
           onSelected: (bool value) {
             setState(() {
               if (value) {
-                widget.searchscreen.tags.add(tagstring);
-              }
-              else {
                 widget.searchscreen.tags.removeWhere((String tag) {
                   return tag == tagstring;
                 });
+              }
+              else {
+                widget.searchscreen.tags.add(tagstring);
               }
             });
           }

@@ -26,9 +26,9 @@ class _SignupScreenState extends State<SignupScreen> {
   String button_hint = "Send Code";
   bool status = false;  // code sent status
   bool send_button_status = true;
-  bool verification_status;
+  bool verification_status = false;
   bool password_visible = false;
-  bool username_repitition = false;
+  bool username_repitition = true;
 
   final FocusNode _usernameFocus = FocusNode();
   final FocusNode _sidFocus = FocusNode();
@@ -97,6 +97,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           onChanged: (value) async{
                             username = value;
+
+                            if (username == ""){
+                              setState(() {
+                                username_repitition = true;
+                              });
+                              return;
+                            }
+
                             var username_exist =
                             await Database.get('/data/usernameExists.php', '?username=$username');
                             print(username_exist.body.length);
@@ -245,7 +253,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: FlatButton(
                           onPressed: ()async{
                             try{
-                              if (student_id.length==10 && password!=null)
+                              if (student_id.length==10 && password!=null && !username_repitition)
                               {
                                 status = await UserVerification.sendVerificationEmail(student_id, username);
                                 print("debug");
@@ -300,7 +308,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           print("No code is sent yet");
                         }
                         print(verification_status);
-                        if (verification_status)
+                        if (verification_status && student_id != null && password != null
+                            && username_repitition == false && username != null)
                         {
 //                          String email_address = "$student_id+@link.cuhk.edu.hk";
                           Navigator.push(
@@ -323,17 +332,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Text('Next', style: klogin_button_text,)),
                     ),
                   ),
-                  FlatButton(
-                    color: Colors.orange,
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterScreen()),
-                      );
-                    },
-                    child: Center(
-                        child: Text('test', style: klogin_button_text,)),
-                  ),
+
                   SizedBox(
                     height: SizeConfig.safeBlockVertical*30,
                   ),
